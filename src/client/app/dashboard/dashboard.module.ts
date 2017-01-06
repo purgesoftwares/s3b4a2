@@ -7,6 +7,7 @@ import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { HomeModule } from './home/home.module';
 import { ChartModule } from './charts/chart.module';
 import { UserModule } from './users/user.module';
+import { CustomerModule } from './customers/customer.module';
 import { BlankPageModule } from './blank-page/blankPage.module';
 import { TableModule } from './tables/table.module';
 import { FormModule } from './forms/forms.module';
@@ -29,6 +30,7 @@ import {SidebarComponent} from '../shared/index';
     	HomeModule,
         ChartModule,
         UserModule,
+        CustomerModule,
         TableModule,
         FormModule,
         GridModule,

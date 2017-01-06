@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Customers
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-user"></i> Customer
+                </li>
+            </ol>
+        </div>
+    </div>
+    <form class = "form-add">
+          
+          <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" id="firstName"
+               [(ngModel)]="model.firstName" name="firstName">
+          </div>
+          <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" id="lastName"
+               [(ngModel)]="model.lastName" name="lastName">
+          </div>
+          <div class="form-group">
+              <label for="gender">Gender</label>
+              <input type="text" class="form-control" id="gender"
+               [(ngModel)]="model.gender" name="gender">
+          </div>
+          <div class="form-group">
+              <label for="mainEmail">PersonalEmail</label>
+              <input type="text" class="form-control" id="mainEmail"
+               [(ngModel)]="model.mainEmail" name="mainEmail">
+          </div>
+          <div class="form-group">
+              <label for="secondaryEmail">Alternative Email</label>
+              <input type="text" class="form-control" id="secondaryEmail"
+               [(ngModel)]="model.secondaryEmail" name="secondaryEmail">
+          </div>
+          <button (click) = "submit()">Save</button>
+    </form>
+
+    <br/>
+
+    <div class="card card-block">
+           <div class="table-responsive">
+               <table class="table table-hover table-striped">
+                   <thead>
+                       <tr>
+                           <th>Id</th>
+                           <th>First Name</th>
+                           <th>Last Name</th>
+                           <th>Full Name</th>
+                           <th>Gender</th>
+                           <th>Fist Email</th>
+                           <th>Second Email</th>
+                           <th>createDate</th>
+                           <th>lastUpdate</th>
+                       </tr>
+                   </thead>
+                   <tbody *ngFor = "let cust of customers">
+                      <tr>
+                          <td>{{ cust.id }}</td>
+                          <td>{{ cust.firstName }}</td>
+                          <td>{{ cust.lastName }}</td>
+                          <td>{{ cust.fullName }}</td>
+                          <td>{{ cust.gender }}</td>
+                          <td>{{ cust.mainEmail }}</td>
+                          <td>{{ cust.secondaryEmail }}</td>
+                          <td>{{ cust.createDate }}</td>
+                          <td>{{ cust.lastUpdate }}</td>
+                      </tr>
+                  </tbody> 
+               </table>
+           </div>
+       </div>    

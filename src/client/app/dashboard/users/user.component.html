@@ -16,53 +16,34 @@
             </ol>
         </div>
     </div>
-    
-    <form class = "form-add">
-    <div class="form-group">
-        <label for="page">Page</label>
-        <input type="text" class="form-control" id="page"
-         [(ngModel)]="page" name="page">
-    </div>
-    <div class="form-group">
-        <label for="visit">Visit</label>
-        <input type="text" class="form-control" id="visit"
-         [(ngModel)]="visit" name="visit">
-    </div>
-    <div class="form-group">
-        <label for="new">New Visit</label>
-        <input type="text" class="form-control" id="new_visit"
-         [(ngModel)]="new_visit" name="new">
-    </div>
-    <div class="form-group">
-        <label for="revenue">Revenue</label>
-        <input type="text" class="form-control" id="revenue"
-         [(ngModel)]="revenue" name="revenue">
-    </div>
-    <div class="form-group">
-       <button (click) = "testSubmit()">Save</button>
-    </div>
-    </form>
-        
-    <h4>Striped Rows</h4>
-            <div class="card card-block">
-                <div class="table-responsive">
-                    <table class="table table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th>Page</th>
-                                <th>Visits</th>
-                                <th>% New Visits</th>
-                                <th>Revenue</th>
-                            </tr>
-                        </thead>
-                        <tbody *ngFor="let gdata of getData">
-                           <tr>
-                               <td>{{ gdata.page }}</td>
-                               <td>{{ gdata.visit }}</td>
-                               <td>{{ gdata.new_visit }}</td>
-                               <td>{{ gdata.revenue }}</td>
-                           </tr>
-                       </tbody> 
-                    </table>
-                </div>
-            </div>
+
+     <div class="card card-block">
+         <div class="table-responsive">
+             <table class="table table-hover table-striped">
+                 <thead>
+                     <tr>
+                         <th>Id</th>
+                         <th>Customer Id</th>
+                         <th>Enabled</th>
+                         <th>createDate</th>
+                         <th>isActive</th>
+                         <th>lastUpdate</th>
+                         <th>role</th>
+                         <th>username</th>
+                     </tr>
+                 </thead>
+                 <tbody *ngFor="let user of getData">
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.customerId }}</td>
+                        <td>{{ user.enabled }}</td>
+                        <td>{{ user.createDate }}</td>
+                        <td>{{ user.isActive }}</td>
+                        <td>{{ user.lastUpdate }}</td>
+                        <td>{{ user.role }}</td>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                </tbody> 
+             </table>
+         </div>
+     </div>

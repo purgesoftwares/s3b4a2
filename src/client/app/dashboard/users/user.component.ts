@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
-import { Http } from '@angular/http';
+import {Component } from '@angular/core';
 import { UserService } from './user.service';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
 	moduleId: module.id,
@@ -11,21 +12,17 @@ import { UserService } from './user.service';
 })
 
 export class UserComponent {
-	getData = [];
-	
-	constructor(private _http :  UserService) {}
+	model: any ={};
+	getData: Array<Object>[];
 
+
+	constructor(private _http :  UserService, private http : Http) {}
 	ngOnInit() {
 		this._http.getData()
 			.subscribe(
-				data => this.getData = data
+				data => this.getData = data.content,
+				error => console.log(error),
+				() => console.log("complete")
 			);
-	}
-
-	testSubmit(){
-		var json = JSON.stringify({page:'testt', visit:'123', new_visit: '434', revenu: '500'});
-		console.log(json);
-		this.getData.push(json);  
-		console.log(this.getData);
 	}
 }
