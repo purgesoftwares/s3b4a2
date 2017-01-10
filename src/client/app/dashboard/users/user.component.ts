@@ -1,7 +1,6 @@
 import {Component } from '@angular/core';
 import { UserService } from './user.service';
-import { Http, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
+
 
 @Component({
 	moduleId: module.id,
@@ -16,7 +15,7 @@ export class UserComponent {
 	getData: Array<Object>[];
 
 
-	constructor(private _http :  UserService, private http : Http) {}
+	constructor(private _http :  UserService) {}
 	ngOnInit() {
 		this._http.getData()
 			.subscribe(

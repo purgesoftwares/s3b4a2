@@ -17,12 +17,13 @@ export class LoginComponent {
 				private router: Router ) {}
 
 	login() {
-		
+		this.router.navigate(['/dashboard/home'])
+		/*
 		this.http.post('http://localhost:8090/api/oauth/token')
 			.map((res:Response) => res.text())
 			.subscribe( 
-			    data => { this.router.navigate(['/dashboard/home'])},
+			    data => { this.router.navigate(['/dashboard/home']) },
 			    error => {this.router.navigate(['/'])}
-			 );
+			 );*/
 	}
 }
