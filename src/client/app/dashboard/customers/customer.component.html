@@ -27,19 +27,9 @@
                [(ngModel)]="model.lastName" name="lastName">
           </div>
           <div class="form-group">
-              <label for="gender">Gender</label>
-              <input type="text" class="form-control" id="gender"
-               [(ngModel)]="model.gender" name="gender">
-          </div>
-          <div class="form-group">
               <label for="mainEmail">PersonalEmail</label>
               <input type="text" class="form-control" id="mainEmail"
                [(ngModel)]="model.mainEmail" name="mainEmail">
-          </div>
-          <div class="form-group">
-              <label for="secondaryEmail">Alternative Email</label>
-              <input type="text" class="form-control" id="secondaryEmail"
-               [(ngModel)]="model.secondaryEmail" name="secondaryEmail">
           </div>
           <button (click) = "submit()">Save</button>
     </form>

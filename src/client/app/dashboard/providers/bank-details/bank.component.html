@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Providers
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-user"></i> Providers
+                </li>
+            </ol>
+        </div>
+    </div>
+	<ul>
+		<li *ngFor ="let detail of model">
+			{{detail.id}}
+		</li>
+		
+	</ul>

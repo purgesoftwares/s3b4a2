@@ -1,6 +1,7 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { PagerService } from './pager.service'
+import { Router } from '@angular/router';
 
 @Component({
 	moduleId: module.id,
@@ -19,22 +20,42 @@ export class ProviderComponent {
 
     pagedItems: any[];
 	
-	constructor(private http : Http, , private pagerService: PagerService) { }
+	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
 	ngOnInit() {
 		this.http.get('http://localhost:8090/api/provider')
   				.map(res => res.json())
   				.subscribe(
   					data => {this.providers= data.content;
-  								this.setPage(1);}
+  								this.setPage(1);},
   					error => console.log("error"),
   					() => console.log("complete")
   				);
 	}
 
+	details(id) {
+		this.http.get('http://localhost:8090/api/secured/bank-detail/get-bankdetail/' + id)
+			.map(res => res.json())
+			.subscribe(
+				data => {this.router.navigate(['/dashboard/bank-detail/'],{ queryParams: { details: data}})}
+			);
+	}
+
+	change(email) {
+		this.router.navigate(['/dashboard/reset-password/'],{ queryParams: { Email:email}})
+	}
+
+	delete(id: number) {
+    	this.http.delete('http://localhost:8090/api/secured/user/' + id)
+			.map(res => res.json())
+			.subscribe(
+				data => console.log(data)
+			);
+    }
+
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.providers.filter((item) => (item.mainEmail.startsWith(terms) | item.secondaryEmail.startsWith(terms) | item.contactName.startsWith(terms));
+			this.pagedItems = this.providers.filter((item) => item.mainEmail.startsWith(terms);
 		} else {
 			this.ngOnInit();
 		}
@@ -47,4 +68,6 @@ export class ProviderComponent {
         this.pager = this.pagerService.getPager(this.providers.length, page);
         this.pagedItems = this.providers.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
+
+    
 }

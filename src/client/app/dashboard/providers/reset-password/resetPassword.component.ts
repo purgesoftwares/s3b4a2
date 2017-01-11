@@ -1,6 +1,7 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
 	moduleId: module.id,
@@ -10,8 +11,14 @@ import { Router } from '@angular/router';
 
 export class ResetPasswordComponent {
 	model: any= {};
+	email: any={};
+	
 
-	constructor(private http : Http, private router: Router) {}
+	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
+
+	ngOnInit() {
+	   this.route.queryParams.subscribe(data => this.model.email = data['Email']);
+  	}
 	
 	reset() {
 		this.http.post('http://localhost:8090/api/public/user/reset-password', this.model)

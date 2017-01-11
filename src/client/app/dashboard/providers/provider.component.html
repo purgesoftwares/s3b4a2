@@ -52,10 +52,9 @@
                         <td>{{ provider.userId }}</td>
                         <td>{{ provider.createDate }}</td>
                         <td>{{ provider.lastUpdate }}</td>
-                         <!-- <a type="submit" class="btn rounded-btn"  [routerLink]="['/dashboard/reset-password', provider.mainEmail]"> Change Password</a>&nbsp; -->
-                        <a type="submit" class="btn rounded-btn" routerLink="/dashboard/reset-password"> Change Password</a>&nbsp;
-                        <td><button (click) = "delete()">Delete</button></td>
-                        
+                        <td><button (click) = "details(provider.id)">Bank Details</button></td>
+                        <td><button (click) = "change(provider.mainEmail)">change</button></td> 
+                        <td><button (click) = "delete(provider.userId)">Delete</button></td>
                     </tr>
                 </tbody> 
              </table>
