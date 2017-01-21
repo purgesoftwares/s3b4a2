@@ -8,6 +8,9 @@ import { HomeModule } from './home/home.module';
 import { UserModule } from './users/user.module';
 import { ProviderModule } from './providers/provider.module';
 import { CustomerModule } from './customers/customer.module';
+import { InquiryModule } from './inquiry/inquiry.module';
+import { ContentModule } from './content/content.module';
+import { AddContentModule } from './content/add-content/addContent.module';
 import { ResetPasswordModule } from './providers/reset-password/resetPassword.module';
 import { BankDetailModule } from './providers/bank-details/bank.module';
 
@@ -27,8 +30,11 @@ import {SidebarComponent} from '../shared/index';
         UserModule,
         CustomerModule,
         ProviderModule,
+        InquiryModule,
+        ContentModule,
         ResetPasswordModule,
-        BankDetailModule
+        BankDetailModule,
+        AddContentModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]

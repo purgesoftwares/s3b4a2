@@ -23,7 +23,7 @@ export class ProviderComponent {
 	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
 	ngOnInit() {
-		this.http.get('http://localhost:8090/api/provider')
+		this.http.get('http://54.161.216.233:8090/api/provider')
   				.map(res => res.json())
   				.subscribe(
   					data => {this.providers= data.content;
@@ -34,7 +34,8 @@ export class ProviderComponent {
 	}
 
 	details(id) {
-		this.http.get('http://localhost:8090/api/secured/bank-detail/get-bankdetail/' + id)
+		console.log(id)
+		this.http.get('http://54.161.216.233:8090/api/secured/bank-detail/get-bankdetail/' + id + '?access_token=c1417477-6f4b-485e-a518-f3de5cbca17e')
 			.map(res => res.json())
 			.subscribe(
 				data => {this.router.navigate(['/dashboard/bank-detail/'],{ queryParams: { details: data}})}
@@ -46,7 +47,7 @@ export class ProviderComponent {
 	}
 
 	delete(id: number) {
-    	this.http.delete('http://localhost:8090/api/secured/user/' + id)
+    	this.http.delete('http://54.161.216.233:8090/api/secured/user/' + id)
 			.map(res => res.json())
 			.subscribe(
 				data => console.log(data)

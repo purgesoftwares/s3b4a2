@@ -6,6 +6,9 @@ import { CustomerRoutes } from './customers/index';
 import { ProviderRoutes } from './providers/index';
 import { ResetPasswordRoutes } from './providers/reset-password/index';
 import { BankDetailRoutes } from './providers/bank-details/bank.route';
+import { InquiryRoutes } from './inquiry/index';
+import { ContentRoutes } from './content/index';
+import { AddContentRoutes } from './content/add-content/index';
 
 
 import { DashboardComponent } from './index';
@@ -21,6 +24,9 @@ export const DashboardRoutes: Route[] = [
             ...ResetPasswordRoutes,
             ...BankDetailRoutes,
             ...CustomerRoutes,
+            ...InquiryRoutes,
+            ...ContentRoutes,
+            ...AddContentRoutes
         ]
   	}
 ];

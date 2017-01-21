@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Add Content
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li>
+                    <i class="fa fa-pencil"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/content" > Content</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-plus"></i>Add Content 
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <form role="form">
+         
+          <div class="form-group">
+              <input type="text" class="form-control" id="title" 
+               [(ngModel)]="model.title" name="title" placeholder="Title">
+          </div>
+          <div class="form-group">
+              <input type="text" class="form-control" id="content"
+               [(ngModel)]="model.content" name="content" placeholder="Content">
+          </div>
+          <div class="form-group">
+              <input type="text" class="form-control" id="status"
+               [(ngModel)]="model.status" name="status" placeholder="Status">
+          </div>
+          <button (click) = "reset()">Save</button>
+    </form>
+</div>
+
+ 

@@ -28,7 +28,7 @@ export class CustomerComponent {
 	submit() {
 		this.http.postData(this.model)
 		  .subscribe(
-		    data => console.log(data),
+		    data => {this.ngOnInit();},
 		    err => console.log(err),
 		    () => console.log('Call Complete')
 		  );

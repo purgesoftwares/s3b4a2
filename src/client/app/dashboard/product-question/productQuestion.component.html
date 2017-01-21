@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                ProductQuestion Management
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-pencil"></i> ProductQuestion Management
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <td><button (click) = "add()">New Page</button></td>
+   
+     <div class="card card-block">
+         <div class="table-responsive">
+             <table class="table table-hover table-striped">
+                 <thead>
+                     <tr>
+                         <th>Title</th>
+                         <th>ProductQuestion</th>
+                         <th>status</th>
+                         <th>Action</th>
+                         <th>Action</th>
+                     </tr>
+                 </thead>
+                 <tbody *ngFor="let ProductQuestion of ProductQuestions">
+                    <tr>
+                        <td>{{ ProductQuestion.title }}</td>
+                        <td>{{ ProductQuestion.ProductQuestion }}</td>
+                        <td>{{ ProductQuestion.status }}</td>
+                        <td><button (click) = "update(ProductQuestion.id, ProductQuestion.title)">Update</button></td> 
+                        <td><button (click) = "delete(ProductQuestion.id)">Delete</button></td>
+                    </tr>
+                </tbody> 
+             </table>
+         </div>
+     </div>
+</div>

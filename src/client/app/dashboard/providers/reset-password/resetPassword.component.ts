@@ -21,7 +21,7 @@ export class ResetPasswordComponent {
   	}
 	
 	reset() {
-		this.http.post('http://localhost:8090/api/public/user/reset-password', this.model)
+		this.http.post('http://54.161.216.233:8090/api/public/user/reset-password', this.model)
 				.map(res => res.json())
 				.subscribe(
 						data => {this.router.navigate(['/dashboard/provider'])}
