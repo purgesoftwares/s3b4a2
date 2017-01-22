@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Categories
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-user"></i> Category
+                </li>
+            </ol>
+        </div>
+    </div>
+  
+      <div class="card card-block">
+           <div class="table-responsive">
+               <table class="table table-hover table-striped">
+                   <thead>
+                       <tr>
+                           <th>Id</th>
+                           <th>Category Name</th>
+                           <th>Description</th>
+                          
+                       </tr>
+                   </thead>
+                   <tbody *ngFor = "let cust of category">
+                      <tr>
+                          <td>{{ cust.id }}</td>
+                          <td>{{ cust.name }}</td>
+                          <td>{{ cust.description }}</td>
+                      </tr>
+                  </tbody> 
+               </table>
+           </div>
+       </div>     -->

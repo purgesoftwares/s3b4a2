@@ -10,7 +10,10 @@ import { ProviderModule } from './providers/provider.module';
 import { CustomerModule } from './customers/customer.module';
 import { InquiryModule } from './inquiry/inquiry.module';
 import { ContentModule } from './content/content.module';
+import { CategoryModule } from './category/category.module';
 import { AddContentModule } from './content/add-content/addContent.module';
+import { ProductQuestionModule } from './product-question/productQuestion.module';
+import { AddProductQuestionModule } from './product-question/add-productQuestion/addproductQuestion.module';
 import { ResetPasswordModule } from './providers/reset-password/resetPassword.module';
 import { BankDetailModule } from './providers/bank-details/bank.module';
 
@@ -34,7 +37,10 @@ import {SidebarComponent} from '../shared/index';
         ContentModule,
         ResetPasswordModule,
         BankDetailModule,
-        AddContentModule
+        AddContentModule,
+        ProductQuestionModule,
+        AddProductQuestionModule,
+        CategoryModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]

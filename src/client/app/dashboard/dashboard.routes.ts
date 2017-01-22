@@ -8,8 +8,10 @@ import { ResetPasswordRoutes } from './providers/reset-password/index';
 import { BankDetailRoutes } from './providers/bank-details/bank.route';
 import { InquiryRoutes } from './inquiry/index';
 import { ContentRoutes } from './content/index';
+import { CategoryRoutes } from './category/index';
 import { AddContentRoutes } from './content/add-content/index';
-
+import { ProductQuestionRoutes } from './product-question/index';
+import { AddProductQuestionRoutes } from './product-question/add-productQuestion/index';
 
 import { DashboardComponent } from './index';
 
@@ -26,7 +28,10 @@ export const DashboardRoutes: Route[] = [
             ...CustomerRoutes,
             ...InquiryRoutes,
             ...ContentRoutes,
-            ...AddContentRoutes
+            ...AddContentRoutes,
+            ...ProductQuestionRoutes,
+            ...AddProductQuestionRoutes,
+            ...CategoryRoutes
         ]
   	}
 ];
