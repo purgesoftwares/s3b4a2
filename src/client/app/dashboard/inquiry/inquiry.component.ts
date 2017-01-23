@@ -16,13 +16,15 @@ export class InquiryComponent {
   inquiry: Array<Object>[];
   pager: any = {};
   terms:string = '';
+  pagedItems: any[];
+  token:any[];
 
-    pagedItems: any[];
-  
+  token = localStorage.getItem('access_token');
+
   constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
   ngOnInit() {
-    this.http.get('http://54.161.216.233:8090/api/secured/contact-us?access_token=c1417477-6f4b-485e-a518-f3de5cbca17e')
+    this.http.get('http://54.161.216.233:8090/api/secured/contact-us?access_token='+ this.token)
           .map(res => res.json())
           .subscribe(
             data => {this.inquiry= data.content;

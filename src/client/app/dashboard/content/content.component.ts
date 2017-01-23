@@ -16,13 +16,15 @@ export class ContentComponent {
 	content: Array<Object>[];
 	pager: any = {};
 	terms:string = '';
-
     pagedItems: any[];
+    token:any[];
+
+	token = localStorage.getItem('access_token');
 	
 	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
 	ngOnInit() {
-		this.http.get('http://54.161.216.233:8090/api/secured/cms-pages?access_token=c1417477-6f4b-485e-a518-f3de5cbca17e')
+		this.http.get('http://54.161.216.233:8090/api/secured/cms-pages?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => {this.content= data.content;
@@ -38,7 +40,7 @@ export class ContentComponent {
 	}
 
 	delete(id: number) {
-    	this.http.delete('http://54.161.216.233:8090/api/secured/cms-pages/' + id + '?access_token=c1417477-6f4b-485e-a518-f3de5cbca17e')
+    	this.http.delete('http://54.161.216.233:8090/api/secured/cms-pages/' + id + '?access_token=' + this.token)
 			.map(res => res.json())
 			.subscribe(
 				data => console.log(data),
@@ -53,7 +55,7 @@ export class ContentComponent {
 
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.content.filter((item) => item.mainEmail.startsWith(terms);
+			this.pagedItems = this.content.filter((item) => item.title.startsWith(terms);
 		} else {
 			this.ngOnInit();
 		}

@@ -17,6 +17,7 @@ export class LoginComponent {
 				private router: Router ) {}
 
 	login() {
+		localStorage.setItem('access_token', 'c1417477-6f4b-485e-a518-f3de5cbca17e');
 		this.router.navigate(['/dashboard/home'])
 		/*
 		this.http.post('http://localhost:8090/api/oauth/token')

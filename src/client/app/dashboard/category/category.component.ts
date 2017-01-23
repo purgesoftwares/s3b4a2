@@ -17,11 +17,16 @@ export class CategoryComponent {
 	pager: any = {};
 	terms:string = '';
     pagedItems: any[];
-	
+	token:any[];
+
+	token = localStorage.getItem('access_token');
+
 	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
 	ngOnInit() {
-		this.http.get('http://54.161.216.233:8090/api/secured/product-category?access_token=c1417477-6f4b-485e-a518-f3de5cbca17e')
+		var token = localStorage.getItem('access_token');
+		
+		this.http.get('http://54.161.216.233:8090/api/secured/product-category?access_token='+ this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => {this.category= data.content;
@@ -30,6 +35,21 @@ export class CategoryComponent {
   					() => console.log("complete")
   				);
 	}
+
+	add() {
+		
+		this.router.navigate(['/dashboard/add-category/']);
+	}
+
+	delete(id: number) {
+    	this.http.delete('http://54.161.216.233:8090/api/secured/product-category/' + id + '?access_token='+ this.token)
+			.map(res => res.json())
+			.subscribe(
+				data => console.log(data),
+				error => console.log("error"),
+  				() => this.ngOnInit()
+			);
+    }
 
 	search(terms: string) {
 		if(terms) {

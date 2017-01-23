@@ -17,11 +17,15 @@ export class CouponComponent {
 	pager: any = {};
 	terms:string = '';
     pagedItems: any[];
+
+	token:any[];
+
+	token = localStorage.getItem('access_token');
 	
 	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
 	ngOnInit() {
-		this.http.get('http://54.161.216.233:8090/api/secured/coupon?access_token=c1417477-6f4b-485e-a518-f3de5cbca17e')
+		this.http.get('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => {this.coupons= data.content;
@@ -41,7 +45,7 @@ export class CouponComponent {
 
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.coupons.filter((item) => item.mainEmail.startsWith(terms);
+			this.pagedItems = this.coupons.filter((item) => item.couponCode.startsWith(terms);
 		} else {
 			this.ngOnInit();
 		}

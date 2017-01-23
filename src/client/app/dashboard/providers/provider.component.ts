@@ -33,8 +33,9 @@ export class ProviderComponent {
 	}
 
 	details(id) {
-		console.log(id)
-		this.http.get('http://54.161.216.233:8090/api/secured/bank-detail/get-bankdetail/' + id + '?access_token=c1417477-6f4b-485e-a518-f3de5cbca17e')
+		
+		var token = localStorage.getItem('access_token');
+		this.http.get('http://54.161.216.233:8090/api/secured/bank-detail/get-bankdetail/' + id + '?access_token='+ token)
 			.map(res => res.json())
 			.subscribe(
 				data => {this.router.navigate(['/dashboard/bank-detail/'],{ queryParams: { details: data}})}
