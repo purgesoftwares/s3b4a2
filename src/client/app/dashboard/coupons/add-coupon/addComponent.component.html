@@ -1,0 +1,48 @@
+<div class="congOnInit() {
+       this.route.queryParams.subscribe(data => this.model.email = data['Email']);
+    }ntainer-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Reset Password 
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li>
+                    <i class="fa fa-tag"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/provider" > Coupons</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-tag"></i> Add Coupon
+                </li>
+            </ol>
+        </div>
+    </div>
+
+     <form role="form">
+         
+            <div class="form-group">
+                <input type="taxt" class="form-control" id="couponCode" 
+                [(ngModel)]="model.couponCode" name="couponCode" placeholder="Coupon Code">
+            </div>
+            <div class="form-group">
+                <input type="Number" class="form-control" id="couponNumber" 
+                [(ngModel)]="model.couponNumber" name="couponNumber" placeholder="Coupon Number">
+            </div>
+            <div class="form-group">
+                <input type="Number" class="form-control" id="price" 
+                [(ngModel)]="model.price" name="price" placeholder="Price">
+            </div>
+            <div class="form-group">
+                <input type="Number" class="form-control" id="used" 
+                [(ngModel)]="model.used" name="used" placeholder="Used">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="providerId" 
+                [(ngModel)]="model.providerId" name="providerId" placeholder="Provider Id">
+            </div>
+             <button (click) = "reset()">Save</button>
+    </form>
