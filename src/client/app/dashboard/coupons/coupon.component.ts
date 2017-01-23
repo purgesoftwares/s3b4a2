@@ -1,23 +1,31 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
+import { PagerService } from '../pager.service'
 import { Router } from '@angular/router';
 
 @Component({
 	moduleId: module.id,
 	selector: 'coupon-cmp',
 	templateUrl: 'coupon.component.html',
+
+	providers: [PagerService]
+
 })
 
 export class CouponComponent {
 	coupons: Array<Object>[];
-
-	constructor(private http : Http, private router: Router) { }
+	pager: any = {};
+	terms:string = '';
+    pagedItems: any[];
+	
+	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
 	ngOnInit() {
-		this.http.get('http://localhost:8090/api/secured/coupon')
+		this.http.get('http://54.161.216.233:8090/api/secured/coupon?access_token=c1417477-6f4b-485e-a518-f3de5cbca17e')
   				.map(res => res.json())
   				.subscribe(
-  					data => this.coupons= data.content,
+  					data => {this.coupons= data.content;
+  								this.setPage(1);},
   					error => console.log("error"),
   					() => console.log("complete")
   				);
@@ -30,4 +38,20 @@ export class CouponComponent {
 	update(id,couponCode,couponNumber,price,providerId,used) {
 		this.router.navigate(['/dashboard/add-coupon/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used }})
 	}
+
+	search(terms: string) {
+		if(terms) {
+			this.pagedItems = this.coupons.filter((item) => item.mainEmail.startsWith(terms);
+		} else {
+			this.ngOnInit();
+		}
+	}
+   
+    setPage(page: number) {
+        if (page < 1 || page > this.pager.totalPages) {
+            return;
+        }
+        this.pager = this.pagerService.getPager(this.coupons.length, page);
+        this.pagedItems = this.coupons.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    }   
 }

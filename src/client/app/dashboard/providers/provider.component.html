@@ -62,8 +62,7 @@
          </div>
      </div>
 
-     
-      <div style="text-align: center;">
+     <div style="text-align: center;">
       <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
           <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === 1}">
               <a style = "float: left;padding: 8px 16px;" (click)="setPage(1)">First</a>

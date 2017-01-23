@@ -16,11 +16,11 @@ export class AddCouponComponent {
 
 	ngOnInit() {
 	   this.route.queryParams.subscribe(data => {this.model.id = data['Id'],
-	   											this.model.couponCode = 	data['CouponCode'],this.model.couponNumber = data['CouponNumber'],this.model.price = data['Price'],this.model.providerId = data['ProviderId'],this.model.used = data['Used'],);
+	   											this.model.couponCode = 	data['CouponCode'],this.model.couponNumber = data['CouponNumber'],this.model.price = data['Price'],this.model.providerId = data['ProviderId'],this.model.used = data['Used']);
   	}
 	
 	reset() {
-		this.http.post('http://localhost:8090/api/secured/coupon', this.model)
+		this.http.post('http://54.161.216.233:8090/api/secured/coupon?access_token=c1417477-6f4b-485e-a518-f3de5cbca17e', this.model)
 				.map(res => res.json())
 				.subscribe(
 						data => {this.router.navigate(['/dashboard/coupon'])}

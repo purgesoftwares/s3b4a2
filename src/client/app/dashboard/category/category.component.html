@@ -15,6 +15,16 @@
             </ol>
         </div>
     </div>
+     <div class="card card-block">
+       <form (submit)="search(term.value)">
+        <div>
+          <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" autofocus>
+          <div class="input-group-btn">
+            <button type="submit" class="btn btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
   
       <div class="card card-block">
            <div class="table-responsive">
@@ -27,7 +37,7 @@
                           
                        </tr>
                    </thead>
-                   <tbody *ngFor = "let cust of category">
+                   <tbody *ngFor = "let cust of pagedItems">
                       <tr>
                           <td>{{ cust.id }}</td>
                           <td>{{ cust.name }}</td>
@@ -36,4 +46,25 @@
                   </tbody> 
                </table>
            </div>
-       </div>     -->
+       </div>
+
+       <div style="text-align: center;">
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === 1}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}" style = "display: inline;">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.currentPage - 1)">&laquo;</a>
+          </li>
+          <li style = "display: inline;" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.currentPage + 1)">&raquo;</a>
+          </li>
+          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+      </ul>
+    </div>
+  </div>

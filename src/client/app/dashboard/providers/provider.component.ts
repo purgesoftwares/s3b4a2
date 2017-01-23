@@ -1,6 +1,6 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { PagerService } from './pager.service'
+import { PagerService } from '../pager.service'
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,7 +16,6 @@ export class ProviderComponent {
 	providers: Array<Object>[];
 	pager: any = {};
 	terms:string = '';
-	showPasswordForm: boolean = false;
 
     pagedItems: any[];
 	
@@ -68,7 +67,5 @@ export class ProviderComponent {
         }
         this.pager = this.pagerService.getPager(this.providers.length, page);
         this.pagedItems = this.providers.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    }
-
-    
+    }   
 }
