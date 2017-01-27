@@ -1,0 +1,77 @@
+<div class="congOnInit() {
+       this.route.queryParams.subscribe(data => this.model.email = data['Email']);
+    }ntainer-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 *ngIf="model.id" class="page-header">
+                Update Coupon
+            </h1>
+            <h1 *ngIf="!model.id" class="page-header">
+                Add Coupon 
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li>
+                    <i class="fa fa-tag"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/coupon" > Coupons</a>
+                </li>
+                <li *ngIf="model.id" class="active">
+                    <i class="fa fa-tag"></i> Update Coupon
+                </li>
+                <li *ngIf="!model.id" class="active">
+                    <i class="fa fa-tag"></i> Add Coupon
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div *ngIf="mess" [ngClass]="{ 'alert': message, 'alert-danger': message.type === 'error' }" style="color:red;">{{message}}</div>
+    <form name="form" (ngSubmit)="f.form.valid && add()" #f="ngForm" novalidate>
+            <label for="couponCode">Coupon Code</label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !couponCode.valid }">
+                <input type="taxt" class="form-control" name="couponCode" [(ngModel)]="model.couponCode" 
+                 #couponCode="ngModel" placeholder="Coupon Code" required>
+                 <div *ngIf="f.submitted && !couponCode.valid" class="help-block" style="color:red;">Coupon Code is required</div>
+            </div>
+            <label for="couponNumber">Coupon Number</label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !couponNumber.valid }">
+                <input type="taxt" class="form-control" name="couponNumber" [(ngModel)]="model.couponNumber" 
+                 #couponNumber="ngModel" placeholder="Coupon Number" required>
+                 <div *ngIf="f.submitted && !couponNumber.valid" class="help-block" style="color:red;">Coupon Number is required</div>
+            </div>
+            <label for="price">Price <span class="required">*</span></label>
+
+            <div class="form-group" style="border-color:red"; [ngClass]="{ 'has-error': f.submitted && !price.valid }">
+                <input type="taxt" class="form-control" name="price" [(ngModel)]="model.price" 
+                 #price="ngModel" placeholder="Price" required>
+                 <div *ngIf="f.submitted && !price.valid" class="help-block" style="color:red;">Price is required</div>
+            </div>
+
+           <div>
+            <label for="providerId">Provider:</label>
+            <select [ngModel]="providerId" (ngModelChange)="onChange($event)" name="providerId" required>
+                <option value="">--Select--</option>
+                <option [ngValue]="i" *ngFor="let i of providers" [selected]="i.id === model.providerId">
+                {{i.provider_name}}</option>
+            </select>
+            <span *ngIf="f.submitted && !model.providerId"  class="help-block" style="color:red;">Provider Is required</span>
+            </div>
+
+             <label for="provider">Used:</label>
+             <div class="form-group">
+                <input type="Number" class="form-control" id="used" 
+                [(ngModel)]="model.used" name="used" placeholder="Used">
+            </div>
+             <label for="provider">Availability:</label>
+             <div class="form-group">
+                <input type="Number" class="form-control" id="availability" 
+                [(ngModel)]="model.availability" name="availability" placeholder="Availability">
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Save</button>
+            </div>
+    </form>
+</div>

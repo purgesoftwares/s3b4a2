@@ -36,8 +36,9 @@
                          <th>Coupon Code</th>
                          <th>Coupon Number</th>
                          <th>Price</th>
-                         <th>Used</th>
                          <th>Provider</th>
+                         <th>Used</th>
+                         <th>Availability</th>
                          <th>Start Time</th>
                          <th>End Time</th>
                          <th>Action</th>
@@ -52,6 +53,7 @@
                         <td>{{ coupon.price }}</td>
                         <td>{{ coupon.providerId }}</td>
                         <td>{{ coupon.used }}</td>
+                        <td>{{ coupon.availability }}</td>
                         <td>{{ coupon.startTime }}</td>
                         <td>{{ coupon.endTime }}</td>
                          <td><button (click) = "update(coupon.id,coupon.couponCode,coupon.couponNumber,coupon.price,coupon.providerId,coupon.used)">change</button></td>
