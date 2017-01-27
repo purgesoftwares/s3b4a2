@@ -11,22 +11,29 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class AddCategoryComponent {
 	model: any= {};
+	message: any= {};
+	loading = false;
+	mess = false;
 	token:any[];
 
 	token = localStorage.getItem('access_token');
 
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
 
-	reset() {
+	save() {
+		this.loading = true;
 		let headers = new Headers();
   		headers.append('Content-Type', 'application/json');
     	this.http.post('http://54.161.216.233:8090/api/secured/product-category?access_token=' +this.token, this.model, {headers: headers})
 			.map(res => res.json())
 			.subscribe(
-				data =>  {this.router.navigate(['/dashboard/category'])},
-				error => console.log("error"),
-  				() => console.log("complete")
-			);
+					data => {this.router.navigate(['/dashboard/category'])},
+					error => { if(error.json().error) {
+								this.message = error.json().message
+								this.mess = true;
+							}
+  							this.loading = false;}
+				);
 	}
 
 }

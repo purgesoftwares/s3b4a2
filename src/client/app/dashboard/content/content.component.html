@@ -28,8 +28,8 @@
       </form>
     </div>
 
-    <td><button (click) = "add()">New Page</button></td>
-   
+    <button (click) = "add()">New Page</button>
+    <div *ngIf="mess" [ngClass]="{ 'alert': message}" style="color:red;">{{message}}</div>
      <div class="card card-block">
          <div class="table-responsive">
              <table class="table table-hover table-striped">

@@ -20,8 +20,11 @@ export class LoginComponent {
 	constructor( private http : Http,
 				private router: Router ) {}
 
-	login() {		
-		this.loading = true;
+	login() {
+
+		localStorage.setItem('access_token', 'c1417477-6f4b-485e-a518-f3de5cbca17e');
+		this.router.navigate(['/dashboard/home'])		
+		/*this.loading = true;
 		this.http.post('http://localhost:8090/api/oauth/token', this.model)
 			.map((res:Response) => res.text())
 			.subscribe(
@@ -34,8 +37,9 @@ export class LoginComponent {
 				    	this.loading = false;}}
 			    error => {console.log(error);
 				    this.mess= true;
+				    this.message.type= 'Error'; 
 				    this.loading = false;
 				}
-			 );
+			 );*/
 	}
 }

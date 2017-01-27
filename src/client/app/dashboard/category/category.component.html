@@ -10,24 +10,20 @@
                     <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-user"></i> Category
+                    <i class="fa fa-tags"></i> Category
                 </li>
             </ol>
         </div>
     </div>
      <div class="card card-block">
        <form (submit)="search(term.value)">
-        <div>
-          <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" autofocus>
-          <div class="input-group-btn">
-            <button type="submit" class="btn btn btn-default btn-flat"><i class="fa fa-search"></i></button>
-          </div>
-        </div>
+          <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" width=50% autofocus>
+          <button  type="submit" class="btn btn btn-default btn-flat"><i class="fa fa-search"></i></button>
       </form>
     </div>
 
-    <td><button (click) = "add()">New Category</button></td>
-  
+    <button style="text-align: right" (click) = "add()">New Category</button>
+      <div *ngIf="mess" [ngClass]="{ 'alert': message}" style="color:red;">{{message}}</div>
       <div class="card card-block">
            <div class="table-responsive">
                <table class="table table-hover table-striped">

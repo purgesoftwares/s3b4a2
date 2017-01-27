@@ -20,22 +20,33 @@
         </div>
     </div>
 
-    <form role="form">
-         
-          <div class="form-group">
-              <input type="text" class="form-control" id="title" 
-               [(ngModel)]="model.title" name="title" placeholder="Title">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control" id="content"
-               [(ngModel)]="model.content" name="content" placeholder="Content">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control" id="status"
-               [(ngModel)]="model.status" name="status" placeholder="Status">
-          </div>
-          <button (click) = "reset()">Save</button>
+    <div *ngIf="mess" [ngClass]="{ 'alert': message}" style="color:red;">{{message}}</div>
+    <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel"  placeholder="Name" required />
+            <div *ngIf="f.submitted && !name.valid" class="help-block" style="color:red;">Name is required</div>
+        </div>
+       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" [(ngModel)]="model.title" #title="ngModel"  placeholder="title" required />
+            <div *ngIf="f.submitted && !title.valid" class="help-block" style="color:red;">Title is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !content.valid }">
+            <label for="content">Content</label>
+            <input type="text" class="form-control" name="content" [(ngModel)]="model.content" #content="ngModel"  placeholder="content" required />
+            <div *ngIf="f.submitted && !content.valid" class="help-block" style="color:red;">Content is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid }">
+            <label for="status">Status</label>
+            <input type="text" class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel"  placeholder="status" required />
+            <div *ngIf="f.submitted && !status.valid" class="help-block" style="color:red;">Status is required</div>
+        </div>
+        <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Save</button>
+        </div>
     </form>
+
 </div>
 
  

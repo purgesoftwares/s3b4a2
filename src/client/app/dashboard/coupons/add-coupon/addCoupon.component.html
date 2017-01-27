@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div *ngIf="mess" [ngClass]="{ 'alert': message, 'alert-danger': message.type === 'error' }" style="color:red;">{{message}}</div>
+    <div *ngIf="mess" [ngClass]="{ 'alert': message}" style="color:red;">{{message}}</div>
     <form name="form" (ngSubmit)="f.form.valid && add()" #f="ngForm" novalidate>
             <label for="couponCode">Coupon Code</label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !couponCode.valid }">

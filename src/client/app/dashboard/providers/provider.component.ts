@@ -38,7 +38,8 @@ export class ProviderComponent {
 		this.http.get('http://54.161.216.233:8090/api/secured/bank-detail/get-bankdetail/' + id + '?access_token='+ token)
 			.map(res => res.json())
 			.subscribe(
-				data => {this.router.navigate(['/dashboard/bank-detail/'],{ queryParams: { details: data}})}
+				data => {this.bank= data.content;
+				this.router.navigate(['/dashboard/bank-detail/'],{ queryParams: { details: this.bank.id}})}
 			);
 	}
 

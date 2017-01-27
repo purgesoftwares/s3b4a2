@@ -18,6 +18,8 @@ export class ContentComponent {
 	terms:string = '';
     pagedItems: any[];
     token:any[];
+    message: any= {};
+	mess = false;
 
 	token = localStorage.getItem('access_token');
 	
@@ -32,6 +34,14 @@ export class ContentComponent {
   					error => console.log("error"),
   					() => console.log("complete")
   				);
+  				.subscribe(
+						data => {this.content= data.content;
+  								this.setPage(1);},
+						error => { if(error.json().error) {
+									this.message = error.json().message
+									this.mess = true;
+								}}
+				);
 	}
 
 	add() {

@@ -11,8 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class ResetPasswordComponent {
 	model: any= {};
-	email: any={};
-	
+	message: any= {};
+	loading = false;
+	mess = false;
 
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
 
@@ -20,11 +21,16 @@ export class ResetPasswordComponent {
 	   this.route.queryParams.subscribe(data => this.model.email = data['Email']);
   	}
 	
-	reset() {
+	save() {
 		this.http.post('http://54.161.216.233:8090/api/public/user/reset-password', this.model)
 				.map(res => res.json())
 				.subscribe(
-						data => {this.router.navigate(['/dashboard/provider'])}
+						data => {this.router.navigate(['/dashboard/provider'])},
+						error => { if(error.json().error) {
+									this.message = error.json().message
+									this.mess = true;
+								}
+  								this.loading = false;}
 				);
 	}
 

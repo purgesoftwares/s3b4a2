@@ -17,6 +17,8 @@ export class CategoryComponent {
 	pager: any = {};
 	terms:string = '';
     pagedItems: any[];
+    message: any= {};
+	mess = false;
 	token:any[];
 
 	token = localStorage.getItem('access_token');
@@ -31,7 +33,10 @@ export class CategoryComponent {
   				.subscribe(
   					data => {this.category= data.content;
   								this.setPage(1);},
-  					error => console.log("error"),
+  					error => { if(error.json().error) {
+									this.message = error.json().message
+									this.mess = true;
+								}},
   					() => console.log("complete")
   				);
 	}
