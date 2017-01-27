@@ -44,7 +44,7 @@
             </div>
             <label for="price">Price <span class="required">*</span></label>
 
-            <div class="form-group" style="border-color:red"; [ngClass]="{ 'has-error': f.submitted && !price.valid }">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !price.valid }">
                 <input type="taxt" class="form-control" name="price" [(ngModel)]="model.price" 
                  #price="ngModel" placeholder="Price" required>
                  <div *ngIf="f.submitted && !price.valid" class="help-block" style="color:red;">Price is required</div>
