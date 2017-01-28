@@ -15,7 +15,7 @@
             </ol>
         </div>
     </div>
-    <div class="card card-block">
+    <div class="card card-block" style="width: 450px; margin: auto;">
         <form (submit)="search(term.value)">
             <div class="input-group">
                 <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" autofocus>
@@ -25,6 +25,7 @@
             </div>
         </form>
     </div>
+
     <div>
       <button (click) = "add()" class="pull-right btn btn-primary">Add</button>
     </div>
@@ -35,18 +36,17 @@
            <table class="table table-hover table-striped">
                <thead>
                    <tr>
-                       <th>Id</th>
                        <th>Category Name</th>
                        <th>Description</th>
                        <th>Action</th>                          
                    </tr>
                </thead>
                <tbody *ngFor = "let cust of pagedItems">
-                  <tr>
-                      <td>{{ cust.id }}</td>
+                  <tr>                     
                       <td>{{ cust.name }}</td>
                       <td>{{ cust.description }}</td>
-                      <td><button (click) = "delete(cust.id)" class="btn btn-secondary">Delete</button></td>
+                      <td><button (click) = "update(cust.id,cust.name,cust.description)" class="btn btn-default">Edit</button></td>
+                      <td><button (click) = "delete(cust.id)" class="btn btn-default">Delete</button></td>
                   </tr>
               </tbody> 
            </table>

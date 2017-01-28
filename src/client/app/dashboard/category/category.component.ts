@@ -46,6 +46,10 @@ export class CategoryComponent {
 		this.router.navigate(['/dashboard/add-category/']);
 	}
 
+	update(id: number, name: string, description: string) {
+    	this.router.navigate(['/dashboard/add-category/'], { queryParams: { Id: id, name: name,description: description}});
+    }
+
 	delete(id: number) {
     	this.http.delete('http://54.161.216.233:8090/api/secured/product-category/' + id + '?access_token='+ this.token)
 			.map(res => res.json())
@@ -58,7 +62,7 @@ export class CategoryComponent {
 
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.category.filter((item) => item.name.startsWith(terms);
+			this.pagedItems = this.category.filter((item) => item.name.startsWith(terms));
 		} else {
 			this.ngOnInit();
 		}

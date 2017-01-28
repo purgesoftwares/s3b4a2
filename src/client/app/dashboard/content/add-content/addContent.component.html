@@ -37,19 +37,23 @@
             </div>
              <label for="content">Content</label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !content.valid }">
-                <input type="taxt" class="form-control" name="content" [(ngModel)]="model.content" 
-                 #content="ngModel" placeholder="Content" required>
+                <textarea class="form-control" name="content" [(ngModel)]="model.content" 
+                 #content="ngModel" placeholder="Content" required></textarea> 
                  <div *ngIf="f.submitted && !content.valid" class="help-block">Content is required</div>
             </div>
-             <label for="status">Status</label>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid }">
-                <input type="taxt" class="form-control" name="status" [(ngModel)]="model.status" 
-                 #status="ngModel" placeholder="Status" required>
-                 <div *ngIf="f.submitted && !status.valid" class="help-block">Status is required</div>
+            <div>
+            <label for="status">Status :</label>
+            <select [(ngModel)]="status" (ngModelChange)="onChange($event)" name="status" required>
+                    <option value="enable">Enable</option>
+                    <option value="disable">Disable</option>
+            </select>
+            <span *ngIf="f.submitted && !model.status"  class="help-block">Provider Is required</span>
             </div>
+            <br/>
             <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Save</button>
-                <input type="button" class="btn btn-primary" onclick="reset()" value="Cancel">
+                <input type="button" class="btn btn-default" onclick="reset()" value="Cancel">
             </div>
     </form>
+     <a [routerLink]="['/dashboard/content']" class="pull-right btn btn-primary">Back</a>
 </div>

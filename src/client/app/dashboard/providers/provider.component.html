@@ -16,7 +16,7 @@
         </div>
     </div>
      
-    <div class="card card-block">
+    <div class="card card-block" style="width: 450px; margin: auto;">
         <form (submit)="search(term.value)">
             <div class="input-group">
                 <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" autofocus>
@@ -31,29 +31,26 @@
              <table class="table table-hover table-striped">
                  <thead>
                      <tr>
-                         <th>Id </th>
                          <th>Provider Name</th>
                          <th>Contact Name</th>
                          <th>Address Id</th>
                          <th>Email</th>
-                         <th>Secondary Email</th>
+                         <th>default  Email</th>
                          <th>User Id</th>
-                         <th>Action</th>
-                         <th>Action</th>
+                         <th>Actions</th>
                      </tr>
                  </thead>
                  <tbody *ngFor="let provider of pagedItems">
                     <tr>
-                        <td>{{ provider.id }}</td>
                         <td>{{ provider.provider_name }}</td>
                         <td>{{ provider.contactName }}</td>
                         <td>{{ provider.addressId }}</td>
                         <td>{{ provider.mainEmail }}</td>
                         <td>{{ provider.secondaryEmail }}</td>
                         <td>{{ provider.userId }}</td>
-                        <td><button (click) = "details(provider.id)" class="btn btn-secondary">Bank Details</button></td>
-                        <td><button (click) = "change(provider.mainEmail)" class="btn btn-secondary">Password Reset</button></td> 
-                        <td><button (click) = "delete(provider.userId)" class="btn btn-secondary">Delete</button></td>
+                        <td><button (click) = "details(provider.id)" class="btn btn-default ">Bank Details</button></td>
+                        <td><button (click) = "change(provider.mainEmail)" class="btn btn-default ">Password Reset</button></td> 
+                        <td><button (click) = "delete(provider.userId)" class="btn btn-default ">Delete</button></td>
                     </tr>
                 </tbody> 
              </table>

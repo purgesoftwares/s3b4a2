@@ -50,7 +50,7 @@ export class CouponComponent {
 
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.coupons.filter((item) => item.couponCode.startsWith(terms);
+			this.pagedItems = this.coupons.filter((item) => item.couponCode.startsWith(terms));
 		} else {
 			this.ngOnInit();
 		}

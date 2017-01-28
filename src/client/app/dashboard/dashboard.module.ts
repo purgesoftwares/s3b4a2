@@ -5,9 +5,7 @@ import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { HomeModule } from './home/home.module';
-import { UserModule } from './users/user.module';
 import { ProviderModule } from './providers/provider.module';
-import { CustomerModule } from './customers/customer.module';
 import { InquiryModule } from './inquiry/inquiry.module';
 import { ContentModule } from './content/content.module';
 import { CategoryModule } from './category/category.module';
@@ -34,8 +32,6 @@ import {SidebarComponent} from '../shared/index';
     	DropdownModule,
         ModalModule,
     	HomeModule,
-        UserModule,
-        CustomerModule,
         ProviderModule,
         InquiryModule,
         ContentModule,

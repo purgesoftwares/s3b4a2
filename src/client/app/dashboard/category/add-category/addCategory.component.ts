@@ -20,6 +20,10 @@ export class AddCategoryComponent {
 
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
 
+	ngOnInit() {
+	   this.route.queryParams.subscribe(data => {this.model.id = data['Id'], this.model.name = data['name'], this.model.description = data['description']});
+  	}
+
 	save() {
 		this.loading = true;
 		let headers = new Headers();

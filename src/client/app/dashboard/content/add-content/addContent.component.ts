@@ -39,4 +39,9 @@ export class AddContentComponent {
   							this.loading = false;}
 				);
 	}
+
+	onChange(values) {
+		console.log(values);
+    	this.model.status = values;
+	}
 }

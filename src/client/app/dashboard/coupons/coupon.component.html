@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="card card-block">
+    <div class="card card-block" style="width: 450px; margin: auto;">
         <form (submit)="search(term.value)">
             <div class="input-group">
                 <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" autofocus>
@@ -34,7 +34,6 @@
              <table class="table table-hover table-striped">
                  <thead>
                      <tr>
-                         <th>Id </th>
                          <th>Coupon Code</th>
                          <th>Coupon Number</th>
                          <th>Price</th>
@@ -43,13 +42,11 @@
                          <th>Availability</th>
                          <th>Start Time</th>
                          <th>End Time</th>
-                         <th>Action</th>
-                         <th>Action</th>
-                     </tr>
+                         <th>Actions</th>
+                  </tr>
                  </thead>
                  <tbody *ngFor="let coupon of pagedItems">
                     <tr>
-                        <td>{{ coupon.id }}</td>
                         <td>{{ coupon.couponCode }}</td>
                         <td>{{ coupon.couponNumber }}</td>
                         <td>{{ coupon.price }}</td>
@@ -58,8 +55,8 @@
                         <td>{{ coupon.availability }}</td>
                         <td>{{ coupon.startTime }}</td>
                         <td>{{ coupon.endTime }}</td>
-                         <td><button (click) = "update(coupon.id,coupon.couponCode,coupon.couponNumber,coupon.price,coupon.providerId,coupon.used)" class="btn btn-secondary">Edit</button></td>
-                        <td><button (click) = "delete()" class="btn btn-secondary">Delete</button></td>
+                         <td><button (click) = "update(coupon.id,coupon.couponCode,coupon.couponNumber,coupon.price,coupon.providerId,coupon.used)" class="btn btn-default">Edit</button></td>
+                        <td><button (click) = "delete()" class="btn btn-default">Delete</button></td>
                     </tr>
                 </tbody> 
              </table>

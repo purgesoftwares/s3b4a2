@@ -53,11 +53,11 @@ export class ProviderComponent {
 																				bankName: this.bank.bankName,
 																				branchNumber: this.bank.branchNumber,
 																				accountNumber: this.bank.accountNumber}});}
-				error => {console.log(error); 
+				error => {console.log(error);
 				if(error) {
 							this.message = "For this Provider Bank Details not exist.";
 							this.mess = true;
-				}},
+				};},
 			);
 	}
 
@@ -79,7 +79,7 @@ export class ProviderComponent {
 
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.providers.filter((item) => item.mainEmail.startsWith(terms);
+			this.pagedItems = this.providers.filter((item) => item.mainEmail.startsWith(terms));
 		} else {
 			this.ngOnInit();
 		}

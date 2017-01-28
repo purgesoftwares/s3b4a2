@@ -59,7 +59,7 @@ export class ContentComponent {
 
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.content.filter((item) => item.title.startsWith(terms);
+			this.pagedItems = this.content.filter((item) => item.title.startsWith(terms));
 		} else {
 			this.ngOnInit();
 		}
