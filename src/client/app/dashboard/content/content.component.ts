@@ -31,21 +31,15 @@ export class ContentComponent {
   				.subscribe(
   					data => {this.content= data.content;
   								this.setPage(1);},
-  					error => console.log("error"),
-  					() => console.log("complete")
-  				);
-  				.subscribe(
-						data => {this.content= data.content;
-  								this.setPage(1);},
-						error => { if(error.json().error) {
+  					error => { if(error.json().error) {
 									this.message = error.json().message
 									this.mess = true;
-								}}
-				);
+								}},
+  					() => console.log("complete")
+  				);
 	}
 
 	add() {
-		
 		this.router.navigate(['/dashboard/add-content/']);
 	}
 
@@ -59,8 +53,8 @@ export class ContentComponent {
 			);
     }
 
-    update(id: number, title: string) {
-    	this.router.navigate(['/dashboard/add-content/'], { queryParams: { id: id, title: title}});
+    update(id: number, title: string, content: string, status: string) {
+    	this.router.navigate(['/dashboard/add-content/'], { queryParams: { Id: id, title: title,Content: content, status: status}});
     }
 
 	search(terms: string) {

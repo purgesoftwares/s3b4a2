@@ -1,15 +1,18 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import {FroalaEditorComponent} from 'ng2-froala-editor/ng2-froala-editor';
+
 
 @Component({
 	moduleId: module.id,
 	selector: 'product-question',
-	templateUrl: 'productQuestion.component.html',
+	templateUrl: 'productQuestion.component.html'
 })
 
 export class ProductQuestionComponent {
-	productQuestions: Array<Object>[];
+	
+	/*productQuestions: Array<Object>[];
 	showData: false;
 
 	constructor(private http : Http, private router : Router) { }
@@ -24,7 +27,7 @@ export class ProductQuestionComponent {
   				);
 	}*/
 	
-	add() {
+	/*add() {
 		
 		this.router.navigate(['/dashboard/add-productQuestion/']);
 	}
@@ -41,5 +44,5 @@ export class ProductQuestionComponent {
 
     update(id: number, title: string) {
     	this.router.navigate(['/dashboard/add-ProductQuestion/'], { queryParams: { id: id, title: title}});
-    }
-}
+    }*/
+   }

@@ -20,12 +20,12 @@
         </div>
     </div>
 
-    <div *ngIf="mess" [ngClass]="{ 'alert': message}" style="color:red;">{{message}}</div>
+    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
     <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
             <label for="name">Name</label>
             <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel"  placeholder="Name" required />
-            <div *ngIf="f.submitted && !name.valid" class="help-block" style="color:red;">Name is required</div>
+            <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
         </div>
         <div class="form-group">
               <label for="name">Discription</label>
@@ -34,6 +34,7 @@
         </div>
         <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Save</button>
+                <input type="button" class="btn btn-primary" onclick="reset()" value="Cancel">
         </div>
     </form>
 </div>

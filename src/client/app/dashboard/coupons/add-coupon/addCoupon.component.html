@@ -1,6 +1,4 @@
-<div class="congOnInit() {
-       this.route.queryParams.subscribe(data => this.model.email = data['Email']);
-    }ntainer-fluid">
+<div class="container-fluid">
     <div class="row">
         <div class="col-xl-12">
             <h1 *ngIf="model.id" class="page-header">
@@ -28,28 +26,28 @@
         </div>
     </div>
 
-    <div *ngIf="mess" [ngClass]="{ 'alert': message}" style="color:red;">{{message}}</div>
+    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    
     <form name="form" (ngSubmit)="f.form.valid && add()" #f="ngForm" novalidate>
             <label for="couponCode">Coupon Code</label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !couponCode.valid }">
                 <input type="taxt" class="form-control" name="couponCode" [(ngModel)]="model.couponCode" 
                  #couponCode="ngModel" placeholder="Coupon Code" required>
-                 <div *ngIf="f.submitted && !couponCode.valid" class="help-block" style="color:red;">Coupon Code is required</div>
+                 <div *ngIf="f.submitted && !couponCode.valid" class="help-block">Coupon Code is required</div>
             </div>
             <label for="couponNumber">Coupon Number</label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !couponNumber.valid }">
-                <input type="taxt" class="form-control" name="couponNumber" [(ngModel)]="model.couponNumber" 
+                <input type="Number" class="form-control" name="couponNumber" [(ngModel)]="model.couponNumber" 
                  #couponNumber="ngModel" placeholder="Coupon Number" required>
-                 <div *ngIf="f.submitted && !couponNumber.valid" class="help-block" style="color:red;">Coupon Number is required</div>
+                 <div *ngIf="f.submitted && !couponNumber.valid" class="help-block">Coupon Number is required</div>
             </div>
             <label for="price">Price <span class="required">*</span></label>
 
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !price.valid }">
-                <input type="taxt" class="form-control" name="price" [(ngModel)]="model.price" 
+                <input type="Number" class="form-control" name="price" [(ngModel)]="model.price" 
                  #price="ngModel" placeholder="Price" required>
-                 <div *ngIf="f.submitted && !price.valid" class="help-block" style="color:red;">Price is required</div>
+                 <div *ngIf="f.submitted && !price.valid" class="help-block">Price is required</div>
             </div>
-
            <div>
             <label for="providerId">Provider:</label>
             <select [ngModel]="providerId" (ngModelChange)="onChange($event)" name="providerId" required>
@@ -57,7 +55,7 @@
                 <option [ngValue]="i" *ngFor="let i of providers" [selected]="i.id === model.providerId">
                 {{i.provider_name}}</option>
             </select>
-            <span *ngIf="f.submitted && !model.providerId"  class="help-block" style="color:red;">Provider Is required</span>
+            <span *ngIf="f.submitted && !model.providerId"  class="help-block">Provider Is required</span>
             </div>
 
              <label for="provider">Used:</label>
@@ -72,6 +70,7 @@
             </div>
             <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Save</button>
+                <input type="button" class="btn btn-primary" onclick="reset()" value="Cancel">
             </div>
     </form>
 </div>

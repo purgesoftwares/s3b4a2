@@ -36,7 +36,7 @@ export class InquiryComponent {
 
   search(terms: string) {
     if(terms) {
-      this.pagedItems = this.inquiry.filter((item) => item.mainEmail.startsWith(terms);
+      this.pagedItems = this.inquiry.filter((item) => item.contactName.startsWith(terms);
     } else {
       this.ngOnInit();
     }

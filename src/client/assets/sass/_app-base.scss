@@ -445,3 +445,12 @@ a:hover{
         transform: scale(1.0);
     }
 }
+
+.has-error input.form-control {
+    border: 1px solid #ff0000;
+}
+
+.help-block{
+    color:#ff0000;
+    font-size: 12px;
+}

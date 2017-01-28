@@ -16,18 +16,20 @@
         </div>
     </div>
 
-     <div class="card card-block">
-       <form (submit)="search(term.value)">
-        <div>
-          <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" autofocus>
-          <div class="input-group-btn">
-            <button type="submit" class="btn btn btn-default btn-flat"><i class="fa fa-search"></i></button>
-          </div>
-        </div>
-      </form>
+    <div class="card card-block">
+        <form (submit)="search(term.value)">
+            <div class="input-group">
+                <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" autofocus>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+            </div>
+        </form>
     </div>
     
-     <td><button (click) = "add()">Add</button></td>
+    <button (click) = "add()" class="pull-right btn btn-primary">Add</button>
+
+    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
     <div class="table-responsive">
              <table class="table table-hover table-striped">
                  <thead>
@@ -45,7 +47,7 @@
                          <th>Action</th>
                      </tr>
                  </thead>
-                 <tbody *ngFor="let coupon of coupons">
+                 <tbody *ngFor="let coupon of pagedItems">
                     <tr>
                         <td>{{ coupon.id }}</td>
                         <td>{{ coupon.couponCode }}</td>
@@ -56,8 +58,8 @@
                         <td>{{ coupon.availability }}</td>
                         <td>{{ coupon.startTime }}</td>
                         <td>{{ coupon.endTime }}</td>
-                         <td><button (click) = "update(coupon.id,coupon.couponCode,coupon.couponNumber,coupon.price,coupon.providerId,coupon.used)">change</button></td>
-                        <td><button (click) = "delete()">Delete</button></td>
+                         <td><button (click) = "update(coupon.id,coupon.couponCode,coupon.couponNumber,coupon.price,coupon.providerId,coupon.used)" class="btn btn-secondary">Edit</button></td>
+                        <td><button (click) = "delete()" class="btn btn-secondary">Delete</button></td>
                     </tr>
                 </tbody> 
              </table>

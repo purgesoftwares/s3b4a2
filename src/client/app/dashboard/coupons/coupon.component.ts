@@ -17,6 +17,8 @@ export class CouponComponent {
 	pager: any = {};
 	terms:string = '';
     pagedItems: any[];
+    message: any= {};
+	mess = false;
 
 	token:any[];
 
@@ -25,12 +27,15 @@ export class CouponComponent {
 	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
 	ngOnInit() {
-		this.http.get('http://54.161.216.233:8090/api/secured/coupon?access_token=9aa27bdc-1e06-4e70-aa8f-c1b6fb964395' /*+ this.token*/)
+		this.http.get('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => {this.coupons= data.content;
   								this.setPage(1);},
-  					error => console.log("error"),
+  					error => { if(error.json().error) {
+									this.message = error.json().message
+									this.mess = true;
+								}},
   					() => console.log("complete")
   				);
 	}

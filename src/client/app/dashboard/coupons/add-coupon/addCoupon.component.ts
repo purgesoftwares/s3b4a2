@@ -23,7 +23,7 @@ export class AddCouponComponent {
 	add() {
 		this.loading = true;
 		console.log(this.model)
-		this.http.post('http://54.161.216.233:8090/api/secured/coupon?access_token=9aa27bdc-1e06-4e70-aa8f-c1b6fb964395'/* + this.token*/, this.model)
+		this.http.post('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token, this.model)
 				.map(res => res.json())
 				.subscribe(
 						data => {this.router.navigate(['/dashboard/coupon'])},
@@ -39,7 +39,7 @@ export class AddCouponComponent {
 	   this.route.queryParams.subscribe(data => {this.model.id = data['Id'],
 	   											this.model.couponCode = 	data['CouponCode'],this.model.couponNumber = data['CouponNumber'],this.model.price = data['Price'],this.model.providerId = data['ProviderId'],this.model.used = data['Used']});
 
-	   this.http.get('http://54.161.216.233:8090/api/provider')
+	   this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => this.providers= data.content,
@@ -49,7 +49,6 @@ export class AddCouponComponent {
   	}
 
   	onChange(deviceValue) {
-    	console.log(deviceValue.id);
     	this.model.providerId = deviceValue.id;
 	}
 	

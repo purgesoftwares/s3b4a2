@@ -8,11 +8,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class BankDetailComponent {
-	model: Array<Object>[];
+	model: any={};
 	constructor(private route: ActivatedRoute) {}
 
 	ngOnInit() {
-	   this.route.queryParams.subscribe(data => this.model = data['details']);
-	   console.log(this.model);
+	   this.route.queryParams.subscribe(data => {this.model.id =  data['id'],this.model.beneficiaryName =
+	   														data['beneficiaryName'],this.model.providerId =
+	   														data['providerId'],this.model.beneficiaryAddress =  
+	   														data['beneficiaryAddress'],this.model.bankName =  
+	   														data['bankName'],this.model.branchNumber =  
+	   														data['branchNumber'],this.model.accountNumber =  
+	   														data['accountNumber']});
   	}
 }

@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class AddContentComponent {
+	model: any= {};
 	message: any= {};
 	loading = false;
 	mess = false;
@@ -20,17 +21,17 @@ export class AddContentComponent {
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
 
 	ngOnInit() {
-	   this.route.queryParams.subscribe(data => {this.model.id = data['id'], this.model.title = data['title']});
+	   this.route.queryParams.subscribe(data => {this.model.id = data['Id'], this.model.title = data['title'], this.model.content = data['Content'], this.model.status = data['status']});
   	}
 	
 	save() {
 		this.loading = true;
 		let headers = new Headers();
   		headers.append('Content-Type', 'application/json');
-    	this.http.post('http://54.161.216.233:8090/api/cms-pages/product-category?access_token=' +this.token, this.model, {headers: headers})
+    	this.http.post('http://54.161.216.233:8090/api/secured/cms-pages?access_token=' +this.token, this.model, {headers: headers})
 			.map(res => res.json())
 			.subscribe(
-					data => {this.router.navigate(['/dashboard/category'])},
+					data => {this.router.navigate(['/dashboard/content'])},
 					error => { if(error.json().error) {
 								this.message = error.json().message
 								this.mess = true;
@@ -38,5 +39,4 @@ export class AddContentComponent {
   							this.loading = false;}
 				);
 	}
-
 }

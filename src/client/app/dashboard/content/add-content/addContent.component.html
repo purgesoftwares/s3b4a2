@@ -1,7 +1,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xl-12">
-            <h1 class="page-header">
+            <h1 *ngIf="model.id" class="page-header">
+                Update Content
+            </h1>
+            <h1 *ngIf="!model.id" class="page-header">
                 Add Content
             </h1>
             <ol class="breadcrumb">
@@ -13,40 +16,40 @@
                     <i class="fa fa-pencil"></i>
                     <a href="Javascript:void(0)" routerLink="/dashboard/content" > Content</a>
                 </li>
-                <li class="active">
-                    <i class="fa fa-plus"></i>Add Content 
+                <li *ngIf="model.id" class="active">
+                    <i class="fa fa-tag"></i> Update Content
+                </li>
+                <li *ngIf="!model.id" class="active">
+                    <i class="fa fa-tag"></i> Add Content
                 </li>
             </ol>
         </div>
     </div>
 
-    <div *ngIf="mess" [ngClass]="{ 'alert': message}" style="color:red;">{{message}}</div>
+    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    
     <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel"  placeholder="Name" required />
-            <div *ngIf="f.submitted && !name.valid" class="help-block" style="color:red;">Name is required</div>
-        </div>
-       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" [(ngModel)]="model.title" #title="ngModel"  placeholder="title" required />
-            <div *ngIf="f.submitted && !title.valid" class="help-block" style="color:red;">Title is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !content.valid }">
-            <label for="content">Content</label>
-            <input type="text" class="form-control" name="content" [(ngModel)]="model.content" #content="ngModel"  placeholder="content" required />
-            <div *ngIf="f.submitted && !content.valid" class="help-block" style="color:red;">Content is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid }">
-            <label for="status">Status</label>
-            <input type="text" class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel"  placeholder="status" required />
-            <div *ngIf="f.submitted && !status.valid" class="help-block" style="color:red;">Status is required</div>
-        </div>
-        <div class="form-group">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
+                <input type="taxt" class="form-control" name="title" [(ngModel)]="model.title" 
+                 #title="ngModel" placeholder="Title" required>
+                 <div *ngIf="f.submitted && !title.valid" class="help-block">Title is required</div>
+            </div>
+             <label for="content">Content</label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !content.valid }">
+                <input type="taxt" class="form-control" name="content" [(ngModel)]="model.content" 
+                 #content="ngModel" placeholder="Content" required>
+                 <div *ngIf="f.submitted && !content.valid" class="help-block">Content is required</div>
+            </div>
+             <label for="status">Status</label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid }">
+                <input type="taxt" class="form-control" name="status" [(ngModel)]="model.status" 
+                 #status="ngModel" placeholder="Status" required>
+                 <div *ngIf="f.submitted && !status.valid" class="help-block">Status is required</div>
+            </div>
+            <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Save</button>
-        </div>
+                <input type="button" class="btn btn-primary" onclick="reset()" value="Cancel">
+            </div>
     </form>
-
 </div>
-
- 

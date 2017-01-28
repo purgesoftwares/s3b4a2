@@ -11,6 +11,7 @@ import { CustomerModule } from './customers/customer.module';
 import { InquiryModule } from './inquiry/inquiry.module';
 import { ContentModule } from './content/content.module';
 import { CategoryModule } from './category/category.module';
+import { ProviderQuestionModule } from './provider-question/providerQuestion.module';
 import { AddCategoryModule } from './category/add-category/addCategory.module';
 import { AddContentModule } from './content/add-content/addContent.module';
 import { ProductQuestionModule } from './product-question/productQuestion.module';
@@ -43,6 +44,7 @@ import {SidebarComponent} from '../shared/index';
         AddContentModule,
         ProductQuestionModule,
         AddProductQuestionModule,
+        ProviderQuestionModule,
         CategoryModule,
         CouponModule,
         AddCouponModule,
