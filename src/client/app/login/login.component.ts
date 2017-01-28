@@ -22,10 +22,10 @@ export class LoginComponent {
 
 	login() {
 
-		localStorage.setItem('access_token', 'c1417477-6f4b-485e-a518-f3de5cbca17e');
-		this.router.navigate(['/dashboard/home'])		
-		/*this.loading = true;
-		this.http.post('http://localhost:8090/api/oauth/token', this.model)
+		// localStorage.setItem('access_token', 'c1417477-6f4b-485e-a518-f3de5cbca17e');
+		// this.router.navigate(['/dashboard/home'])		
+		this.loading = true;
+		this.http.post('http://54.161.216.233:8090/api/oauth/token', this.model)
 			.map((res:Response) => res.text())
 			.subscribe(
 			    data => { 
@@ -40,6 +40,6 @@ export class LoginComponent {
 				    this.message.type= 'Error'; 
 				    this.loading = false;
 				}
-			 );*/
+			 );
 	}
 }
