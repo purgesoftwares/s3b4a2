@@ -56,7 +56,7 @@
                         <td>{{ coupon.startTime }}</td>
                         <td>{{ coupon.endTime }}</td>
                          <td><button (click) = "update(coupon.id,coupon.couponCode,coupon.couponNumber,coupon.price,coupon.providerId,coupon.used)" class="btn btn-default">Edit</button></td>
-                        <td><button (click) = "delete()" class="btn btn-default">Delete</button></td>
+                        <td><button (click) = "delete(coupon.id)" class="btn btn-default">Delete</button></td>
                     </tr>
                 </tbody> 
              </table>

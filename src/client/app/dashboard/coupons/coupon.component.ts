@@ -30,8 +30,13 @@ export class CouponComponent {
 		this.http.get('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
-  					data => {this.coupons= data.content;
-  								this.setPage(1);},
+  					data => { if(data.content.length) {
+                  				this.coupons= data.content;
+                  				this.setPage(1);
+                  			} else {
+                      			this.mess=true;
+                      			this.message= "There is no records found."
+                  			}},
   					error => { if(error.json().error) {
 									this.message = error.json().message
 									this.mess = true;
@@ -46,6 +51,18 @@ export class CouponComponent {
 
 	update(id,couponCode,couponNumber,price,providerId,used) {
 		this.router.navigate(['/dashboard/add-coupon/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used }})
+	}
+
+	delete(id : number) {
+		this.http.delete('http://54.161.216.233:8090/api/secured/coupon/' + id +'?access_token=' + this.token)
+			.map(res => res.json())
+			.subscribe(
+				data => this.ngOnInit(),
+				error => { if(error.json().error) {
+							this.message = error.json().message;
+							this.mess = true;
+					}}
+			);
 	}
 
 	search(terms: string) {

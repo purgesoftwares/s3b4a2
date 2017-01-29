@@ -31,8 +31,13 @@ export class CategoryComponent {
 		this.http.get('http://54.161.216.233:8090/api/secured/product-category?access_token='+ this.token)
   				.map(res => res.json())
   				.subscribe(
-  					data => {this.category= data.content;
-  								this.setPage(1);},
+  					data => { if(data.content.length) {
+                  				this.category= data.content;
+                  				this.setPage(1);
+                  			} else {
+                      			this.mess=true;
+                      			this.message= "There is no records found."
+                  			}},
   					error => { if(error.json().error) {
 									this.message = error.json().message
 									this.mess = true;
@@ -54,9 +59,9 @@ export class CategoryComponent {
     	this.http.delete('http://54.161.216.233:8090/api/secured/product-category/' + id + '?access_token='+ this.token)
 			.map(res => res.json())
 			.subscribe(
-				data => console.log(data),
+				data => this.ngOnInit(),
 				error => console.log("error"),
-  				() => this.ngOnInit()
+  				() => console.log("complete")
 			);
     }
 

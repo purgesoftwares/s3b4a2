@@ -19,6 +19,7 @@
             </ol>
         </div>
     </div>
+    <a [routerLink]="['/dashboard/category']" class="pull-right btn btn-primary">Back</a>
 
     <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
     <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
@@ -34,10 +35,9 @@
         </div>
         <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Save</button>
-                <input type="button" class="btn btn-default" onclick="reset()" value="Cancel">
+                <a [routerLink]="['/dashboard/category']" class="btn btn-default">Cancel</a>
         </div>
     </form>
-    <a [routerLink]="['/dashboard/category']" class="pull-right btn btn-primary">Back</a>
 </div>
 
  

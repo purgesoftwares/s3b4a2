@@ -18,7 +18,8 @@ export class InquiryComponent {
   terms:string = '';
   pagedItems: any[];
   token:any[];
-
+  message: any= {};
+  mess = false;
   token = localStorage.getItem('access_token');
 
   constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
@@ -27,8 +28,14 @@ export class InquiryComponent {
     this.http.get('http://54.161.216.233:8090/api/secured/contact-us?access_token='+ this.token)
           .map(res => res.json())
           .subscribe(
-            data => {this.inquiry= data.content;
-                  this.setPage(1);},
+            data => { if(data.content.length) {
+                  this.inquiry= data.content;
+                  this.setPage(1);
+                  } else {
+                      this.mess=true;
+                      this.message= "There is no records found."
+                  }
+            },
             error => console.log("error"),
             () => console.log("complete")
           );

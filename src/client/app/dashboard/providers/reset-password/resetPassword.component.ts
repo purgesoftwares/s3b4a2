@@ -22,6 +22,13 @@ export class ResetPasswordComponent {
   	}
 	
 	save() {
+	this.loading = true;
+		if(this.model.newPassword != this.model.confirmPassword && this.model.email){
+			this.mess = true;
+			this.message = "New password and Confirm Password Not match."
+			this.loading = false;
+		}	else {
+
 		this.http.post('http://54.161.216.233:8090/api/public/user/reset-password', this.model)
 				.map(res => res.json())
 				.subscribe(
@@ -32,6 +39,6 @@ export class ResetPasswordComponent {
 								}
   								this.loading = false;}
 				);
+		}
 	}
-
 }
