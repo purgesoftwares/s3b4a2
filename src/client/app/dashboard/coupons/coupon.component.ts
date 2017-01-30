@@ -2,6 +2,7 @@ import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { PagerService } from '../pager.service'
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
 	moduleId: module.id,
@@ -49,8 +50,17 @@ export class CouponComponent {
 		this.router.navigate(['/dashboard/add-coupon/'])
 	}
 
-	update(id,couponCode,couponNumber,price,providerId,used, startTime, endTime) {
-		this.router.navigate(['/dashboard/add-coupon/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,startTime:startTime, endTime:endTime}})
+	update(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
+		var date = moment(endTime).format('DD-MM-YYYY hh:mm');
+		var stdate = moment(startTime).format('DD-MM-YYYY hh:mm');
+		this.router.navigate(['/dashboard/add-coupon/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability:availability, startTime:stdate, endTime:date}})
+	}
+
+	view(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
+		var date = moment(endTime).format('DD-MM-YYYY hh:mm');
+		var stdate = moment(startTime).format('DD-MM-YYYY hh:mm');
+		
+		this.router.navigate(['/dashboard/coupon-view/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:stdate, endTime:date}})
 	}
 
 	delete(id : number) {

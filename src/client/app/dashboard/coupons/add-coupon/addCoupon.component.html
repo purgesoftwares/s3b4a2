@@ -30,18 +30,20 @@
     <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
     
     <form name="form" (ngSubmit)="f.form.valid && add()" #f="ngForm" novalidate>
+            <div *ngIf="model.id">
             <label for="couponCode">Coupon Code</label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !couponCode.valid }">
                 <input type="taxt" class="form-control" name="couponCode" [(ngModel)]="model.couponCode" 
-                 #couponCode="ngModel" placeholder="Coupon Code" required>
+                 #couponCode="ngModel" placeholder="Coupon Code" disabled required>
                  <div *ngIf="f.submitted && !couponCode.valid" class="help-block">Coupon Code is required</div>
             </div>
 
             <label for="couponNumber">Coupon Number</label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !couponNumber.valid }">
                 <input type="Number" class="form-control" name="couponNumber" [(ngModel)]="model.couponNumber" 
-                 #couponNumber="ngModel" placeholder="Coupon Number" required>
+                 #couponNumber="ngModel" placeholder="Coupon Number" disabled required>
                  <div *ngIf="f.submitted && !couponNumber.valid" class="help-block">Coupon Number is required</div>
+            </div>
             </div>
 
             <label for="price">Price <span class="required">*</span></label>
@@ -75,8 +77,7 @@
 
             <label for="startTime">Start Date :</label>
             <div>
-            <input [(ngModel)]="model.startTime" name= "startTime" 
-            ng2-datetime-picker
+            <input [(ngModel)]="model.startTime" name= "startTime" ng2-datetime-picker
             year="2017" month="12" day="31" hour="23" minute="59" /><br/>
             </div>
 

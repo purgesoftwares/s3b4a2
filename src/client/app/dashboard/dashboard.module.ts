@@ -18,6 +18,7 @@ import { CouponModule } from './coupons/coupon.module';
 import { AddCouponModule } from './coupons/add-coupon/addCoupon.module';
 import { ResetPasswordModule } from './providers/reset-password/resetPassword.module';
 import { BankDetailModule } from './providers/bank-details/bank.module';
+import { CouponViewModule } from './coupons/coupon-view/coupon-view.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -44,7 +45,8 @@ import {SidebarComponent} from '../shared/index';
         CategoryModule,
         CouponModule,
         AddCouponModule,
-        AddCategoryModule
+        AddCategoryModule,
+        CouponViewModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]

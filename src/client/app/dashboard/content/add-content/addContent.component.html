@@ -36,21 +36,25 @@
                  #title="ngModel" placeholder="Title" required>
                  <div *ngIf="f.submitted && !title.valid" class="help-block">Title is required</div>
             </div>
+
              <label for="content">Content</label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !content.valid }">
                 <textarea class="form-control" name="content" [(ngModel)]="model.content" 
                  #content="ngModel" placeholder="Content" required></textarea> 
                  <div *ngIf="f.submitted && !content.valid" class="help-block">Content is required</div>
             </div>
+            
             <div>
             <label for="status">Status :</label>
             <select [(ngModel)]="status" (ngModelChange)="onChange($event)" name="status" required>
-                    <option value="enable">Enable</option>
-                    <option value="disable">Disable</option>
+                    <option value="">--Select--</option>
+                    <option value="enable" [selected]="'enable' === model.status">Enable</option>
+                    <option value="disable" [selected]="'disable' === model.status">Disable</option>
             </select>
-            <span *ngIf="f.submitted && !model.status"  class="help-block">Provider Is required</span>
+            <span *ngIf="f.submitted && !model.status"  class="help-block">Status is required</span>
             </div>
             <br/>
+            
             <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Save</button>
                 <a [routerLink]="['/dashboard/content']" class="btn btn-default">Cancel</a>
