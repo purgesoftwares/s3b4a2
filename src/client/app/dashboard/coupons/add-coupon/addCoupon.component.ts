@@ -1,7 +1,8 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
 	moduleId: module.id,
@@ -23,7 +24,7 @@ export class AddCouponComponent {
 	add() {
 		this.loading = true;
 		console.log(this.model)
-		this.http.post('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token, this.model)
+		this.http.post('http://localhost:8090/api/secured/coupon?access_token=97eee55e-3f46-418e-88b9-01e02bd872e2' /*+ this.token*/, this.model)
 				.map(res => res.json())
 				.subscribe(
 						data => {this.router.navigate(['/dashboard/coupon'])},
@@ -37,8 +38,9 @@ export class AddCouponComponent {
 	
 	ngOnInit() {
 	   this.route.queryParams.subscribe(data => {this.model.id = data['Id'],
-	   											this.model.couponCode = 	data['CouponCode'],this.model.couponNumber = data['CouponNumber'],this.model.price = data['Price'],this.model.providerId = data['ProviderId'],this.model.used = data['Used']});
-
+	   											this.model.couponCode = 	data['CouponCode'],this.model.couponNumber = data['CouponNumber'],this.model.price = data['Price'],this.model.providerId = data['ProviderId'],this.model.used = data['Used'], this.model.endTime = data['endTime'], this.model.startTime = data['startTime']});
+	   this.model.endTime = moment(this.model.endTime);
+	   console.log(this.model.endTime);
 	   this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(

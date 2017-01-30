@@ -49,8 +49,8 @@ export class CouponComponent {
 		this.router.navigate(['/dashboard/add-coupon/'])
 	}
 
-	update(id,couponCode,couponNumber,price,providerId,used) {
-		this.router.navigate(['/dashboard/add-coupon/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used }})
+	update(id,couponCode,couponNumber,price,providerId,used, startTime, endTime) {
+		this.router.navigate(['/dashboard/add-coupon/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,startTime:startTime, endTime:endTime}})
 	}
 
 	delete(id : number) {
