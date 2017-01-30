@@ -19,13 +19,30 @@ export class CouponViewComponent {
 	ngOnInit() {
 	   this.route.queryParams.subscribe(data => {this.model.id =  data['id'],this.model.couponCode =
 	   														data['CouponCode'],this.model.couponNumber =
-	   														data['CouponNumber'],this.model.providerId =  
+	   														data['CouponNumber'],this.model.price =  
+	   														data['Price'],this.model.providerId =  
 	   														data['ProviderId'],this.model.used =  
 	   														data['Used'],this.model.availability = data['availability'],this.model.startTime =  
 	   														data['startTime'],this.model.endTime =  
 	   														data['endTime']});
 
-	    this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
+	   	this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
+  				.map(res => res.json())
+  				.subscribe(
+  					data => {this.providers= data.content;
+  						for(var i=0; i<this.providers.length; i++ ) {
+  							if(this.providers[i].id == this.model.providerId) {
+  								this.model.provider = this.providers[i].provider_name;
+  							}
+  						}
+  					}
+  					error => console.log("error"),
+  					() => console.log("complete")
+  				);
+
+  		
+
+	   /* this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => this.providers= data.content,
@@ -34,9 +51,7 @@ export class CouponViewComponent {
   				);
 
   		for(let data of this.providers) {
-  			if(data.id === this.model.providerId) {
-  				this.model.provider == data.provider_name;
-  			}
-		}
+  			
+		}*/
   	}
 }
