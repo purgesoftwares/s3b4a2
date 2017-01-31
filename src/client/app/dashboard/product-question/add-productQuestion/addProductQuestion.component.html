@@ -1,8 +1,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xl-12">
-            <h1 class="page-header">
-                Add ProductQuestion
+            <h1 *ngIf="model.id" class="page-header">
+                Update Product Question
+            </h1>
+            <h1 *ngIf="!model.id" class="page-header">
+                Add Product Question
             </h1>
             <ol class="breadcrumb">
                 <li>
@@ -10,32 +13,46 @@
                     <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
                 </li>
                 <li>
-                    <i class="fa fa-pencil"></i>
-                    <a href="Javascript:void(0)" routerLink="/dashboard/ProductQuestion" > ProductQuestion</a>
+                    <i class="fa fa-question"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/productQuestion" > Product Question</a>
                 </li>
-                <li class="active">
-                    <i class="fa fa-plus"></i>Add ProductQuestion 
+                <li *ngIf="model.id" class="active">
+                    <i class="fa fa-plus"></i> Update Product Question
+                </li>
+                <li *ngIf="!model.id" class="active">
+                    <i class="fa fa-plus"></i> Add Product Question
                 </li>
             </ol>
         </div>
     </div>
 
-    <form role="form">
-         
-          <div class="form-group">
-              <input type="text" class="form-control" id="title" 
-               [(ngModel)]="model.title" name="title" placeholder="Title">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control" id="ProductQuestion"
-               [(ngModel)]="model.ProductQuestion" name="ProductQuestion" placeholder="ProductQuestion">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control" id="status"
-               [(ngModel)]="model.status" name="status" placeholder="Status">
-          </div>
-          <button (click) = "reset()">Save</button>
+    <a [routerLink]="['/dashboard/productQuestion']" class="pull-right btn btn-primary">Back</a>
+    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    
+    <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+            <label for="title">Question</label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
+                <input type="taxt" class="form-control" name="title" [(ngModel)]="model.title" 
+                 #title="ngModel" placeholder="Question" required>
+                 <div *ngIf="f.submitted && !title.valid" class="help-block">Question is required</div>
+            </div>
+
+            <label for="description">Description</label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+                <textarea class="form-control" name="description" [(ngModel)]="model.description" 
+                 #description="ngModel" placeholder="Description" required></textarea> 
+                 <div *ngIf="f.submitted && !description.valid" class="help-block">Description is required</div>
+            </div>
+            
+            <div>
+              <label for="isDefault">Default :</label>
+              <input type="checkbox" [(ngModel)]="model.isDefault" name="isDefault" />
+            </div>
+            <br/>
+            
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Save</button>
+                <a [routerLink]="['/dashboard/productQuestion']" class="btn btn-default">Cancel</a>
+            </div>
     </form>
 </div>
-
- 
