@@ -63,31 +63,27 @@
             <span *ngIf="f.submitted && !model.providerId"  class="help-block">Provider is required</span>
             </div>
 
-             <label for="provider">Used:</label>
-             <div class="form-group">
-                <input type="Number" class="form-control" id="used" 
-                [(ngModel)]="model.used" name="used" placeholder="Used">
-            </div>
-
-             <label for="provider">Availability:</label>
+            <label for="availability">Availability:</label>
              <div class="form-group">
                 <input type="Number" class="form-control" id="availability" 
                 [(ngModel)]="model.availability" name="availability" placeholder="Availability">
             </div>
 
-            <label for="startTime">Start Date :</label>
-            <div>
-            <input [(ngModel)]="model.startTime" name= "startTime" ng2-datetime-picker
-            year="2017" month="12" day="31" hour="23" minute="59" /><br/>
-            </div>
 
-            <label for="startTime">Expiry Date :</label>
-            <div>
-            <input [(ngModel)]="model.endTime" name= "endTime" ng2-datetime-picker
-            year="2017" month="12" day="31" hour="23" minute="59" /><br/>
+            <div *ngIf="!model.id">
+                <label for="startTime">Start Date :</label>
+                <div>
+                    <input [(ngModel)]="model.startTime" name= "startTime" ng2-datetime-picker
+                year="2017" month="12" day="31" hour="23" minute="59" /><br/>
+                </div>
+
+                <label for="startTime">Expiry Date :</label>
+                <div>
+                    <input [(ngModel)]="model.endTime" name= "endTime" ng2-datetime-picker
+                year="2017" month="12" day="31" hour="23" minute="59" /><br/>
+                </div>
             </div>
             
-
             <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Save</button>
                 <a [routerLink]="['/dashboard/coupon']" class="btn btn-default">Cancel</a>

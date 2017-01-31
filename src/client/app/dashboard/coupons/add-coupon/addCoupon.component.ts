@@ -45,7 +45,7 @@ export class AddCouponComponent {
 	
 	ngOnInit() {
 	   	this.route.queryParams.subscribe(data => {this.model.id = data['Id'],
-	   											this.model.couponCode = 	data['CouponCode'],this.model.couponNumber = data['CouponNumber'],this.model.price = data['Price'],this.model.providerId = data['ProviderId'],this.model.used = data['Used'], this.model.availability = data['availability'], this.model.endTime = data['endTime'], this.model.startTime = data['startTime']});
+	   											this.model.couponCode = data['CouponCode'],this.model.couponNumber = data['CouponNumber'],this.model.price = data['Price'],this.model.providerId = data['ProviderId'],this.model.used = data['Used'], this.model.availability = data['availability'], this.model.endTime = data['endTime'], this.model.startTime = data['startTime']});
 
 	   	if(!this.model.id) {
 	   		var num = Math.floor(Math.random() * 90000) + 10000;
