@@ -50,26 +50,22 @@ export class ProductQuestionComponent {
 	}
 
 	delete(id: number) {
-    	this.http.delete('http://54.161.216.233:8090/api/secured/question/' + id + '?access_token=' + this.token)
-			.map(res => res.json())
-			.subscribe(
-				data => console.log(data),
-				error => console.log("error"),
-  				() => this.ngOnInit()
-			);
-    }
-
-    update(id: number, title: string, description:string, isDefault:boolean) {
-    	if(isDefault) {
-    		this.mess=true;
-            this.message= "Can't Edit! These is default question."
-    	} else {
-    		this.router.navigate(['/dashboard/add-ProductQuestion/'], { queryParams: { id: id, title: title, description: description}});
+		if (confirm("Are You Sure?? You want to delete this record") == true) {
+	    	this.http.delete('http://54.161.216.233:8090/api/secured/question/' + id + '?access_token=' + this.token)
+				.map(res => res.json())
+				.subscribe(
+					data => console.log(data),
+					error => console.log("error"),
+	  				() => this.ngOnInit()
+				);
     	}
     }
 
+    update(id: number, title: string, description:string) {
+    	this.router.navigate(['/dashboard/add-ProductQuestion/'], { queryParams: { id: id, title: title, description: description}});
+    }
+
 	search(terms: string) {
-		console.log(terms)
 		if(terms) {
 			this.pagedItems = this.productQuestions.filter((item) => item.title.startsWith(terms));
 		} else {

@@ -56,13 +56,15 @@ export class CategoryComponent {
     }
 
 	delete(id: number) {
-    	this.http.delete('http://54.161.216.233:8090/api/secured/product-category/' + id + '?access_token='+ this.token)
-			.map(res => res.json())
-			.subscribe(
-				data => this.ngOnInit(),
-				error => console.log("error"),
-  				() => console.log("complete")
-			);
+		if (confirm("Are You Sure?? You want to delete this record") == true) {
+	    	this.http.delete('http://54.161.216.233:8090/api/secured/product-category/' + id + '?access_token='+ this.token)
+				.map(res => res.json())
+				.subscribe(
+					data => this.ngOnInit(),
+					error => console.log("error"),
+	  				() => console.log("complete")
+				);
+		}
     }
 
 	search(terms: string) {

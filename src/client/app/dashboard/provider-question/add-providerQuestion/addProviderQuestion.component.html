@@ -5,7 +5,7 @@
                 Update Product Question
             </h1>
             <h1 *ngIf="!model.id" class="page-header">
-                Add Product Question
+                Add Provider Question
             </h1>
             <ol class="breadcrumb">
                 <li>
@@ -14,30 +14,30 @@
                 </li>
                 <li>
                     <i class="fa fa-question"></i>
-                    <a href="Javascript:void(0)" routerLink="/dashboard/productQuestion" > Product Question</a>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/productQuestion" > Provider Question</a>
                 </li>
                 <li *ngIf="model.id" class="active">
-                    <i class="fa fa-plus"></i> Update Product Question
+                    <i class="fa fa-plus"></i> Update Provider Question
                 </li>
                 <li *ngIf="!model.id" class="active">
-                    <i class="fa fa-plus"></i> Add Product Question
+                    <i class="fa fa-plus"></i> Add Provider Question
                 </li>
             </ol>
         </div>
-    <a [routerLink]="['/dashboard/productQuestion']" class="pull-right btn btn-primary">Back</a>
+    <div><a [routerLink]="['/dashboard/providerQuestion']" class="pull-right btn btn-primary">Back</a></div>
     </div>
 
-    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
-    
+    <div><div *ngIf="mess"  class="alert alert-danger">{{message}}</div></div>
+    <div>
     <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
-            <label for="title">Question</label>
+            <label for="title">Question :</label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
                 <input type="taxt" class="form-control" name="title" [(ngModel)]="model.title" 
                  #title="ngModel" placeholder="Question" required>
                  <div *ngIf="f.submitted && !title.valid" class="help-block">Question is required</div>
             </div>
 
-            <label for="description">Description</label>
+            <label for="description">Description :</label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
                 <textarea class="form-control" name="description" [(ngModel)]="model.description" 
                  #description="ngModel" placeholder="Description" required></textarea> 
@@ -46,7 +46,8 @@
             
             <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Save</button>
-                <a [routerLink]="['/dashboard/productQuestion']" class="btn btn-default">Cancel</a>
+                <a [routerLink]="['/dashboard/providerQuestion']" class="btn btn-default">Cancel</a>
             </div>
     </form>
+    </div>
 </div>

@@ -15,6 +15,7 @@ import { AddCouponRoutes } from './coupons/add-coupon/index';
 import { CouponViewRoutes } from './coupons/coupon-view/index';
 import { AddCategoryRoutes } from './category/add-category/index'
 import { AddProductQuestionRoutes } from './product-question/add-productQuestion/index';
+import { AddProviderQuestionRoutes } from './provider-question/add-providerQuestion/index';
 
 import { DashboardComponent } from './index';
 
@@ -37,7 +38,8 @@ export const DashboardRoutes: Route[] = [
             ...AddCouponRoutes,
             ...ProviderQuestionRoutes,
             ...AddCategoryRoutes,
-            ...CouponViewRoutes
+            ...CouponViewRoutes,
+            ...AddProviderQuestionRoutes
         ]
   	}
 ];

@@ -14,6 +14,7 @@ import { AddCategoryModule } from './category/add-category/addCategory.module';
 import { AddContentModule } from './content/add-content/addContent.module';
 import { ProductQuestionModule } from './product-question/productQuestion.module';
 import { AddProductQuestionModule } from './product-question/add-productQuestion/addProductQuestion.module';
+import { AddProviderQuestionModule } from './provider-question/add-providerQuestion/addProviderQuestion.module';
 import { CouponModule } from './coupons/coupon.module';
 import { AddCouponModule } from './coupons/add-coupon/addCoupon.module';
 import { ResetPasswordModule } from './providers/reset-password/resetPassword.module';
@@ -46,7 +47,8 @@ import {SidebarComponent} from '../shared/index';
         CouponModule,
         AddCouponModule,
         AddCategoryModule,
-        CouponViewModule
+        CouponViewModule,
+        AddProviderQuestionModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]

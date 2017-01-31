@@ -24,9 +24,9 @@
                 </li>
             </ol>
         </div>
+    <a [routerLink]="['/dashboard/content']" class="pull-right btn btn-primary">Back</a>
     </div>
 
-     <a [routerLink]="['/dashboard/content']" class="pull-right btn btn-primary">Back</a>
     <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
     
     <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>

@@ -49,13 +49,15 @@ export class ContentComponent {
 	}
 
 	delete(id: number) {
-    	this.http.delete('http://54.161.216.233:8090/api/secured/cms-pages/' + id + '?access_token=' + this.token)
-			.map(res => res.json())
-			.subscribe(
-				data => console.log(data),
-				error => console.log("error"),
-  				() => this.ngOnInit()
-			);
+		if (confirm("Are You Sure?? You want to delete this record") == true) {
+	    	this.http.delete('http://54.161.216.233:8090/api/secured/cms-pages/' + id + '?access_token=' + this.token)
+				.map(res => res.json())
+				.subscribe(
+					data => console.log(data),
+					error => console.log("error"),
+	  				() => this.ngOnInit()
+				);
+		}
     }
 
     update(id: number, title: string, content: string, status: string) {

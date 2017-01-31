@@ -71,15 +71,17 @@ export class ProviderComponent {
 	}
 
 	delete(id: number) {
-    	this.http.delete('http://54.161.216.233:8090/api/secured/user/' + id +'?access_token=' + this.token)
-			.map(res => res.json())
-			.subscribe(
-				data => this.ngOnInit(),
-				error => { if(error.json().error) {
-							this.message = error.json().message;
-							this.mess = true;
-					}}
-			);
+		if (confirm("Are You Sure?? You want to delete this record") == true) {
+	    	this.http.delete('http://54.161.216.233:8090/api/secured/user/' + id +'?access_token=' + this.token)
+				.map(res => res.json())
+				.subscribe(
+					data => this.ngOnInit(),
+					error => { if(error.json().error) {
+								this.message = error.json().message;
+								this.mess = true;
+						}}
+				);
+		}
     }
 
 	search(terms: string) {

@@ -18,8 +18,8 @@
                 </li>
             </ol>
         </div>
-    </div>
     <a [routerLink]="['/dashboard/category']" class="pull-right btn btn-primary">Back</a>
+    </div>
 
     <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
     <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>

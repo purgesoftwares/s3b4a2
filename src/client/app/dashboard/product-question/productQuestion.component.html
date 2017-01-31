@@ -44,8 +44,8 @@
                     <tr>
                         <td>{{ question.title }}</td>
                         <td>{{ question.description }}</td>
-                        <td><button (click) = "update(question.id, question.title, question.description, question.isDefault)" class="btn btn-default">Edit</button></td> 
-                        <td><button (click) = "delete(question.id)" class="btn btn-default">Delete</button></td>
+                        <td *ngIf="!question.isDefault"><button (click) = "update(question.id, question.title, question.description)" class="btn btn-default">Edit</button></td> 
+                        <td *ngIf="!question.isDefault"><button (click) = "delete(question.id)" class="btn btn-default">Delete</button></td>
                     </tr>
                 </tbody> 
              </table>
