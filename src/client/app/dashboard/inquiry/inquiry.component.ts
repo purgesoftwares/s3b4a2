@@ -41,6 +41,10 @@ export class InquiryComponent {
           );
   }
 
+  view(id : string, userEmail : string, contactName : string, message : string, status : string, subject : string) {
+
+      this.router.navigate(['/dashboard/inquiry-view/'],{ queryParams: { Id:id,userEmail:userEmail,contactName:contactName,message:message,status:status,subject:subject}})
+  }
   search(terms: string) {
     if(terms) {
       this.pagedItems = this.inquiry.filter((item) => item.contactName.startsWith(terms));

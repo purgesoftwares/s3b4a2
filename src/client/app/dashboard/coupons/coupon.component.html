@@ -35,8 +35,8 @@
                  <thead>
                      <tr>
                          <th>Coupon Code</th>
+                         <th>Coupon Number</th>
                          <th>Price</th>
-                         <th>Provider</th>
                          <th>Availability</th>
                          <th>Start Time</th>
                          <th>End Time</th>
@@ -46,8 +46,8 @@
                  <tbody *ngFor="let coupon of pagedItems">
                     <tr>
                         <td>{{ coupon.couponCode }}</td>
+                        <td>{{ coupon.couponNumber }}</td>
                         <td>{{ coupon.price }}</td>
-                        <td>{{ coupon.providerId }}</td>
                         <td>{{ coupon.availability }}</td>
                         <td>{{ coupon.startTime | amDateFormat:'LL' }}</td>
                         <td>{{ coupon.endTime | amDateFormat:'LL' }}</td>

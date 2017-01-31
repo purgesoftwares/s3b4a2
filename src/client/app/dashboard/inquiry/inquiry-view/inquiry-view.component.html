@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Coupon View
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li>
+                    <i class="fa fa-question-circle"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/inquiry" > Inquiry</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-eye "></i> Inquiry View
+                </li>
+            </ol>
+        </div>
+    <a [routerLink]="['/dashboard/coupon']" class="pull-right btn btn-primary">Back</a>
+    </div>
+
+     <div class="table-responsive">
+              <table style="border: 0px" class="table table-hover table-striped">
+                 <tbody>
+                    <tr>
+                        <td>User Email :</td>
+                        <td>{{ model.userEmail }}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Name :</td>
+                        <td>{{ model.contactName }}</td>
+                    </tr>
+                    <tr>
+                        <td>Message :</td>
+                        <td>{{ model.message }}</td>
+                    </tr>
+                    <tr>
+                        <td>Subject :</td>
+                        <td>{{ model.subject }}</td>
+                    </tr> 
+                    <tr>                        
+                        <td>Status :</td>
+                        <td>{{ model.status }}</td>
+                    </tr>
+                </tbody> 
+             </table>
+    </div>
+</div>
+ 

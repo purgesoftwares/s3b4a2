@@ -39,19 +39,5 @@ export class CouponViewComponent {
   					error => console.log("error"),
   					() => console.log("complete")
   				);
-
-  		
-
-	   /* this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
-  				.map(res => res.json())
-  				.subscribe(
-  					data => this.providers= data.content,
-  					error => console.log("error"),
-  					() => console.log("complete")
-  				);
-
-  		for(let data of this.providers) {
-  			
-		}*/
   	}
 }

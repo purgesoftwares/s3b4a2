@@ -37,6 +37,7 @@
                      <th>Message</th>
                      <th>Status</th>
                      <th>Subject</th>
+                     <th></th>
                  </tr>
              </thead>
              <tbody *ngFor="let ques of pagedItems">
@@ -46,6 +47,7 @@
                     <td>{{ ques.message }}</td>
                     <td>{{ ques.status }}</td>
                     <td>{{ ques.subject }}</td>
+                    <td><button (click) = "view(ques.id, ques.userEmail, ques.contactName, ques.message, ques.status, ques.subject)" class="btn btn-primary">View</button></td>
                 </tr>
             </tbody> 
         </table>
