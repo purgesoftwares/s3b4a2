@@ -6,6 +6,7 @@ import { ResetPasswordRoutes } from './providers/reset-password/index';
 import { BankDetailRoutes } from './providers/bank-details/bank.route';
 import { InquiryRoutes } from './inquiry/index';
 import { ContentRoutes } from './content/index';
+import { ConsumerRoutes } from './consumers/index';
 import { CategoryRoutes } from './category/index';
 import { AddContentRoutes } from './content/add-content/index';
 import { ProductQuestionRoutes } from './product-question/index';
@@ -41,7 +42,8 @@ export const DashboardRoutes: Route[] = [
             ...AddCategoryRoutes,
             ...CouponViewRoutes,
             ...InquiryViewRoutes,
-            ...AddProviderQuestionRoutes
+            ...AddProviderQuestionRoutes,
+            ...ConsumerRoutes
         ]
   	}
 ];

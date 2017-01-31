@@ -28,9 +28,10 @@
     </div>
 
     <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
     
     <form name="form" (ngSubmit)="f.form.valid && add()" #f="ngForm" novalidate>
-            <div *ngIf="model.id">
+            
             <label for="couponCode">Coupon Code</label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !couponCode.valid }">
                 <input type="taxt" class="form-control" name="couponCode" [(ngModel)]="model.couponCode" 
@@ -44,8 +45,7 @@
                  #couponNumber="ngModel" placeholder="Coupon Number" disabled required>
                  <div *ngIf="f.submitted && !couponNumber.valid" class="help-block">Coupon Number is required</div>
             </div>
-            </div>
-
+            
             <label for="price">Price <span class="required">*</span></label>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !price.valid }">
                 <input type="Number" class="form-control" name="price" [(ngModel)]="model.price" 
@@ -60,7 +60,7 @@
                 <option [ngValue]="i" *ngFor="let i of providers" [selected]="i.id === model.providerId">
                 {{i.provider_name}}</option>
             </select>
-            <span *ngIf="f.submitted && !model.providerId"  class="help-block">Provider Is required</span>
+            <span *ngIf="f.submitted && !model.providerId"  class="help-block">Provider is required</span>
             </div>
 
              <label for="provider">Used:</label>

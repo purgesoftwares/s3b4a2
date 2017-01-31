@@ -14,7 +14,7 @@ export class AddProductQuestionComponent {
 	token:any[];
     message: any= {};
 	mess = false;
-
+	succ = false;
 	token = localStorage.getItem('access_token');
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
 
@@ -23,15 +23,24 @@ export class AddProductQuestionComponent {
   	}
 	
 	save() {
-		this.model.type = "product"
+		this.loading = true;
+		this.model.type = "product";
 		let headers = new Headers();
   		headers.append('content-Type', 'application/json');
     	this.http.post('http://54.161.216.233:8090/api/secured/question?access_token=' + this.token, this.model, {headers: headers})
 			.map(res => res.json())
 			.subscribe(
-				data =>  {this.router.navigate(['/dashboard/productQuestion'])},
-				error => console.log("error"),
-  				() => console.log("complete");
+				data =>  {	this.succ = true;
+							this.message = "Successfully Saved";
+							setTimeout(() => {
+                				this.router.navigate(['/dashboard/productQuestion'])
+            				}, 1000);},
+				error => { if(error.json().error) {
+							this.message = error.json().message
+							this.mess = true;
+						}
+  						this.loading = false;},
+  				() => console.log("complete")
   			);
 	}
 

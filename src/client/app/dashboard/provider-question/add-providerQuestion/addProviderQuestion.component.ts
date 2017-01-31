@@ -13,6 +13,7 @@ export class AddProviderQuestionComponent {
 	model: any= {};
 	token:any[];
     message: any= {};
+    succ = false;
 	mess = false;
 
 	token = localStorage.getItem('access_token');
@@ -29,8 +30,16 @@ export class AddProviderQuestionComponent {
     	this.http.post('http://54.161.216.233:8090/api/secured/question?access_token=' + this.token, this.model, {headers: headers})
 			.map(res => res.json())
 			.subscribe(
-				data =>  {this.router.navigate(['/dashboard/providerQuestion'])},
-				error => console.log("error"),
+				data =>  {	this.succ = true;
+							this.message = "Successfully Saved";
+							setTimeout(() => {
+                				this.router.navigate(['/dashboard/providerQuestion'])
+            				}, 1000);},
+				error => { if(error.json().error) {
+							this.message = error.json().message
+							this.mess = true;
+						}
+  						this.loading = false;},
   				() => console.log("complete");
   			);
 	}

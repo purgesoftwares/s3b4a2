@@ -22,6 +22,8 @@
     </div>
 
     <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
+
     <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
             <label for="name">Name</label>

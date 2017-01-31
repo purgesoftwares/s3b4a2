@@ -14,6 +14,7 @@ export class ResetPasswordComponent {
 	message: any= {};
 	loading = false;
 	mess = false;
+	succ = false;
 
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
 
@@ -22,8 +23,9 @@ export class ResetPasswordComponent {
   	}
 	
 	save() {
-	this.loading = true;
-		if(this.model.newPassword != this.model.confirmPassword && this.model.email){
+		this.loading = true;
+		console.log(this.model);
+		if(this.model.newPassword != this.model.confirmPassword){
 			this.mess = true;
 			this.message = "New password and Confirm Password Not match."
 			this.loading = false;
@@ -32,12 +34,17 @@ export class ResetPasswordComponent {
 		this.http.post('http://54.161.216.233:8090/api/public/user/reset-password', this.model)
 				.map(res => res.json())
 				.subscribe(
-						data => {this.router.navigate(['/dashboard/provider'])},
-						error => { if(error.json().error) {
-									this.message = error.json().message
-									this.mess = true;
-								}
-  								this.loading = false;}
+						data =>  {	this.succ = true;
+							this.message = "Successfully Reset Password.";
+							setTimeout(() => {
+                				this.router.navigate(['/dashboard/provider'])
+            				}, 1000);},
+				error => { if(error.json().error) {
+							this.message = error.json().message
+							this.mess = true;
+						}
+  						this.loading = false;},
+  				() => console.log("complete");
 				);
 		}
 	}

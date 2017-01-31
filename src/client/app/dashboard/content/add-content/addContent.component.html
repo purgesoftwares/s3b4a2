@@ -28,6 +28,7 @@
     </div>
 
     <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
     
     <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
             <label for="title">Title</label>
@@ -46,7 +47,7 @@
             
             <div>
             <label for="status">Status :</label>
-            <select [(ngModel)]="status" (ngModelChange)="onChange($event)" name="status" required>
+            <select [(ngModel)]="model.status" name="status" required>
                     <option value="">--Select--</option>
                     <option value="enable" [selected]="'enable' === model.status">Enable</option>
                     <option value="disable" [selected]="'disable' === model.status">Disable</option>

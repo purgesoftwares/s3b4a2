@@ -27,7 +27,9 @@
     <div><a [routerLink]="['/dashboard/providerQuestion']" class="pull-right btn btn-primary">Back</a></div>
     </div>
 
-    <div><div *ngIf="mess"  class="alert alert-danger">{{message}}</div></div>
+    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
+    
     <div>
     <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
             <label for="title">Question :</label>
