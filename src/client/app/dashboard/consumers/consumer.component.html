@@ -24,8 +24,6 @@
                        <tr>
                            <th>First Name</th>
                            <th>Last Name</th>
-                           <th>Full Name</th>
-                           <th>Gender</th>
                            <th>Fist Email</th>
                            <th>Second Email</th>
                        </tr>
@@ -34,8 +32,6 @@
                       <tr>
                           <td>{{ cust.firstName }}</td>
                           <td>{{ cust.lastName }}</td>
-                          <td>{{ cust.fullName }}</td>
-                          <td>{{ cust.gender }}</td>
                           <td>{{ cust.mainEmail }}</td>
                           <td><button (click) = "delete(cust.id)" class="btn btn-default">Delete</button></td>
                       </tr>
