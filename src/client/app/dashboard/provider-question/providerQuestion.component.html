@@ -19,7 +19,7 @@
 
      <div class="card card-block" style="width: 450px; margin: auto;">
         <form (submit)="search(term.value)">
-            <div class="input-group">
+            <div class="search-group input-group">
                 <input #term (keyup)="search(term.value)" [value]="terms" class="form-control" placeholder="Search" autofocus>
             <span class="input-group-btn">
                 <button type="submit" class="btn btn btn-default btn-flat"><i class="fa fa-search"></i></button>
