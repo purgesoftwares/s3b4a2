@@ -15,7 +15,7 @@ export class AddCategoryComponent {
 	loading = false;
 	mess = false;
 	token:any[];
-	succ = true;
+	succ = false;
 	token = localStorage.getItem('access_token');
 
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}

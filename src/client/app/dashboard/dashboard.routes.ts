@@ -18,13 +18,14 @@ import { InquiryViewRoutes } from './inquiry/inquiry-view/index';
 import { AddCategoryRoutes } from './category/add-category/index'
 import { AddProductQuestionRoutes } from './product-question/add-productQuestion/index';
 import { AddProviderQuestionRoutes } from './provider-question/add-providerQuestion/index';
-
+import { AuthGuard } from './oauth/auth.guard';
 import { DashboardComponent } from './index';
 
 export const DashboardRoutes: Route[] = [
   	{
     	path: 'dashboard',
     	component: DashboardComponent,
+        canActivate: [AuthGuard]
     	children: [
 	    	...HomeRoutes,
             ...ProviderRoutes,

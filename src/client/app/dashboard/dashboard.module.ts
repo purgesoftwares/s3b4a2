@@ -22,6 +22,7 @@ import { ResetPasswordModule } from './providers/reset-password/resetPassword.mo
 import { BankDetailModule } from './providers/bank-details/bank.module';
 import { CouponViewModule } from './coupons/coupon-view/coupon-view.module';
 import { InquiryViewModule } from './inquiry/inquiry-view/inquiry-view.module';
+import { AuthGuard } from './oauth/index';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -55,7 +56,8 @@ import {SidebarComponent} from '../shared/index';
         AddProviderQuestionModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
-    exports: [DashboardComponent, TopNavComponent, SidebarComponent]
+    exports: [DashboardComponent, TopNavComponent, SidebarComponent],
+    providers: [AuthGuard]
 })
 
 export class DashboardModule { }
