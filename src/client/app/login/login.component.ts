@@ -33,7 +33,7 @@ export class LoginComponent {
 			    		localStorage.setItem('access_token', data);
 				    	this.router.navigate(['/dashboard/home']
 			    	} else {this.mess= true;
-				    	this.message.type= 'Username Password is incorrect';
+				    	this.message= 'Username Password is incorrect';
 				    	this.loading = false;}}
 			    error => {console.log(error);
 				    this.mess= true;
