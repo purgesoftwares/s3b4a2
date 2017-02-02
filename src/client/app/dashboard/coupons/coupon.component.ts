@@ -20,6 +20,7 @@ export class CouponComponent {
     pagedItems: any[];
     message: any= {};
 	mess = false;
+	succ = false;
 
 	token:any[];
 
@@ -65,15 +66,19 @@ export class CouponComponent {
 	}
 
 	delete(id : number) {
-		if (confirm("Are You Sure?? You want to delete this record") == true) {
+		if (confirm("Are You Sure! You want to delete this record?") == true) {
 			this.http.delete('http://54.161.216.233:8090/api/secured/coupon/' + id +'?access_token=' + this.token)
 				.map(res => res.json())
 				.subscribe(
-					data => this.ngOnInit(),
-					error => { if(error.json().error) {
-								this.message = error.json().message;
-								this.mess = true;
-						}}
+					data => {this.ngOnInit();
+								this.succ = true;
+								this.message = "Record successfully deleted";
+								setTimeout(() => {
+                					this.succ = false;
+            					}, 1000);
+							},
+					error => console.log("error"),
+	  				() => console.log("complete")
 				);
 		}
 	}

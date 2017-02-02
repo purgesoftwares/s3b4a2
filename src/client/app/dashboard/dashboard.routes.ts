@@ -7,6 +7,7 @@ import { BankDetailRoutes } from './providers/bank-details/bank.route';
 import { InquiryRoutes } from './inquiry/index';
 import { ContentRoutes } from './content/index';
 import { ConsumerRoutes } from './consumers/index';
+import { ChangePasswordRoutes } from './consumers/change-password/index';
 import { CategoryRoutes } from './category/index';
 import { AddContentRoutes } from './content/add-content/index';
 import { ProductQuestionRoutes } from './product-question/index';
@@ -44,7 +45,8 @@ export const DashboardRoutes: Route[] = [
             ...CouponViewRoutes,
             ...InquiryViewRoutes,
             ...AddProviderQuestionRoutes,
-            ...ConsumerRoutes
+            ...ConsumerRoutes,
+            ...ChangePasswordRoutes
         ]
   	}
 ];

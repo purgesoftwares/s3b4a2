@@ -20,6 +20,7 @@ export class ContentComponent {
     token:any[];
     message: any= {};
 	mess = false;
+	succ = false;
 
 	token = localStorage.getItem('access_token');
 	
@@ -29,14 +30,16 @@ export class ContentComponent {
 		this.http.get('http://54.161.216.233:8090/api/secured/cms-pages?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
-  					data => { if(data.content.length) {
+  					data => { console.log(data);
+  					 if(data.content.length) {
                   				this.content= data.content;
                   				this.setPage(1);
                   			} else {
                       			this.mess=true;
                       			this.message= "There is no records found."
                   			}},
-  					error => { if(error.json().error) {
+  					error => { console.log(error);
+  						if(error.json().error) {
 									this.message = error.json().message
 									this.mess = true;
 								}},
@@ -49,13 +52,19 @@ export class ContentComponent {
 	}
 
 	delete(id: number) {
-		if (confirm("Are You Sure?? You want to delete this record") == true) {
+		if (confirm("Are You Sure! You want to delete this record?") == true) {
 	    	this.http.delete('http://54.161.216.233:8090/api/secured/cms-pages/' + id + '?access_token=' + this.token)
 				.map(res => res.json())
 				.subscribe(
-					data => console.log(data),
+					data => {this.ngOnInit();
+								this.succ = true;
+								this.message = "Record successfully deleted";
+								setTimeout(() => {
+                					this.succ = false;
+            					}, 1000);
+							},
 					error => console.log("error"),
-	  				() => this.ngOnInit()
+	  				() => console.log("complete")
 				);
 		}
     }

@@ -20,11 +20,12 @@ export class ProviderComponent {
 	mess = false;
 	bank: Array<Object>[];
     pagedItems: any[];
+    succ = false;
 	token:any={};
 
     token = localStorage.getItem('access_token');
 	
-	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
+	constructor(private http : Http, private pagerService : PagerService, private router: Router) { }
 
 	ngOnInit() {
 		this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
@@ -71,15 +72,22 @@ export class ProviderComponent {
 	}
 
 	delete(id: number) {
-		if (confirm("Are You Sure?? You want to delete this record") == true) {
+		if (confirm("Are You Sure! You want to delete this record?") == true) {
 	    	this.http.delete('http://54.161.216.233:8090/api/secured/user/' + id +'?access_token=' + this.token)
 				.map(res => res.json())
 				.subscribe(
-					data => this.ngOnInit(),
-					error => { if(error.json().error) {
-								this.message = error.json().message;
-								this.mess = true;
-						}}
+					data => {this.ngOnInit();
+								this.succ = true;
+								this.message = "Record successfully deleted";
+								setTimeout(() => {
+                					this.succ = false;
+            					}, 1000);
+							},
+					error => {if(error.json().error) {
+									this.message = error.json().message
+									this.mess = true;
+								}},
+	  				() => console.log("complete")
 				);
 		}
     }

@@ -30,6 +30,8 @@
     <button (click) = "add()" class="pull-right btn btn-primary">Add</button>
 
     <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
+    
     <div class="table-responsive">
              <table class="table table-hover table-striped">
                  <thead>

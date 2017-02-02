@@ -5,11 +5,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	moduleId: module.id,
-	selector: 'provider-cmp',
-	templateUrl: 'resetPassword.component.html'
+	selector: 'change-cmp',
+	templateUrl: 'changePassword.component.html'
 })
 
-export class ResetPasswordComponent {
+export class ChangePasswordComponent {
 	model: any= {};
 	message: any= {};
 	loading = false;
@@ -31,13 +31,13 @@ export class ResetPasswordComponent {
 			this.loading = false;
 		}	else {
 
-		this.http.post('http://54.161.216.233:8090/api/public/user/reset-password', this.model)
+		this.http.post('http://54.161.216.233:8090/api/public/customer/reset-password', this.model)
 				.map(res => res.json())
 				.subscribe(
 						data =>  {	this.succ = true;
-							this.message = "Successfully Reset Password.";
+							this.message = "Successfully Change Password.";
 							setTimeout(() => {
-                				this.router.navigate(['/dashboard/provider'])
+                				this.router.navigate(['/dashboard/consumer'])
             				}, 1000);},
 				error => { if(error.json().error) {
 							this.message = error.json().message

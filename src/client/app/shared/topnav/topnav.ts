@@ -31,7 +31,9 @@ export class TopNavComponent {
 	}
 
 	logout() {
-		localStorage.removeItem('access_token');
-		this.router.navigate(['/']);
+		if (confirm("Are You Sure! You want to Logout?") == true) {
+			localStorage.removeItem('access_token');
+			this.router.navigate(['/']);
+		}
 	}
 }

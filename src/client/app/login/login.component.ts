@@ -37,7 +37,7 @@ export class LoginComponent {
 				    	this.loading = false;}}
 			    error => {console.log(error);
 				    this.mess= true;
-				    this.message.type= 'Error'; 
+				    this.message= 'Some Error! Please Try After Some Time '; 
 				    this.loading = false;
 				}
 			 );

@@ -23,6 +23,7 @@ import { BankDetailModule } from './providers/bank-details/bank.module';
 import { CouponViewModule } from './coupons/coupon-view/coupon-view.module';
 import { InquiryViewModule } from './inquiry/inquiry-view/inquiry-view.module';
 import { AuthGuard } from './oauth/index';
+import { ChangePasswordModule } from './consumers/change-password/changePassword.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -53,7 +54,8 @@ import {SidebarComponent} from '../shared/index';
         AddCategoryModule,
         CouponViewModule,
         InquiryViewModule,
-        AddProviderQuestionModule
+        AddProviderQuestionModule,
+        ChangePasswordModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent],

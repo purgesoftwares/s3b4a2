@@ -20,6 +20,7 @@ export class ProductQuestionComponent {
     token:any[];
     message: any= {};
 	mess = false;
+	succ = false;
 
 	token = localStorage.getItem('access_token');
 	
@@ -50,16 +51,22 @@ export class ProductQuestionComponent {
 	}
 
 	delete(id: number) {
-		if (confirm("Are You Sure?? You want to delete this record") == true) {
+		if (confirm("Are You Sure! You want to delete this record?") == true) {
 	    	this.http.delete('http://54.161.216.233:8090/api/secured/question/' + id + '?access_token=' + this.token)
 				.map(res => res.json())
 				.subscribe(
-					data => console.log(data),
+					data => {this.ngOnInit();
+								this.succ = true;
+								this.message = "Record successfully deleted";
+								setTimeout(() => {
+                					this.succ = false;
+            					}, 1000);
+							},
 					error => console.log("error"),
-	  				() => this.ngOnInit()
+	  				() => console.log("complete")
 				);
-    	}
-    }
+		}
+	}
 
     update(id: number, title: string, description:string) {
     	this.router.navigate(['/dashboard/add-ProductQuestion/'], { queryParams: { id: id, title: title, description: description}});

@@ -17,6 +17,8 @@
     </div>
     
     <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
+    
     <div class="card card-block">
            <div class="table-responsive">
                <table class="table table-hover table-striped">
@@ -33,6 +35,7 @@
                           <td>{{ cust.firstName }}</td>
                           <td>{{ cust.lastName }}</td>
                           <td>{{ cust.mainEmail }}</td>
+                          <td><button (click) = "change(cust.mainEmail)" class="btn btn-default ">Change Password</button></td> 
                           <td><button (click) = "delete(cust.id)" class="btn btn-default">Delete</button></td>
                       </tr>
                   </tbody> 
