@@ -63,6 +63,9 @@ export class ProviderComponent {
 				if(error) {
 							this.message = "For this Provider Bank Details not exist.";
 							this.mess = true;
+							setTimeout(() => {
+                					this.mess = false;
+            					}, 1000);
 				};},
 			);
 	}
