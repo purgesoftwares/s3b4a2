@@ -25,9 +25,9 @@
              <table style="border: 0px" class="table table-hover table-striped">
                  <tbody>
                     <tr>
-                        <td>Provider Name :</td>
-                        <td>{{ model.provider }}</td>
-                    </tr>
+                        <td>Name :</td>
+                        <td>{{ provider.provider_name }}</td>
+                    </tr> 
                     <tr>
                         <td>Beneficiary Name :</td>
                         <td>{{ model.beneficiaryName }}</td>
@@ -45,8 +45,12 @@
                         <td>{{ model.branchNumber }}</td>
                     </tr>
                     <tr>                        
-                        <td>Account Number :</td>
-                        <td>{{ model.accountNumber }}</td>
+                        <td>Address :</td>
+                        <td>{{ address.address1}}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Location :</td>
+                        <td>{{ address.city }},{{address.country}}</td>
                     </tr>
                 </tbody> 
              </table>

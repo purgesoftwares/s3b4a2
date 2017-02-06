@@ -10,8 +10,8 @@ import { Http } from '@angular/http';
 
 export class BankDetailComponent {
 	model: any={};
-	provider: Array<Object>[];
-	address: Array<Object>[];
+	provider: any={};
+	address: any={};
 	constructor(private route: ActivatedRoute, private http : Http) {}
 
 	token:any={};
@@ -34,25 +34,18 @@ export class BankDetailComponent {
 									this.message = error.json().message
 									this.mess = true;
 								}},
-  					() => console.log(this.provider)
+  					() => this.getAddress()
   				);
 
-  		/*this.http.get('http://54.161.216.233:8090/api/secured/address/'+ this.provider.addressId +'?access_token=' + this.token)
+    }
+
+    getAddress() {
+  		this.http.get('http://54.161.216.233:8090/api/secured/address/'+ this.provider.addressId +'?access_token=' + this.token)
   				.map(res => res.json())
-  				.subscribe(
-  					data => { if(data.content.length) {
-                  				this.address= data.content;
-                  				this.setPage(1);
-                  			} else {
-                      			this.mess=true;
-                      			this.message= "There is no records found."
-                  			}},
-  					error => { if(error.json().error) {
-									this.message = error.json().message
-									this.mess = true;
-								}},
-  					() => console.log("complete")
-  					
-  				);*/
-  	}
+          .subscribe(
+            data => this.address= data,
+            error => { console.log(error);},
+            () => console.log("hii")
+          ); 
+    }
 }
