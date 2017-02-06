@@ -43,25 +43,22 @@ export class AddCouponComponent {
 				);
 	}
 
-	getCoupon() {
-  		this.http.get('http://54.161.216.233:8090/api/secured/coupon/'+ this.model.id +'?access_token=' + this.token)
-  				.map(res => res.json())
-  				.subscribe(
-  					data => this.model = data,
-  					error => console.log(error),
-  					() => console.log("complete")
-  				);
-  	}
-	
 	ngOnInit() {
-	   	this.route.queryParams.subscribe(data => {this.model.id = data['Id']}
+	   	this.route.queryParams.subscribe(data => {this.model.id = data['Id'],
+	   											this.model.couponCode = data['CouponCode'],
+	   											this.model.couponNumber = data['CouponNumber'],
+	   											this.model.price = data['Price'],
+	   											this.model.providerId = data['ProviderId'],
+	   											this.model.used = data['Used'],
+	   											this.model.availability = data['availability'],
+	   											this.model.endTime = data['endTime'],
+	   											this.model.startTime = data['startTime']});
+	   	console.log(this.model);
 
 	   	if(!this.model.id) {
 	   		var num = Math.floor(Math.random() * 90000) + 10000;
 			this.model.couponCode = "CCU" + num;
 			this.model.couponNumber = num;
-	  	} else {
-	  		this.getCoupon();
 	  	}
 
 	   this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)

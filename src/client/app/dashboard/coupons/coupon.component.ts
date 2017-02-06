@@ -52,15 +52,15 @@ export class CouponComponent {
 	}
 
 	update(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
-		var date = moment(endTime).format('DD-MM-YYYY hh:mm');
-		var stdate = moment(startTime).format('DD-MM-YYYY hh:mm');
+		var date = moment(endTime).format('YYYY-MM-DD hh:mm');
+		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
 		
-		this.router.navigate(['/dashboard/add-coupon/'],{ queryParams: { Id:id }})
+		this.router.navigate(['/dashboard/add-coupon/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:stdate, endTime:date}})
 	}
 
 	view(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
-		var date = moment(endTime).format('DD-MM-YYYY hh:mm');
-		var stdate = moment(startTime).format('DD-MM-YYYY hh:mm');
+		var date = moment(endTime).format('YYYY-MM-DD hh:mm');
+		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
 		
 		this.router.navigate(['/dashboard/coupon-view/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:stdate, endTime:date}})
 	}
