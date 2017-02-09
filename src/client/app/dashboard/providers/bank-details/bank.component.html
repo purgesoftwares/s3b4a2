@@ -29,6 +29,23 @@
                         <td>{{ provider.provider_name }}</td>
                     </tr> 
                     <tr>
+                        <td>Contact Name :</td>
+                        <td>{{ provider.contactName }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email :</td>
+                        <td>{{ provider.mainEmail }}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Address :</td>
+                        <td>{{ address.address1}}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Location :</td>
+                        <td>{{ address.city }},{{address.country}}</td>
+                    </tr>
+                    <div *ngIf="model.bankName">
+                    <tr>
                         <td>Beneficiary Name :</td>
                         <td>{{ model.beneficiaryName }}</td>
                     </tr> 
@@ -44,14 +61,7 @@
                         <td>Branch Number :</td>
                         <td>{{ model.branchNumber }}</td>
                     </tr>
-                    <tr>                        
-                        <td>Address :</td>
-                        <td>{{ address.address1}}</td>
-                    </tr>
-                    <tr>                        
-                        <td>Location :</td>
-                        <td>{{ address.city }},{{address.country}}</td>
-                    </tr>
+                    </div>
                 </tbody> 
              </table>
     </div>

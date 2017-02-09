@@ -18,7 +18,6 @@ export class ProviderComponent {
 	terms:string = '';
 	message: any= {};
 	mess = false;
-	bank: Array<Object>[];
     pagedItems: any[];
     succ = false;
 	token:any={};
@@ -46,32 +45,12 @@ export class ProviderComponent {
   				);
 	}
 
-	details(id) {
-		
-		this.http.get('http://54.161.216.233:8090/api/secured/bank-detail/get-bankdetail/' + id + '?access_token='+ this.token)
-			.map(res => res.json())
-			.subscribe(
-				data => {this.bank= data;
-				this.router.navigate(['/dashboard/bank-detail/'],{ queryParams: { id: this.bank.id,
-																				beneficiaryName:this.bank.beneficiaryName,
-																				providerId :this.bank.providerId,
-																				beneficiaryAddress:this.bank.beneficiaryAddress,
-																				bankName: this.bank.bankName,
-																				branchNumber: this.bank.branchNumber,
-																				accountNumber: this.bank.accountNumber}});}
-				error => {console.log(error);
-				if(error) {
-							this.message = "For this Provider Bank Details not exist.";
-							this.mess = true;
-							setTimeout(() => {
-                					this.mess = false;
-            					}, 1000);
-				};},
-			);
+	details(id: number) {
+		this.router.navigate(['/dashboard/bank-detail/'],{ queryParams: { id: id}});
 	}
 
-	change(email) {
-		this.router.navigate(['/dashboard/reset-password/'],{ queryParams: { Email:email}})
+	change(id: number) {
+		this.router.navigate(['/dashboard/reset-password/'],{ queryParams: { id: id}})
 	}
 
 	delete(id: number) {

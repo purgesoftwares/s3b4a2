@@ -25,7 +25,7 @@ export class AddCouponComponent {
 
 	add() {
 		this.loading = true;
-		console.log(this.model)
+		
 		this.http.post('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token, this.model)
 				.map(res => res.json())
 				.subscribe(
