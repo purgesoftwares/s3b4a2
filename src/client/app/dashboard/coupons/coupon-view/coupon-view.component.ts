@@ -35,7 +35,7 @@ export class CouponViewComponent {
   								this.model.provider = this.providers[i].provider_name;
   							}
   						}
-  					}
+  					},
   					error => console.log("error"),
   					() => console.log("complete")
   				);

@@ -36,11 +36,11 @@ export class ContentComponent {
                   				this.setPage(1);
                   			} else {
                       			this.mess=true;
-                      			this.message= "There is no records found."
+                      			this.message= "There is no records found.";
                   			}},
   					error => { console.log(error);
   						if(error.json().error) {
-									this.message = error.json().message
+									this.message = error.json().message;
 									this.mess = true;
 								}},
   					() => console.log("complete")

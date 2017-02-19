@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
- 
 @Component({
 	moduleId: module.id,
     selector: 'bank-detail',
@@ -15,18 +14,16 @@ export class BankDetailComponent {
 	bank: Array<Object>[];
 	token:any={};
 
-    token = localStorage.getItem('access_token');
+  token = localStorage.getItem('access_token');
 
 	constructor(private route: ActivatedRoute, private http : Http) {}
 
 	ngOnInit() {
 	   	this.route.queryParams.subscribe(data => {this.model.id =  data['id']});
 
-		this.getBankDetail();
+  		this.getBankDetail();
 
-		this.getProvider();
-
-
+	   	this.getProvider();
     }
 
     getProvider() {

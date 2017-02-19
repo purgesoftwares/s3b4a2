@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
 	moduleId: module.id,
 	selector: 'product-question',
-	templateUrl: 'productQuestion.component.html'
+	templateUrl: 'productQuestion.component.html',
 
 	providers: [PagerService]
 

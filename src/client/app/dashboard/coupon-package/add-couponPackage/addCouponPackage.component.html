@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 *ngIf="model.id" class="page-header">
+                Update Coupon Package
+            </h1>
+            <h1 *ngIf="!model.id" class="page-header">
+                Add Coupon Package
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li>
+                    <i class="fa fa-tag"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/coupon-package" > Coupon Package</a>
+                </li>
+                <li *ngIf="model.id" class="active">
+                    <i class="fa fa-tag"></i> Update Coupon Package
+                </li>
+                <li *ngIf="!model.id" class="active">
+                    <i class="fa fa-tag"></i> Add Coupon Package
+                </li>
+            </ol>
+        </div>
+    <a [routerLink]="['/dashboard/coupon']" class="pull-right btn btn-primary">Back</a>
+    </div>
+
+    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+    <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
+    
+    <form name="form" (ngSubmit)="f.form.valid && add()" #f="ngForm" novalidate>
+            
+            <label for="couponNumber">Coupon Number</label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !couponNumber.valid }">
+                <input type="Number" class="form-control" name="couponNumber" [(ngModel)]="model.couponNumber" 
+                 #couponNumber="ngModel" placeholder="Coupon Number" disabled required>
+                 <div *ngIf="f.submitted && !couponNumber.valid" class="help-block">Coupon Number is required</div>
+            </div>
+            
+            <label for="price">Price <span class="required">*</span></label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !price.valid }">
+                <input type="Number" class="form-control" name="price" [(ngModel)]="model.price" 
+                 #price="ngModel" placeholder="Price" required>
+                 <div *ngIf="f.submitted && !price.valid" class="help-block">Price is required</div>
+            </div>
+
+            <label for="radius">radius <span class="required">*</span></label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !radius.valid }">
+                <input type="Number" class="form-control" name="radius" [(ngModel)]="model.radius" 
+                 #radius="ngModel" placeholder="radius" required>
+                 <div *ngIf="f.submitted && !radius.valid" class="help-block">radius is required</div>
+            </div>
+
+                <label for="startTime">Start Date :</label>
+                <div>
+                    <input [(ngModel)]="model.startTime" name= "startTime" ng2-datetime-picker
+                year="2014" month="12" day="31" hour="23" minute="59" /><br/>
+                </div>
+
+                <label for="startTime">Expiry Date :</label>
+                <div>
+                    <input [(ngModel)]="model.endTime" name= "endTime" ng2-datetime-picker
+                year="2014" month="12" day="31" hour="23" minute="59" /><br/>
+                </div>
+            
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Save</button>
+                <a [routerLink]="['/dashboard/coupon']" class="btn btn-default">Cancel</a>
+            </div>
+
+    </form>
+</div>

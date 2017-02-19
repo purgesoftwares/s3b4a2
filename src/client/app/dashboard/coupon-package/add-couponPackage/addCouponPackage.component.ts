@@ -7,11 +7,11 @@ import { UUID } from 'angular2-uuid';
 
 @Component({
 	moduleId: module.id,
-	selector: 'addCoupon-cmp',
-	templateUrl: 'addCoupon.component.html'
+	selector: 'addCouponPackage-cmp',
+	templateUrl: 'addCouponPackage.component.html'
 })
 
-export class AddCouponComponent {
+export class AddCouponPackageComponent {
 	model: any= {};
 	message: any= {};
 	loading = false;
@@ -25,7 +25,7 @@ export class AddCouponComponent {
 
 	add() {
 		this.loading = true;
-		
+		console.log(this.model)
 		this.http.post('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token, this.model)
 				.map(res => res.json())
 				.subscribe(
@@ -45,7 +45,6 @@ export class AddCouponComponent {
 
 	ngOnInit() {
 	   	this.route.queryParams.subscribe(data => {this.model.id = data['Id'],
-	   											this.model.couponCode = data['CouponCode'],
 	   											this.model.couponNumber = data['CouponNumber'],
 	   											this.model.price = data['Price'],
 	   											this.model.providerId = data['ProviderId'],
@@ -57,7 +56,6 @@ export class AddCouponComponent {
 
 	   	if(!this.model.id) {
 	   		var num = Math.floor(Math.random() * 90000) + 10000;
-			this.model.couponCode = "CCU" + num;
 			this.model.couponNumber = num;
 	  	}
 

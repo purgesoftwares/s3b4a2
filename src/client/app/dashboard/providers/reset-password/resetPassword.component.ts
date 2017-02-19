@@ -37,31 +37,30 @@ export class ResetPasswordComponent {
 				);
 
   	}
-	
 	save() {
 		this.loading = true;
 		
-		if(this.model.newPassword != this.model.confirmPassword){
+		if(this.model.newPassword != this.model.confirmPassword) {
 			this.mess = true;
-			this.message = "New password and Confirm Password Not match."
+			this.message = 'New password and Confirm Password Not match.';
 			this.loading = false;
 		}	else {
 
-		this.http.post('http://54.161.216.233:8090/api/public/user/reset-password', this.model)
+			this.http.post('http://54.161.216.233:8090/api/public/user/reset-password', this.model)
 				.map(res => res.json())
 				.subscribe(
 						data =>  {	this.succ = true;
-							this.message = "Successfully Reset Password.";
+							this.message = 'Successfully Reset Password.';
 							setTimeout(() => {
 								this.succ = false;
-                				this.router.navigate(['/dashboard/provider'])
+                				this.router.navigate(['/dashboard/provider']);
             				}, 1000);},
 				error => { if(error.json().error) {
-							this.message = error.json().message
+							this.message = error.json().message;
 							this.mess = true;
 						}
   						this.loading = false;},
-  				() => console.log("complete");
+  				() => console.log('complete')
 				);
 		}
 	}

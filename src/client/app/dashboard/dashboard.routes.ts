@@ -13,6 +13,8 @@ import { AddContentRoutes } from './content/add-content/index';
 import { ProductQuestionRoutes } from './product-question/index';
 import { ProviderQuestionRoutes } from './provider-question/index';
 import { CouponRoutes } from './coupons/index';
+import { CouponPackageRoutes } from './coupon-package/index';
+import { AddCouponPackageRoutes } from './coupon-package/add-couponPackage/index';
 import { AddCouponRoutes } from './coupons/add-coupon/index';
 import { CouponViewRoutes } from './coupons/coupon-view/index';
 import { InquiryViewRoutes } from './inquiry/inquiry-view/index';
@@ -26,7 +28,7 @@ export const DashboardRoutes: Route[] = [
   	{
     	path: 'dashboard',
     	component: DashboardComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
     	children: [
 	    	...HomeRoutes,
             ...ProviderRoutes,
@@ -37,6 +39,7 @@ export const DashboardRoutes: Route[] = [
             ...AddContentRoutes,
             ...ProductQuestionRoutes,
             ...AddProductQuestionRoutes,
+            ...CouponPackageRoutes,
             ...CategoryRoutes,
             ...CouponRoutes,
             ...AddCouponRoutes,
@@ -45,6 +48,7 @@ export const DashboardRoutes: Route[] = [
             ...CouponViewRoutes,
             ...InquiryViewRoutes,
             ...AddProviderQuestionRoutes,
+            ...AddCouponPackageRoutes,
             ...ConsumerRoutes,
             ...ChangePasswordRoutes
         ]

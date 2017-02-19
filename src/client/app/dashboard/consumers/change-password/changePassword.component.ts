@@ -44,7 +44,7 @@ export class ChangePasswordComponent {
 							this.mess = true;
 						}
   						this.loading = false;},
-  				() => console.log("complete");
+  				() => console.log("complete")
 				);
 		}
 	}

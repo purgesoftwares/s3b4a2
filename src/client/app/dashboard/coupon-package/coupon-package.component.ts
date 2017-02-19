@@ -6,15 +6,15 @@ import * as moment from 'moment';
 
 @Component({
 	moduleId: module.id,
-	selector: 'coupon-cmp',
-	templateUrl: 'coupon.component.html',
+	selector: 'coupon-package-cmp',
+	templateUrl: 'coupon-package.component.html',
 
 	providers: [PagerService]
 
 })
 
-export class CouponComponent {
-	coupons: Array<Object>[];
+export class CouponPackageComponent {
+	couponPackage: Array<Object>[];
 	pager: any = {};
 	terms:string = '';
     pagedItems: any[];
@@ -29,17 +29,22 @@ export class CouponComponent {
 	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
 	ngOnInit() {
-		this.http.get('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token)
+		this.http.get('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
-  					data => { if(data.content.length) {
-                  				this.coupons= data.content;
+  					data => { console.log("HELLLOOOOOOO");
+  						if(data.content.length) {
+                  				this.couponPackage= data.content;
                   				this.setPage(1);
                   			} else {
                       			this.mess=true;
                       			this.message= "There is no records found.";
+                      			setTimeout(() => {
+                					this.mess = false;
+            					}, 5000);
                   			}},
-  					error => { if(error.json().error) {
+  					error => { console.log(error);
+  						if(error.json().error) {
 									this.message = error.json().message;
 									this.mess = true;
 								}},
@@ -47,7 +52,7 @@ export class CouponComponent {
   				);
 	}
 
-	add() {
+	/*add() {
 		this.router.navigate(['/dashboard/add-coupon/'])
 	}
 
@@ -63,11 +68,11 @@ export class CouponComponent {
 		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
 		
 		this.router.navigate(['/dashboard/coupon-view/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:stdate, endTime:date}})
-	}
+	}*/
 
 	delete(id : number) {
 		if (confirm("Are You Sure! You want to delete this record?") == true) {
-			this.http.delete('http://54.161.216.233:8090/api/secured/coupon/' + id +'?access_token=' + this.token)
+			this.http.delete('http://54.161.216.233:8090/api/secured/coupon-package/' + id +'?access_token=' + this.token)
 				.map(res => res.json())
 				.subscribe(
 					data => {this.ngOnInit();
@@ -85,7 +90,7 @@ export class CouponComponent {
 
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.coupons.filter((item) => item.couponCode.startsWith(terms));
+			this.pagedItems = this.couponPackage.filter((item) => item.couponCode.startsWith(terms));
 		} else {
 			this.ngOnInit();
 		}
@@ -95,7 +100,7 @@ export class CouponComponent {
         if (page < 1 || page > this.pager.totalPages) {
             return;
         }
-        this.pager = this.pagerService.getPager(this.coupons.length, page);
-        this.pagedItems = this.coupons.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    }   
+        this.pager = this.pagerService.getPager(this.couponPackage.length, page);
+        this.pagedItems = this.couponPackage.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    }
 }

@@ -21,9 +21,7 @@ export class LoginComponent {
 				private router: Router ) {}
 
 	login() {
-
-		// localStorage.setItem('access_token', 'c1417477-6f4b-485e-a518-f3de5cbca17e');
-		// this.router.navigate(['/dashboard/home'])		
+	
 		this.loading = true;
 		this.http.post('http://54.161.216.233:8090/api/oauth/token', this.model)
 			.map((res:Response) => res.text())
@@ -31,10 +29,10 @@ export class LoginComponent {
 			    data => { 
 			    	if(data) {
 			    		localStorage.setItem('access_token', data);
-				    	this.router.navigate(['/dashboard/home']
+				    	this.router.navigate(['/dashboard/home'];
 			    	} else {this.mess= true;
 				    	this.message= 'Username Password is incorrect';
-				    	this.loading = false;}}
+				    	this.loading = false;}},
 			    error => {console.log(error);
 				    this.mess= true;
 				    this.message= 'Some Error! Please Try After Some Time '; 

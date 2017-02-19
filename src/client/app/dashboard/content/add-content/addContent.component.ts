@@ -42,7 +42,7 @@ export class AddContentComponent {
 							this.mess = true;
 						}
   						this.loading = false;},
-  					() => console.log("complete");
+  					() => console.log("complete")
 				);
 	}
 
