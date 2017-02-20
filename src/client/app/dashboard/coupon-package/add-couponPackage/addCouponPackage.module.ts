@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import {MomentModule} from 'angular2-moment'
 import { Ng2DatetimePickerModule, DateTime } from 'ng2-datetime-picker';
-
 import { AddCouponPackageComponent } from './addCouponPackage.component';
 
 export {
@@ -13,7 +12,7 @@ export {
 
 
 @NgModule({
-    imports: [RouterModule,BrowserModule, FormsModule, ReactiveFormsModule, MomentModule, Ng2DatetimePickerModule],
+    imports: [RouterModule,BrowserModule, FormsModule, ReactiveFormsModule, MomentModule, Ng2DatetimePickerModule ],
     declarations: [AddCouponPackageComponent ],
     exports: [AddCouponPackageComponent]
 })

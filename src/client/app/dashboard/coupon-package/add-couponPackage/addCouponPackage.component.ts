@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
-import { UUID } from 'angular2-uuid';
+import { Select2OptionData } from 'ng2-select2';
 
 @Component({
 	moduleId: module.id,
@@ -18,7 +18,7 @@ export class AddCouponPackageComponent {
 	mess = false;
 	succ = false;
 	token:any[];
-	providers: Array<Object>[];
+	public providers: Array<Object>;
 
 	token = localStorage.getItem('access_token');
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
@@ -26,13 +26,13 @@ export class AddCouponPackageComponent {
 	add() {
 		this.loading = true;
 		console.log(this.model)
-		this.http.post('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token, this.model)
+		this.http.post('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token, this.model)
 				.map(res => res.json())
 				.subscribe(
 					data => {this.succ = true;
 							this.message = "Successfully Saved";
 							setTimeout(() => {
-                				this.router.navigate(['/dashboard/coupon'])
+                				this.router.navigate(['/dashboard/coupon-package'])
             				}, 1000);},
 					error => { if(error.json().error) {
 							this.message = error.json().message
@@ -66,10 +66,23 @@ export class AddCouponPackageComponent {
   					error => console.log("error"),
   					() => console.log("complete")
   				);
+
+  	}
+	changed(data: {value: string[]}) {
+    	this.current = data.value.join(' | ');
   	}
 
-  	onChange(deviceValue) {
-    	this.model.providerId = deviceValue.id;
-	}
-	
+  	toggleMultiSelect(event, val){
+  		console.log(val);
+	    event.preventDefault();
+	    if(this.model.providers.indexOf(val) == -1){
+	      this.model.providers = [...this.model.providers, val];
+	      $("#" + val.id).toggleClass("fa fa-check");
+	    }else{
+	      $("#" + val.id).toggleClass("fa fa-check");
+	      this.model.selected = this.model.selected.filter(function(elem){
+	        return elem != val;
+	      })
+	    }
+  	}
 }

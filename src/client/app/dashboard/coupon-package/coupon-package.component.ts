@@ -32,8 +32,8 @@ export class CouponPackageComponent {
 		this.http.get('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
-  					data => { console.log("HELLLOOOOOOO");
-  						if(data.content.length) {
+  					data => { console.log(data.content);
+  					 if(data.content.length) {
                   				this.couponPackage= data.content;
                   				this.setPage(1);
                   			} else {
@@ -52,11 +52,11 @@ export class CouponPackageComponent {
   				);
 	}
 
-	/*add() {
-		this.router.navigate(['/dashboard/add-coupon/'])
+	add() {
+		this.router.navigate(['/dashboard/add-couponPackage/'])
 	}
 
-	update(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
+	/*update(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
 		var date = moment(endTime).format('YYYY-MM-DD hh:mm');
 		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
 		

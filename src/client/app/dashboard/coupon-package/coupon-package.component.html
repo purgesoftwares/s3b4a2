@@ -38,7 +38,8 @@
                      <tr>
                          <th>Coupon Number</th>
                          <th>Price</th>
-                         <th>Availability</th>
+                         <th>Radius</th>
+                         <th>Providers</th>
                          <th>Start Time</th>
                          <th>End Time</th>
                          <th>Actions</th>
@@ -48,10 +49,11 @@
                     <tr>
                         <td>{{ coupon.couponNumber }}</td>
                         <td>{{ coupon.price }}</td>
-                        <td>{{ coupon.availability }}</td>
+                        <td>{{ coupon.radius }}</td>
+                        <td>{{ coupon.providers[0].contactName }}</td>
                         <td>{{ coupon.startTime | amDateFormat:'LL' }}</td>
                         <td>{{ coupon.endTime | amDateFormat:'LL' }}</td>
-                         <td><button (click) = "view(coupon.id, coupon.couponCode, coupon.couponNumber,coupon.price, coupon.providerId, coupon.used, coupon.availability, coupon.startTime, coupon.endTime)" class="btn btn-primary">View</button></td>
+                         <td><button (click) = "view(coupon.id,coupon.couponNumber,coupon.price,coupon.radius, coupon.startTime, coupon.endTime)" class="btn btn-primary">View</button></td>
                          <td><button (click) = "update(coupon.id,coupon.couponNumber,coupon.price,coupon.providerId,coupon.used,coupon.availability,coupon.startTime,coupon.endTime)" class="btn btn-default">Edit</button></td>
                         <td><button (click) = "delete(coupon.id)" class="btn btn-default">Delete</button></td>
                     </tr>
