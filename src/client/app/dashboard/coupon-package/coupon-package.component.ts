@@ -56,14 +56,14 @@ export class CouponPackageComponent {
 		this.router.navigate(['/dashboard/add-couponPackage/'])
 	}
 
-	/*update(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
+	update(id,couponCode,couponNumber,price, providers,radius, startTime, endTime) {
 		var date = moment(endTime).format('YYYY-MM-DD hh:mm');
 		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
 		
-		this.router.navigate(['/dashboard/add-coupon/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:stdate, endTime:date}})
+		this.router.navigate(['/dashboard/add-couponPackage/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,Providers:providers,Radius:radius,startTime:stdate, endTime:date}})
 	}
 
-	view(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
+	/*view(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
 		var date = moment(endTime).format('YYYY-MM-DD hh:mm');
 		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
 		

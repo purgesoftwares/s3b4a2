@@ -19,12 +19,14 @@ export class AddCouponPackageComponent {
 	succ = false;
 	token:any[];
 	public providers: Array<Object>;
-
+	public provide: Array<Object>;
+	 public selected:any[]=[];
 	token = localStorage.getItem('access_token');
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
 
 	add() {
 		this.loading = true;
+		this.model.providers = this.selected;
 		console.log(this.model)
 		this.http.post('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token, this.model)
 				.map(res => res.json())
@@ -47,9 +49,8 @@ export class AddCouponPackageComponent {
 	   	this.route.queryParams.subscribe(data => {this.model.id = data['Id'],
 	   											this.model.couponNumber = data['CouponNumber'],
 	   											this.model.price = data['Price'],
-	   											this.model.providerId = data['ProviderId'],
-	   											this.model.used = data['Used'],
-	   											this.model.availability = data['availability'],
+	   											this.model.providers = data['Providers'],
+	   											this.model.radius = data['Radius'],
 	   											this.model.endTime = data['endTime'],
 	   											this.model.startTime = data['startTime']});
 	   	console.log(this.model);
@@ -72,17 +73,17 @@ export class AddCouponPackageComponent {
     	this.current = data.value.join(' | ');
   	}
 
-  	toggleMultiSelect(event, val){
-  		console.log(val);
-	    event.preventDefault();
-	    if(this.model.providers.indexOf(val) == -1){
-	      this.model.providers = [...this.model.providers, val];
-	      $("#" + val.id).toggleClass("fa fa-check");
-	    }else{
-	      $("#" + val.id).toggleClass("fa fa-check");
-	      this.model.selected = this.model.selected.filter(function(elem){
-	        return elem != val;
-	      })
-	    }
+  	 toggleMultiSelect(event, val){
+    		event.preventDefault();
+    		if(this.selected.indexOf(val) == -1){
+      			this.selected = [...this.selected, val];
+      			$("#" + val.id).toggleClass("fa fa-check");
+   			}else{
+     			 $("#" + val.id).toggleClass("fa fa-check");
+     			 this.selected = this.selected.filter(function(elem){
+       			 return elem != val;
+     		 })
+    		}
+    		console.log(this.selected);
   	}
 }
