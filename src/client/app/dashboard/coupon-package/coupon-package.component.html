@@ -54,7 +54,7 @@
                         <td>{{ coupon.startTime | amDateFormat:'LL' }}</td>
                         <td>{{ coupon.endTime | amDateFormat:'LL' }}</td>
                          <td><button (click) = "view(coupon.id,coupon.couponNumber,coupon.price,coupon.radius, coupon.startTime, coupon.endTime)" class="btn btn-primary">View</button></td>
-                         <td><button (click) = "update(coupon.id,coupon.couponNumber,coupon.price,coupon.providerId,coupon.used,coupon.availability,coupon.startTime,coupon.endTime)" class="btn btn-default">Edit</button></td>
+                         <td><button (click) = "update(coupon.id,coupon.couponNumber,coupon.price,coupon.providers,coupon.radius,coupon.startTime,coupon.endTime)" class="btn btn-default">Edit</button></td>
                         <td><button (click) = "delete(coupon.id)" class="btn btn-default">Delete</button></td>
                     </tr>
                 </tbody> 

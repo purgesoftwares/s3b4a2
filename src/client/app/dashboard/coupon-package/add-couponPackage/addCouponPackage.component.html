@@ -65,9 +65,11 @@
                     <input [(ngModel)]="model.endTime" name= "endTime" ng2-datetime-picker
                 year="2014" month="12" day="31" hour="23" minute="59" /><br/>
                 </div>
-                <div class="multiple-select col-lg-6 col-md-6 col-sm-6 col-xs-6" style="">
-                <div class="options col-lg-12 col-md-12 col-xs-12 col-sm-12" *ngFor="let provider of providers" id={{provider.id}} (click)="toggleMultiSelect($event, provider)">{{provider.contactName}}</div>
-              </div>
+                <div>
+                    <div class="multiple-select col-lg-6 col-md-6 col-sm-6 col-xs-6" style="">
+                    <div class="options col-lg-12 col-md-12 col-xs-12 col-sm-12" *ngFor="let provider of providers" id={{provider.id}} (click)="toggleMultiSelect($event, provider)">{{provider.contactName}}</div>
+                    </div>
+                </div>
             
             <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">Save</button>

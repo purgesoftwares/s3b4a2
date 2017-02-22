@@ -46,6 +46,7 @@ export class AddCouponPackageComponent {
 	}
 
 	ngOnInit() {
+
 	   	this.route.queryParams.subscribe(data => {this.model.id = data['Id'],
 	   											this.model.couponNumber = data['CouponNumber'],
 	   											this.model.price = data['Price'],
@@ -58,15 +59,27 @@ export class AddCouponPackageComponent {
 	   	if(!this.model.id) {
 	   		var num = Math.floor(Math.random() * 90000) + 10000;
 			this.model.couponNumber = num;
+	  	} else {
+	  		this.selected = this.model.providers;
 	  	}
 
 	   this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
-  					data => this.providers= data.content,
+  					data =>{ this.providers= data.content;
+  						this.providers.map((prov) {
+  							if(this.model.providers.includes(prov.id)) {
+  								//console.log($("#" + prov.id).toggleClass("fa fa-check"););
+      							$("#" + prov.id).addClass("fa fa-check");
+      						}
+
+  						});
+  					},
   					error => console.log("error"),
   					() => console.log("complete")
   				);
+
+  		
 
   	}
 	changed(data: {value: string[]}) {
@@ -84,6 +97,5 @@ export class AddCouponPackageComponent {
        			 return elem != val;
      		 })
     		}
-    		console.log(this.selected);
   	}
 }
