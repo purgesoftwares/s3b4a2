@@ -23,6 +23,7 @@ import { AddCouponModule } from './coupons/add-coupon/addCoupon.module';
 import { ResetPasswordModule } from './providers/reset-password/resetPassword.module';
 import { BankDetailModule } from './providers/bank-details/bank.module';
 import { CouponViewModule } from './coupons/coupon-view/coupon-view.module';
+import { CouponPackageViewModule } from './coupon-package/coupon-package-view/coupon-package-view.module';
 import { InquiryViewModule } from './inquiry/inquiry-view/inquiry-view.module';
 import { AuthGuard } from './oauth/index';
 import { ChangePasswordModule } from './consumers/change-password/changePassword.module';
@@ -55,6 +56,7 @@ import {SidebarComponent} from '../shared/index';
         AddCouponModule,
         AddCategoryModule,
         CouponPackageModule,
+        CouponPackageViewModule,
         CouponViewModule,
         AddCouponPackageModule,
         InquiryViewModule,

@@ -34,8 +34,7 @@ export class CouponPackageComponent {
 		this.http.get('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
-  					data => { console.log(data.content);
-  					 if(data.content.length) {
+  					data => {if(data.content.length) {
                   				this.couponPackage= data.content;
                   				this.setPage(1);
                   			} else {
@@ -71,12 +70,10 @@ export class CouponPackageComponent {
 		this.router.navigate(['/dashboard/add-couponPackage/'],{ queryParams: { Id:id,CouponNumber:couponNumber,Price:price,Providers:this.ids,Radius:radius,startTime:stdate, endTime:date}})
 	}
 
-	/*view(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
-		var date = moment(endTime).format('YYYY-MM-DD hh:mm');
-		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
+	view(id) {
 		
-		this.router.navigate(['/dashboard/coupon-view/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:stdate, endTime:date}})
-	}*/
+		this.router.navigate(['/dashboard/coupon-package-view/'],{ queryParams: { Id:id}})
+	}
 
 	delete(id : number) {
 		if (confirm("Are You Sure! You want to delete this record?") == true) {
@@ -98,7 +95,7 @@ export class CouponPackageComponent {
 
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.couponPackage.filter((item) => item.couponCode.startsWith(terms));
+			this.pagedItems = this.couponPackage.filter((item) => item.couponNumber.startsWith(terms));
 		} else {
 			this.ngOnInit();
 		}
