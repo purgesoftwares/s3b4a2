@@ -22,10 +22,7 @@ export class CouponPackageComponent {
 	mess = false;
 	succ = false;
 	public ids:any[]=[];
-
-
-	token:any[];
-
+	
 	token = localStorage.getItem('access_token');
 	
 	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
@@ -57,7 +54,7 @@ export class CouponPackageComponent {
 		this.router.navigate(['/dashboard/add-couponPackage/'])
 	}
 
-	update(id,couponNumber,price, providers,radius, startTime, endTime) {
+	update(id: number,couponNumber: number,price: number, providers: Array<Object>, radius: number, startTime: Date, endTime : Date) {
 
 		var date = moment(endTime).format('YYYY-MM-DD hh:mm');
 		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
@@ -70,7 +67,7 @@ export class CouponPackageComponent {
 		this.router.navigate(['/dashboard/add-couponPackage/'],{ queryParams: { Id:id,CouponNumber:couponNumber,Price:price,Providers:this.ids,Radius:radius,startTime:stdate, endTime:date}})
 	}
 
-	view(id) {
+	view(id : number) {
 		
 		this.router.navigate(['/dashboard/coupon-package-view/'],{ queryParams: { Id:id}})
 	}

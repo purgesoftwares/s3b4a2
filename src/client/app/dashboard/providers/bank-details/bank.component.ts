@@ -12,7 +12,8 @@ export class BankDetailComponent {
 	provider: any={};
 	address: any={};
 	bank: Array<Object>[];
-	token:any={};
+  message: any= {};
+  mess= false;
 
   token = localStorage.getItem('access_token');
 
@@ -44,8 +45,8 @@ export class BankDetailComponent {
     	this.http.get('http://54.161.216.233:8090/api/secured/bank-detail/get-bankdetail/' + this.model.id + '?access_token='+ this.token)
 			.map(res => res.json())
 			.subscribe(
-				data => {this.model = data;}
-				error => {console.log(error);},
+				data => this.model = data,
+				error => console.log(error),
 				() => console.log("complete")
 			);
     }

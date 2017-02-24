@@ -20,7 +20,6 @@ export class CategoryComponent {
     message: any= {};
 	mess = false;
 	succ = false;
-	token:any[];
 
 	token = localStorage.getItem('access_token');
 

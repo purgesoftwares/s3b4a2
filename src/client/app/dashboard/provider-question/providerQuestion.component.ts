@@ -17,7 +17,6 @@ export class ProviderQuestionComponent {
 	pager: any = {};
 	terms:string = '';
     pagedItems: any[];
-    token:any[];
     message: any= {};
 	mess = false;
 	succ = false;

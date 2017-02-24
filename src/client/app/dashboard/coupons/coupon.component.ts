@@ -22,8 +22,6 @@ export class CouponComponent {
 	mess = false;
 	succ = false;
 
-	token:any[];
-
 	token = localStorage.getItem('access_token');
 	
 	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
@@ -51,14 +49,14 @@ export class CouponComponent {
 		this.router.navigate(['/dashboard/add-coupon/'])
 	}
 
-	update(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
+	update(id : number,couponCode: string,couponNumber: number,price : number , providerId : string,used: number,availability: number, startTime: Date, endTime: Date) {
 		var date = moment(endTime).format('YYYY-MM-DD hh:mm');
 		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
 		
 		this.router.navigate(['/dashboard/add-coupon/'],{ queryParams: { Id:id,CouponCode:couponCode,CouponNumber:couponNumber,Price:price,ProviderId:providerId,Used:used,availability: availability,startTime:stdate, endTime:date}})
 	}
 
-	view(id,couponCode,couponNumber,price,providerId,used,availability, startTime, endTime) {
+	view(id : number,couponCode: string,couponNumber: number,price : number , providerId : string,used: number,availability: number, startTime: Date, endTime: Date) {
 		var date = moment(endTime).format('YYYY-MM-DD hh:mm');
 		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
 		

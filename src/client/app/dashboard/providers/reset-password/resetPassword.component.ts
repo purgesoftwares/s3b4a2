@@ -16,7 +16,6 @@ export class ResetPasswordComponent {
 	loading = false;
 	mess = false;
 	succ = false;
-	token:any={};
 
     token = localStorage.getItem('access_token');
 
@@ -28,7 +27,7 @@ export class ResetPasswordComponent {
 	   this.http.get('http://54.161.216.233:8090/api/secured/provider/' + this.reset.id +'?access_token=' + this.token)
 				.map(res => res.json())
 				.subscribe(
-					data => {this.reset = data;}
+					data => {this.reset = data;},
 					error => {if(error.json().error) {
 									this.message = error.json().message
 									this.mess = true;

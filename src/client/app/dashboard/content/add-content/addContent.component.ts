@@ -15,8 +15,6 @@ export class AddContentComponent {
 	loading = false;
 	mess = false;
 	succ = false;
-	token:any[];
-
 	token = localStorage.getItem('access_token');
 
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
@@ -27,9 +25,7 @@ export class AddContentComponent {
 	
 	save() {
 		this.loading = true;
-		let headers = new Headers();
-  		headers.append('Content-Type', 'application/json');
-    	this.http.post('http://54.161.216.233:8090/api/secured/cms-pages?access_token=' +this.token, this.model, {headers: headers})
+    	this.http.post('http://54.161.216.233:8090/api/secured/cms-pages?access_token=' +this.token, this.model)
 			.map(res => res.json())
 			.subscribe(
 					data => {this.succ = true;
@@ -46,7 +42,7 @@ export class AddContentComponent {
 				);
 	}
 
-	onChange(values) {
+	onChange(values: string) {
 		console.log(values);
     	this.model.status = values;
 	}

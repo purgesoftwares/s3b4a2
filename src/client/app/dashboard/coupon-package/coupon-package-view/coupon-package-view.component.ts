@@ -10,7 +10,6 @@ import { Http } from '@angular/http';
 
 export class CouponPackageViewComponent {
 	model: any={};
-	token:any[];
 	providers: Array<Object>[];
 
 	token = localStorage.getItem('access_token');

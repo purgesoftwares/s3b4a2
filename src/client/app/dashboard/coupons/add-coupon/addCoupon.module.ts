@@ -7,11 +7,6 @@ import { Ng2DatetimePickerModule, DateTime } from 'ng2-datetime-picker';
 
 import { AddCouponComponent } from './addCoupon.component';
 
-export {
-  DateTime
-}
-
-
 @NgModule({
     imports: [RouterModule,BrowserModule, FormsModule, ReactiveFormsModule, MomentModule, Ng2DatetimePickerModule],
     declarations: [AddCouponComponent ],

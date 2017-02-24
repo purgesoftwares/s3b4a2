@@ -17,7 +17,6 @@ export class AddCouponComponent {
 	loading = false;
 	mess = false;
 	succ = false;
-	token:any[];
 	providers: Array<Object>[];
 
 	token = localStorage.getItem('access_token');

@@ -11,7 +11,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class AddProductQuestionComponent {
 	model: any= {};
-	token:any[];
     message: any= {};
 	mess = false;
 	succ = false;

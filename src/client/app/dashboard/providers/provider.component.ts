@@ -20,8 +20,7 @@ export class ProviderComponent {
 	mess = false;
     pagedItems: any[];
     succ = false;
-	token:any={};
-
+	
     token = localStorage.getItem('access_token');
 	
 	constructor(private http : Http, private pagerService : PagerService, private router: Router) { }

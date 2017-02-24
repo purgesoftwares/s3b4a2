@@ -17,10 +17,9 @@ export class AddCouponPackageComponent {
 	loading = false;
 	mess = false;
 	succ = false;
-	token:any[];
 	public providers: Array<Object>;
 	public provide: Array<Object>;
-	 public selected:any[]=[];
+	public selected:any[]=[];
 	token = localStorage.getItem('access_token');
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
 
@@ -67,7 +66,7 @@ export class AddCouponPackageComponent {
   				.map(res => res.json())
   				.subscribe(
   					data =>{ this.providers= data.content;
-  						this.providers.map((prov) {
+  						this.providers.map((prov) => {
   							if(this.model.providers.includes(prov.id)) {
   								//console.log($("#" + prov.id).toggleClass("fa fa-check"););
       							$("#" + prov.id).addClass("fa fa-check");
@@ -82,11 +81,8 @@ export class AddCouponPackageComponent {
   		
 
   	}
-	changed(data: {value: string[]}) {
-    	this.current = data.value.join(' | ');
-  	}
 
-  	 toggleMultiSelect(event, val){
+  	toggleMultiSelect(event, val: Object){
     		event.preventDefault();
     		if(this.selected.indexOf(val) == -1){
       			this.selected = [...this.selected, val];

@@ -17,7 +17,6 @@ export class InquiryComponent {
   pager: any = {};
   terms:string = '';
   pagedItems: any[];
-  token:any[];
   message: any= {};
   mess = false;
   token = localStorage.getItem('access_token');

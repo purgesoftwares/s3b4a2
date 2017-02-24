@@ -19,9 +19,6 @@ export class ConsumerComponent {
     message: any= {};
 	mess = false;
 	succ = false;
-
-	token:any[];
-
 	token = localStorage.getItem('access_token');
 
 	constructor(private http: Http, private pagerService: PagerService, private router: Router) {}
@@ -63,7 +60,7 @@ export class ConsumerComponent {
 		}
 	}
 
-	change(email) {
+	change(email: email) {
 		this.router.navigate(['/dashboard/change-password/'],{ queryParams: { Email:email}})
 	}
 

@@ -29,7 +29,7 @@ export class LoginComponent {
 			    data => { 
 			    	if(data) {
 			    		localStorage.setItem('access_token', data);
-				    	this.router.navigate(['/dashboard/home'];
+				    	this.router.navigate(['/dashboard/home']);
 			    	} else {this.mess= true;
 				    	this.message= 'Username Password is incorrect';
 				    	this.loading = false;}},

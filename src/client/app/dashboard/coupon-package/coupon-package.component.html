@@ -38,8 +38,6 @@
                      <tr>
                          <th>Coupon Number</th>
                          <th>Price</th>
-                         <th>Radius</th>
-                         <th>Providers</th>
                          <th>Start Time</th>
                          <th>End Time</th>
                          <th>Actions</th>
@@ -49,8 +47,6 @@
                     <tr>
                         <td>{{ coupon.couponNumber }}</td>
                         <td>{{ coupon.price }}</td>
-                        <td>{{ coupon.radius }}</td>
-                        <td><ul><li *ngFor="let provider of coupon.providers">{{provider.contactName}}</li></ul></td>
                         <td>{{ coupon.startTime | amDateFormat:'LL' }}</td>
                         <td>{{ coupon.endTime | amDateFormat:'LL' }}</td>
                          <td><button (click) = "view(coupon.id)" class="btn btn-primary">View</button></td>
