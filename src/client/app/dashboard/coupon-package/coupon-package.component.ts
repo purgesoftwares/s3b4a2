@@ -54,17 +54,9 @@ export class CouponPackageComponent {
 		this.router.navigate(['/dashboard/add-couponPackage/'])
 	}
 
-	update(id: number,couponNumber: number,price: number, providers: Array<Object>, radius: number, startTime: Date, endTime : Date) {
+	update(id: number) {
 
-		var date = moment(endTime).format('YYYY-MM-DD hh:mm');
-		var stdate = moment(startTime).format('YYYY-MM-DD hh:mm');
-
-				
-		providers.map((provider) => {
-      		this.ids = [...this.ids, provider.id];
-
-		});
-		this.router.navigate(['/dashboard/add-couponPackage/'],{ queryParams: { Id:id,CouponNumber:couponNumber,Price:price,Providers:this.ids,Radius:radius,startTime:stdate, endTime:date}})
+		this.router.navigate(['/dashboard/add-couponPackage/'],{ queryParams: { Id:id }})
 	}
 
 	view(id : number) {

@@ -12,7 +12,7 @@ import { Select2OptionData } from 'ng2-select2';
 })
 
 export class AddCouponPackageComponent {
-	model: any= {};
+	model: Object= [];
 	message: any= {};
 	loading = false;
 	mess = false;
@@ -25,6 +25,7 @@ export class AddCouponPackageComponent {
 
 	add() {
 		this.loading = true;
+		this.model.providers = [];
 		this.model.providers = this.selected;
 		console.log(this.model)
 		this.http.post('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token, this.model)
@@ -46,34 +47,30 @@ export class AddCouponPackageComponent {
 
 	ngOnInit() {
 
-	   	this.route.queryParams.subscribe(data => {this.model.id = data['Id'],
-	   											this.model.couponNumber = data['CouponNumber'],
-	   											this.model.price = data['Price'],
-	   											this.model.providers = data['Providers'],
-	   											this.model.radius = data['Radius'],
-	   											this.model.endTime = data['endTime'],
-	   											this.model.startTime = data['startTime']});
-	   	console.log(this.model);
+	   	this.route.queryParams.subscribe(data => {this.model.id = data['Id']});
+	   	console.log(this.model.id);
+	   	this.http.get('http://54.161.216.233:8090/api/secured/coupon-package/'+ this.model.id +'?access_token=' + this.token)
+  				.map(res => res.json())
+  				.subscribe(
+  					data =>{this.model= data;
+  						console.log(this.model);
+  						console.log(this.model.providers);
+  						this.selected = this.model.providers;
+  						console.log(this.selected);
+  					},
+  					error => console.log("error"),
+  					() => console.log("complete")
+  				);
 
 	   	if(!this.model.id) {
 	   		var num = Math.floor(Math.random() * 90000) + 10000;
 			this.model.couponNumber = num;
-	  	} else {
-	  		this.selected = this.model.providers;
 	  	}
 
 	   this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
-  					data =>{ this.providers= data.content;
-  						this.providers.map((prov) => {
-  							if(this.model.providers.includes(prov.id)) {
-  								//console.log($("#" + prov.id).toggleClass("fa fa-check"););
-      							$("#" + prov.id).addClass("fa fa-check");
-      						}
-
-  						});
-  					},
+  					data => this.providers= data.content,
   					error => console.log("error"),
   					() => console.log("complete")
   				);
@@ -82,16 +79,33 @@ export class AddCouponPackageComponent {
 
   	}
 
-  	toggleMultiSelect(event, val: Object){
-    		event.preventDefault();
-    		if(this.selected.indexOf(val) == -1){
-      			this.selected = [...this.selected, val];
-      			$("#" + val.id).toggleClass("fa fa-check");
-   			}else{
-     			 $("#" + val.id).toggleClass("fa fa-check");
-     			 this.selected = this.selected.filter(function(elem){
-       			 return elem != val;
-     		 })
-    		}
+  	check(id: number) {
+  		this.model.forEach(function(jv, j){
+  			console.log(jv);
+			if(id == jv.id){
+				retuen true;
+			} else {
+				return false;
+			}
+		});
+  	}
+
+  	checkbox(event: boolean, provider: Object) {
+  		console.log(event);
+  		if(event) {
+	  		if(this.selected.indexOf(provider) == -1){
+	  			this.selected = [...this.selected, provider];
+			}else{
+				this.selected = this.selected.filter(function(elem){
+				return elem != provider;
+	 		 })
+			}
+		} else {
+			this.selected = this.selected.filter(function(elem){
+				return elem != provider;
+	 		})
+		}
+		console.log(this.selected);
+
   	}
 }

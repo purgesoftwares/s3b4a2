@@ -458,3 +458,10 @@ a:hover{
 .has-error textarea.form-control {
     border: 1px solid #ff0000;
 }
+.container { 
+    border:2px solid #ccc; 
+    width:300px; 
+    height: 100px; 
+    overflow-y: scroll;
+    margin-left: -10px;
+}

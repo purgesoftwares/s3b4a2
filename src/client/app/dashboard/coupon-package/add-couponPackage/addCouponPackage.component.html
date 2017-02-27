@@ -52,12 +52,23 @@
                  #radius="ngModel" placeholder="radius" required>
                  <div *ngIf="f.submitted && !radius.valid" class="help-block">radius is required</div>
             </div>
-            <div>
-                <div class="multiple-select col-lg-6 col-md-6 col-sm-6 col-xs-6" style="">
-                <div class="options col-lg-12 col-md-12 col-xs-12 col-sm-12" *ngFor="let provider of providers" id={{provider.id}} (click)="toggleMultiSelect($event, provider)">
-                    {{provider.contactName}}
-                </div>
-                </div>
+           <!--  <div>
+               <div class="multiple-select col-lg-6 col-md-6 col-sm-6 col-xs-6" style="">
+               <div class="options col-lg-12 col-md-12 col-xs-12 col-sm-12" *ngFor="let provider of providers" id={{provider.id}} (click)="toggleMultiSelect($event, provider)">
+                   {{provider.contactName}}
+               </div>
+               </div>
+           </div> -->
+           <label>Providers</label>
+           <div class="container" style="al: left;">
+            <div *ngFor="let provider of providers">
+            <input
+                id="{{provider.id}}"
+                type="checkbox"
+                [checked]="check(provider.id)"
+                (click)="checkbox($event.target.checked, provider)">
+                {{provider.contactName}}
+            </div>
             </div>
             
             <label for="startTime">Start Date :</label>
