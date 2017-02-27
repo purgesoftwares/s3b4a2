@@ -3,7 +3,6 @@ import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
-import { Select2OptionData } from 'ng2-select2';
 
 @Component({
 	moduleId: module.id,
@@ -12,7 +11,7 @@ import { Select2OptionData } from 'ng2-select2';
 })
 
 export class AddCouponPackageComponent {
-	model: Object= [];
+	model:any= {};
 	message: any= {};
 	loading = false;
 	mess = false;
@@ -53,10 +52,7 @@ export class AddCouponPackageComponent {
   				.map(res => res.json())
   				.subscribe(
   					data =>{this.model= data;
-  						console.log(this.model);
-  						console.log(this.model.providers);
   						this.selected = this.model.providers;
-  						console.log(this.selected);
   					},
   					error => console.log("error"),
   					() => console.log("complete")
@@ -74,38 +70,30 @@ export class AddCouponPackageComponent {
   					error => console.log("error"),
   					() => console.log("complete")
   				);
+	}
 
-  		
 
-  	}
-
-  	check(id: number) {
-  		this.model.forEach(function(jv, j){
-  			console.log(jv);
-			if(id == jv.id){
-				retuen true;
-			} else {
-				return false;
-			}
-		});
+  	checking(id: number) {
+  		var check = false;
+  		if(this.model.id) {
+	  		this.model.providers.forEach(function(jv: Object) {
+				if(id === jv.id) {
+	  				check = true;
+				} 
+			});
+		}
+		return check;
   	}
 
   	checkbox(event: boolean, provider: Object) {
-  		console.log(event);
   		if(event) {
 	  		if(this.selected.indexOf(provider) == -1){
 	  			this.selected = [...this.selected, provider];
-			}else{
-				this.selected = this.selected.filter(function(elem){
-				return elem != provider;
-	 		 })
 			}
 		} else {
 			this.selected = this.selected.filter(function(elem){
 				return elem != provider;
 	 		})
 		}
-		console.log(this.selected);
-
   	}
 }

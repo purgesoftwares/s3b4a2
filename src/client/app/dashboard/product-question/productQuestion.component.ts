@@ -17,7 +17,6 @@ export class ProductQuestionComponent {
 	pager: any = {};
 	terms:string = '';
     pagedItems: any[];
-    SelfView
     message: any= {};
 	mess = false;
 	succ = false;

@@ -69,7 +69,7 @@ export class AddCouponComponent {
   				);
   	}
 
-  	onChange(deviceValue) {
+  	onChange(deviceValue: Object) {
     	this.model.providerId = deviceValue.id;
 	}
 	

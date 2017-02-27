@@ -60,7 +60,7 @@ export class ConsumerComponent {
 		}
 	}
 
-	change(email: email) {
+	change(email: string) {
 		this.router.navigate(['/dashboard/change-password/'],{ queryParams: { Email:email}})
 	}
 
