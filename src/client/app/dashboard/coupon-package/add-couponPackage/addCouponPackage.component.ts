@@ -17,8 +17,12 @@ export class AddCouponPackageComponent {
 	mess = false;
 	succ = false;
 	public providers: Array<Object>;
-	public provide: Array<Object>;
+	public products: Array<Object>;
 	public selected:any[]=[];
+	public productSelected:any[]=[];
+	public show:any[]=[];
+	private ids:any[]=[];
+
 	token = localStorage.getItem('access_token');
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
 
@@ -89,11 +93,62 @@ export class AddCouponPackageComponent {
   		if(event) {
 	  		if(this.selected.indexOf(provider) == -1){
 	  			this.selected = [...this.selected, provider];
+	  			this.ids = [...this.ids, provider.id]
+	  			this.getProducts(provider.id)
+	  						.subscribe(
+	  					data => {this.products= data.content;
+	  						this.show = [...this.show, this.products];},
+	  					error => console.log("error"),
+	  					() => console.log("complete")
+  					);
 			}
 		} else {
+			
+			var thisObj = this;
 			this.selected = this.selected.filter(function(elem){
 				return elem != provider;
 	 		})
+	 		this.ids = this.ids.filter(function(elem){
+				return elem != provider.id;
+	 		})
+
+	 		this.ids.map((id) => {this.getProducts(id)
+	  						.subscribe(
+	  					data => {this.products= data.content;
+	  						this.show = [...this.show, this.products];},
+	  					error => console.log("error"),
+	  					() => console.log("complete")
+  					);
+	  		});
 		}
+  	}
+
+  	productChecking(id: number) {
+  		var check = false;
+  		/*if(this.model.id) {
+	  		this.model.providers.forEach(function(jv: Object) {
+				if(id === jv.id) {
+	  				check = true;
+				} 
+			});
+		}*/
+		return check;
+  	}
+
+  	productCheck(event: boolean, product: Object) {
+  		if(event) {
+	  		if(this.productSelected.indexOf(product) == -1){
+	  			this.productSelected = [...this.productSelected, product];
+			}
+		} else {
+			this.productSelected = this.productSelected.filter(function(elem){
+				return elem != product;
+	 		})
+		}
+  	}
+
+  	getProducts(id: string) {
+  		return this.http.get('http://54.161.216.233:8090/api/secured/product/provider-products/'+ id+'?access_token=' + this.token)
+  					.map(res => res.json());
   	}
 }

@@ -64,6 +64,23 @@
                 {{provider.contactName}}
             </div>
             </div>
+
+            <div>
+                 <label>Products</label>
+            </div>
+           
+            <div *ngFor="let product of show">
+                <div class="container">
+                    <div *ngFor="let prod of product">
+                        <input
+                        id="{{prod.id}}"
+                        type="checkbox"
+                        [checked]="productChecking(prod.id)"
+                        (click)="productCheck(prod)">
+                        {{prod.productName}}
+                    </div>
+                </div>
+            </div>
             
             <label for="startTime">Start Date :</label>
             <div>
