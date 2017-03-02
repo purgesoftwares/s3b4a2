@@ -54,7 +54,7 @@
             </div>
          
            <label>Providers</label>
-           <div class="container" style="al: left;">
+           <div class="container">
             <div *ngFor="let provider of providers">
             <input
                 id="{{provider.id}}"
@@ -64,22 +64,21 @@
                 {{provider.contactName}}
             </div>
             </div>
-
-            <div>
-                 <label>Products</label>
-            </div>
+            <br>
            
             <div *ngFor="let product of show">
+                <h5>Products</h5>
                 <div class="container">
                     <div *ngFor="let prod of product">
                         <input
                         id="{{prod.id}}"
                         type="checkbox"
                         [checked]="productChecking(prod.id)"
-                        (click)="productCheck(prod)">
+                        (click)="productCheck($event.target.checked, prod)">
                         {{prod.productName}}
                     </div>
                 </div>
+                <br>
             </div>
             
             <label for="startTime">Start Date :</label>

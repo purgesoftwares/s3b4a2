@@ -16,6 +16,7 @@ export class AddCouponPackageComponent {
 	loading = false;
 	mess = false;
 	succ = false;
+	providerName = {};
 	public providers: Array<Object>;
 	public products: Array<Object>;
 	public selected:any[]=[];
@@ -79,9 +80,17 @@ export class AddCouponPackageComponent {
 
   	checking(id: number) {
   		var check = false;
+  		var thisObj = this;
   		if(this.model.id) {
 	  		this.model.providers.forEach(function(jv: Object) {
 				if(id === jv.id) {
+					thisObj.getProducts(jv.id)
+						.subscribe(
+	  					data => {thisObj.products= data.content;
+	  						thisObj.show = [...thisObj.show, thisObj.products];},
+	  					error => console.log("error"),
+	  					() => console.log("complete")
+  					);
 	  				check = true;
 				} 
 			});
@@ -94,6 +103,7 @@ export class AddCouponPackageComponent {
 	  		if(this.selected.indexOf(provider) == -1){
 	  			this.selected = [...this.selected, provider];
 	  			this.ids = [...this.ids, provider.id]
+
 	  			this.getProducts(provider.id)
 	  						.subscribe(
 	  					data => {this.products= data.content;
@@ -111,13 +121,14 @@ export class AddCouponPackageComponent {
 	 		this.ids = this.ids.filter(function(elem){
 				return elem != provider.id;
 	 		})
-
-	 		this.ids.map((id) => {this.getProducts(id)
+	 		thisObj.show = [];
+	 		this.ids.map((id) => {thisObj.getProducts(id)
 	  						.subscribe(
-	  					data => {this.products= data.content;
-	  						this.show = [...this.show, this.products];},
+	  					data => {thisObj.products= data.content;
+	  							thisObj.show = [...thisObj.show, thisObj.products]
+	 						},
 	  					error => console.log("error"),
-	  					() => console.log("complete")
+	  					() => console.log(thisObj.show)
   					);
 	  		});
 		}
