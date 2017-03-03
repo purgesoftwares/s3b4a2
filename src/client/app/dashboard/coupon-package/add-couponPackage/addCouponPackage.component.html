@@ -67,6 +67,7 @@
             <br>
            
             <div *ngFor="let product of show">
+                <div *ngIf="product.length">
                 <h5>Products</h5>
                 <div class="container">
                     <div *ngFor="let prod of product">
@@ -77,6 +78,7 @@
                         (click)="productCheck($event.target.checked, prod)">
                         {{prod.productName}}
                     </div>
+                </div>
                 </div>
                 <br>
             </div>

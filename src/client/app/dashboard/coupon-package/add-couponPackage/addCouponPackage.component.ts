@@ -30,7 +30,9 @@ export class AddCouponPackageComponent {
 	add() {
 		this.loading = true;
 		this.model.providers = [];
+		this.model.products = [];
 		this.model.providers = this.selected;
+		this.model.products = this.productSelected;
 		console.log(this.model)
 		this.http.post('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token, this.model)
 				.map(res => res.json())
@@ -57,10 +59,24 @@ export class AddCouponPackageComponent {
   				.map(res => res.json())
   				.subscribe(
   					data =>{this.model= data;
-  						this.selected = this.model.providers;
+  						console.log(this.model);
+  						if(this.model) {
+  							if(this.model.providers) {
+	  						this.selected = this.model.providers;
+		  					this.editProducts(this.model);
+		  				}
+  						}
   					},
   					error => console.log("error"),
-  					() => console.log("complete")
+  					() => {
+  						this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
+		  				.map(res => res.json())
+		  				.subscribe(
+		  					data => this.providers= data.content,
+		  					error => console.log("error"),
+		  					() => console.log("complete")
+		  				);
+		  			}
   				);
 
 	   	if(!this.model.id) {
@@ -68,15 +84,21 @@ export class AddCouponPackageComponent {
 			this.model.couponNumber = num;
 	  	}
 
-	   this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
-  				.map(res => res.json())
-  				.subscribe(
-  					data => this.providers= data.content,
-  					error => console.log("error"),
-  					() => console.log("complete")
-  				);
 	}
 
+	editProducts(model) {
+		var thisObj = this;
+		model.providers.forEach(function(provider : Object) {
+  			thisObj.getProducts(provider.id)
+						.subscribe(
+	  					data => {thisObj.products= data.content;
+	  						thisObj.show = [...thisObj.show, thisObj.products];
+	  					},
+	  					error => console.log("error"),
+	  					() => console.log("complete")
+  					);
+  		});
+	}
 
   	checking(id: number) {
   		var check = false;
@@ -84,13 +106,6 @@ export class AddCouponPackageComponent {
   		if(this.model.id) {
 	  		this.model.providers.forEach(function(jv: Object) {
 				if(id === jv.id) {
-					thisObj.getProducts(jv.id)
-						.subscribe(
-	  					data => {thisObj.products= data.content;
-	  						thisObj.show = [...thisObj.show, thisObj.products];},
-	  					error => console.log("error"),
-	  					() => console.log("complete")
-  					);
 	  				check = true;
 				} 
 			});
@@ -99,6 +114,7 @@ export class AddCouponPackageComponent {
   	}
 
   	checkbox(event: boolean, provider: Object) {
+  		console.log("testdst");
   		if(event) {
 	  		if(this.selected.indexOf(provider) == -1){
 	  			this.selected = [...this.selected, provider];
@@ -136,13 +152,15 @@ export class AddCouponPackageComponent {
 
   	productChecking(id: number) {
   		var check = false;
-  		/*if(this.model.id) {
-	  		this.model.providers.forEach(function(jv: Object) {
-				if(id === jv.id) {
-	  				check = true;
-				} 
-			});
-		}*/
+  		var thisObj = this;
+  		if(this.model.id) {
+  			thisObj.products.forEach(function(product : Object) {
+  				if(product.id == id) {
+  					console.log(product.id);
+  					check = true;	
+  				}	
+  			})
+		}
 		return check;
   	}
 
@@ -153,7 +171,7 @@ export class AddCouponPackageComponent {
 			}
 		} else {
 			this.productSelected = this.productSelected.filter(function(elem){
-				return elem != product;
+				return elem != selected.value;
 	 		})
 		}
   	}

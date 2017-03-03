@@ -38,7 +38,6 @@
                  <thead>
                      <tr>
                          <th>Title</th>
-                         <th>Content</th>
                          <th>Status</th>
                          <th>Actions</th>
                      </tr>
@@ -46,10 +45,8 @@
                  <tbody *ngFor="let content of pagedItems">
                     <tr>
                         <td>{{ content.title }}</td>
-                        <td>{{ content.content }}</td>
                         <td>{{ content.status }}</td>
                         <td><button (click) = "update(content.id, content.title, content.content, content.status)" class="btn btn-default">Edit</button></td> 
-                        <td><button (click) = "delete(content.id)" class="btn btn-default">Delete</button></td>
                     </tr>
                 </tbody> 
              </table>
