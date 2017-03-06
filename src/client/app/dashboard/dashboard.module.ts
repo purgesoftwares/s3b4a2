@@ -16,6 +16,7 @@ import { ProductQuestionModule } from './product-question/productQuestion.module
 import { AddProductQuestionModule } from './product-question/add-productQuestion/addProductQuestion.module';
 import { AddProviderQuestionModule } from './provider-question/add-providerQuestion/addProviderQuestion.module';
 import { CouponModule } from './coupons/coupon.module';
+import { ProductListModule } from './product-list/product-list.module';
 import { CouponPackageModule } from './coupon-package/coupon-package.module';
 import { AddCouponPackageModule } from './coupon-package/add-couponPackage/addCouponPackage.module';
 import { ConsumerModule } from './consumers/consumer.module';
@@ -50,6 +51,7 @@ import {SidebarComponent} from '../shared/index';
         ProductQuestionModule,
         AddProductQuestionModule,
         ProviderQuestionModule,
+        ProductListModule,
         CategoryModule,
         ConsumerModule,
         CouponModule,

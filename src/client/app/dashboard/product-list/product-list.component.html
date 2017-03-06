@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Products
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-product-hunt"></i> Products
+                </li>
+            </ol>
+        </div>
+    </div>
+    <h3>Products of {{model.name}}</h3>
+         <div class="table-responsive">
+             <table class="table table-hover table-striped">
+                 <thead>
+                     <tr>
+                         <th>Product Name</th>
+                         <th>Product Type</th>
+                         <th>price</th>
+                     </tr>
+                 </thead>
+                 <tbody *ngFor="let product of model">
+                    <tr>
+                        <td>{{ product.productName }}</td>
+                        <td>{{ product.productType }}</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                </tbody> 
+             </table>
+         </div>
+     </div>

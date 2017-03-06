@@ -44,6 +44,10 @@ export class ProviderComponent {
   				);
 	}
 
+	products(id: number, name: string) {
+		this.router.navigate(['/dashboard/product-list/'],{ queryParams: { id: id, name: name}});
+	}
+
 	details(id: number) {
 		this.router.navigate(['/dashboard/bank-detail/'],{ queryParams: { id: id}});
 	}

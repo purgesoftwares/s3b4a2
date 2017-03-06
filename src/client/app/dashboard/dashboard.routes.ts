@@ -13,6 +13,7 @@ import { AddContentRoutes } from './content/add-content/index';
 import { ProductQuestionRoutes } from './product-question/index';
 import { ProviderQuestionRoutes } from './provider-question/index';
 import { CouponRoutes } from './coupons/index';
+import { ProductListRoutes } from './product-list/index';
 import { CouponPackageRoutes } from './coupon-package/index';
 import { AddCouponPackageRoutes } from './coupon-package/add-couponPackage/index';
 import { AddCouponRoutes } from './coupons/add-coupon/index';
@@ -52,7 +53,8 @@ export const DashboardRoutes: Route[] = [
             ...AddProviderQuestionRoutes,
             ...AddCouponPackageRoutes,
             ...ConsumerRoutes,
-            ...ChangePasswordRoutes
+            ...ChangePasswordRoutes,
+            ...ProductListRoutes
         ]
   	}
 ];
