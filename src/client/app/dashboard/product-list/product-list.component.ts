@@ -11,7 +11,7 @@ import { Http } from '@angular/http';
 
 export class ProductListComponent {
   model:any={};
-  product: Array<Object>[];
+  products: Array<Object>[];
   pager: any = {};
   pagedItems: any[];
   message: any= {};
@@ -29,7 +29,8 @@ export class ProductListComponent {
      this.http.get('http://54.161.216.233:8090/api/secured/product/provider-products/'+ id +'?access_token=' + this.token)
           .map(res => res.json())
           .subscribe(
-            data => { if(data.content.length) {
+            data => {
+              if(data.content.length) {
                   this.products= data.content;
                   } else {
                       this.mess=true;

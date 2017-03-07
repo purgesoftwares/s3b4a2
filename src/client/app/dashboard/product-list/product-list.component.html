@@ -16,6 +16,7 @@
         </div>
     </div>
     <h3>Products of {{model.name}}</h3>
+    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
          <div class="table-responsive">
              <table class="table table-hover table-striped">
                  <thead>
@@ -25,7 +26,7 @@
                          <th>price</th>
                      </tr>
                  </thead>
-                 <tbody *ngFor="let product of model">
+                 <tbody *ngFor="let product of products">
                     <tr>
                         <td>{{ product.productName }}</td>
                         <td>{{ product.productType }}</td>
