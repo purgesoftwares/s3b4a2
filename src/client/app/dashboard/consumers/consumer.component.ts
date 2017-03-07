@@ -44,7 +44,7 @@ export class ConsumerComponent {
 
 	delete(id : Number) {
 		if (confirm("Are You Sure! You want to delete this record?") == true) {
-	    	this.http.delete('http://54.161.216.233:8090/api/secured/product-category/' + id + '?access_token='+ this.token)
+	    	this.http.delete('http://54.161.216.233:8090/api/secured/customer/' + id + '?access_token='+ this.token)
 				.map(res => res.json())
 				.subscribe(
 					data => {this.ngOnInit();
