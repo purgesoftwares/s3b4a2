@@ -16,12 +16,12 @@ export class AddCouponPackageComponent {
 	loading = false;
 	mess = false;
 	succ = false;
-	providerName = {};
 	public providers: Array<Object>;
 	public products: Array<Object>;
 	public selected:any[]=[];
 	public productSelected:any[]=[];
 	public show:any[]=[];
+	private providerName:any[]=[];
 	private ids:any[]=[];
 
 	token = localStorage.getItem('access_token');
@@ -33,7 +33,6 @@ export class AddCouponPackageComponent {
 		this.model.products = [];
 		this.model.providers = this.selected;
 		this.model.products = this.productSelected;
-		console.log(this.model)
 		this.http.post('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token, this.model)
 				.map(res => res.json())
 				.subscribe(
@@ -59,7 +58,6 @@ export class AddCouponPackageComponent {
   				.map(res => res.json())
   				.subscribe(
   					data =>{this.model= data;
-  						console.log(this.model);
   						if(this.model) {
   							if(this.model.providers) {
 	  						this.selected = this.model.providers;
@@ -68,22 +66,25 @@ export class AddCouponPackageComponent {
   						}
   					},
   					error => console.log("error"),
-  					() => {
-  						this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
+  					() => this.getProviders()
+  				);
+
+	   	if(!this.model.id) {
+	   		var num = Math.floor(Math.random() * 90000) + 10000;
+			this.model.couponNumber = num;
+			this.getProviders();
+	  	}
+
+	}
+
+	getProviders() {
+		this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
 		  				.map(res => res.json())
 		  				.subscribe(
 		  					data => this.providers= data.content,
 		  					error => console.log("error"),
 		  					() => console.log("complete")
 		  				);
-		  			}
-  				);
-
-	   	if(!this.model.id) {
-	   		var num = Math.floor(Math.random() * 90000) + 10000;
-			this.model.couponNumber = num;
-	  	}
-
 	}
 
 	editProducts(model) {
@@ -114,12 +115,10 @@ export class AddCouponPackageComponent {
   	}
 
   	checkbox(event: boolean, provider: Object) {
-  		console.log("testdst");
   		if(event) {
 	  		if(this.selected.indexOf(provider) == -1){
 	  			this.selected = [...this.selected, provider];
-	  			this.ids = [...this.ids, provider.id]
-
+	  			this.ids = [...this.ids, provider.id];
 	  			this.getProducts(provider.id)
 	  						.subscribe(
 	  					data => {this.products= data.content;
@@ -144,7 +143,7 @@ export class AddCouponPackageComponent {
 	  							thisObj.show = [...thisObj.show, thisObj.products]
 	 						},
 	  					error => console.log("error"),
-	  					() => console.log(thisObj.show)
+	  					() => console.log("complete")
   					);
 	  		});
 		}
@@ -154,9 +153,8 @@ export class AddCouponPackageComponent {
   		var check = false;
   		var thisObj = this;
   		if(this.model.id) {
-  			thisObj.products.forEach(function(product : Object) {
+  			thisObj.model.products.forEach(function(product : Object) {
   				if(product.id == id) {
-  					console.log(product.id);
   					check = true;	
   				}	
   			})
