@@ -66,14 +66,26 @@ export class AddCouponPackageComponent {
   						}
   					},
   					error => console.log("error"),
+
   					() => this.getProviders()
+
   				);
+
+
 
 	   	if(!this.model.id) {
 	   		var num = Math.floor(Math.random() * 90000) + 10000;
 			this.model.couponNumber = num;
 			this.getProviders();
 	  	}
+
+	  	this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
+		  				.map(res => res.json())
+		  				.subscribe(
+		  					data => this.providers= data.content,
+		  					error => console.log("error"),
+		  					() => console.log("complete")
+		  				);
 
 	}
 
@@ -153,6 +165,7 @@ export class AddCouponPackageComponent {
   		var check = false;
   		var thisObj = this;
   		if(this.model.id) {
+
   			thisObj.model.products.forEach(function(product : Object) {
   				if(product.id == id) {
   					check = true;	
