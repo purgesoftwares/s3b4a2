@@ -54,14 +54,18 @@ export class CouponPackageComponent {
 		this.router.navigate(['/dashboard/add-couponPackage/'])
 	}
 
-	update(id: number) {
+	update(id: string) {
 
 		this.router.navigate(['/dashboard/add-couponPackage/'],{ queryParams: { Id:id }})
 	}
 
-	view(id : number) {
+	view(id : string) {
 		
 		this.router.navigate(['/dashboard/coupon-package-view/'],{ queryParams: { Id:id}})
+	}
+
+	coupons(id: string) {
+		this.router.navigate(['/dashboard/coupon/'],{ queryParams: { Id: id}})
 	}
 
 	delete(id : number) {
