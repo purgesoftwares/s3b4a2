@@ -27,48 +27,41 @@
             </div>
         </form>
     </div>
-    
-    <button class="pull-right btn btn-primary" (click) = "add()">Add</button>
 
-    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
-    <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
-
-    <div class="table-responsive">
-           <table class="table table-hover table-striped">
-                 <thead>
-                     <tr>
-                         <th>Title</th>
-                         <th>Status</th>
-                         <th>Actions</th>
-                     </tr>
-                 </thead>
-                 <tbody *ngFor="let content of pagedItems">
-                    <tr>
-                        <td>{{ content.title }}</td>
-                        <td>{{ content.status }}</td>
-                        <td><button (click) = "update(content.id, content.title, content.content, content.status)" class="btn btn-default">Edit</button></td> 
-                    </tr>
-                </tbody> 
-             </table>
+    <div>
+      <button (click) = "add()" class="pull-right btn btn-primary">Add</button>
     </div>
- 
 
-<div style="text-align: center;">
-      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === 1}">
-              <a style = "float: left;padding: 8px 16px;" (click)="setPage(1)">First</a>
-          </li>
-          <li [ngClass]="{disabled:pager.currentPage === 1}" style = "display: inline;">
-              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.currentPage - 1)">&laquo;</a>
-          </li>
-          <li style = "display: inline;" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-              <a style = "float: left;padding: 8px 16px;" (click)="setPage(page)">{{page}}</a>
-          </li>
-          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.currentPage + 1)">&raquo;</a>
-          </li>
-          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.totalPages)">Last</a>
-          </li>
-      </ul>
-    </div>
+      <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+      <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
+
+      <div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
+    <data-table id="content"
+        [items]="items"
+        [itemCount]="itemCount"
+        (reload)="reloadItems($event)"
+        >
+        <data-table-column
+            [property]="'title'"
+            [header]="'Title'"
+            [sortable]="true"
+            [resizable]="true">
+        </data-table-column>
+        <data-table-column
+            property="status"
+            header="Status">
+            [sortable]="true"
+            [resizable]="true">
+        </data-table-column>
+        <data-table-column
+          header="Actions">
+          <template #dataTableHeader let-item="item">
+            <i>Actions</i>
+          </template>
+          <template #dataTableCell let-item="item">
+            <button (click)="update(content.id, content.title, content.content, content.status)" class="btn btn-sm btn-primary">Edit</button>
+          </template>
+        </data-table-column>
+    </data-table>
+  </div>
+</div>

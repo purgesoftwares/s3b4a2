@@ -26,55 +26,79 @@
             </div>
         </form>
     </div>
-    
-    <button (click) = "add()" class="pull-right btn btn-primary">Add</button>
 
-    <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
-    <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
-    
-    <div class="table-responsive">
-             <table class="table table-hover table-striped">
-                 <thead>
-                     <tr>
-                         <th>Coupon Number</th>
-                         <th>Price</th>
-                         <th>Start Time</th>
-                         <th>End Time</th>
-                         <th>Actions</th>
-                  </tr>
-                 </thead>
-                 <tbody *ngFor="let coupon of pagedItems">
-                    <tr>
-                        <td>{{ coupon.couponNumber }}</td>
-                        <td>{{ coupon.price }}</td>
-                        <td>{{ coupon.startTime | amDateFormat:'LL' }}</td>
-                        <td>{{ coupon.endTime | amDateFormat:'LL' }}</td>
-                        <td><button (click) = "view(coupon.id)" class="btn btn-primary">View Details</button></td>
-                        <td><button (click) = "coupons(coupon.id)" class="btn btn-primary">Coupon List</button></td>
-                        <td><button (click) = "update(coupon.id)" class="btn btn-default">Edit</button></td>
-                        <td><button (click) = "delete(coupon.id)" class="btn btn-default">Delete</button></td>
-                    </tr>
-                </tbody> 
-             </table>
-         </div>
-
-         <div style="text-align: center;">
-      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === 1}">
-              <a style = "float: left;padding: 8px 16px;" (click)="setPage(1)">First</a>
-          </li>
-          <li [ngClass]="{disabled:pager.currentPage === 1}" style = "display: inline;">
-              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.currentPage - 1)">&laquo;</a>
-          </li>
-          <li style = "display: inline;" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-              <a style = "float: left;padding: 8px 16px;" (click)="setPage(page)">{{page}}</a>
-          </li>
-          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.currentPage + 1)">&raquo;</a>
-          </li>
-          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.totalPages)">Last</a>
-          </li>
-      </ul>
+    <div>
+      <button (click) = "add()" class="pull-right btn btn-primary">Add</button>
     </div>
-     </div>
+
+      <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
+      <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
+
+      <div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
+      <data-table id="coupon-package"
+          [items]="items"
+          [itemCount]="itemCount"
+          (reload)="reloadItems($event)"
+          >
+          <data-table-column
+              [property]="'couponNumber'"
+              [header]="'Coupon Number'"
+              [sortable]="true"
+              [resizable]="true">
+          </data-table-column>
+          <data-table-column
+              [property]="'price'"
+              [header]="'Price'"
+              [sortable]="true"
+              [resizable]="true">
+          </data-table-column>
+          <data-table-column
+            [property]="'startTime'"
+            [header]="'Start Time'"
+            [sortable]="true">
+            <template #dataTableCell let-item="item">
+                <span>{{item.startTime | date:'yyyy-MM-dd'}}</span>
+            </template>
+        </data-table-column>
+        <data-table-column
+            [property]="'endTime'"
+            [header]="'End Time'"
+            [sortable]="true">
+            <template #dataTableCell let-item="item">
+                <span>{{item.endTime | date:'yyyy-MM-dd'}}</span>
+            </template>
+        </data-table-column>
+          <data-table-column
+            header="Actions">
+            <template #dataTableHeader let-item="item">
+              <i>Actions</i>
+            </template>
+            <template #dataTableCell let-item="item">
+              <button (click)="view(item.id)" class="btn btn-sm btn-default">View Details</button>
+            </template>
+          </data-table-column>
+          <data-table-column>
+            <template #dataTableHeader let-item="item">
+            </template>
+            <template #dataTableCell let-item="item">
+              <button (click)="coupons(item.id)" class="btn btn-sm btn-default">Coupon List</button>
+            </template>
+          </data-table-column>
+          <data-table-column>
+            <template #dataTableHeader let-item="item">
+            </template>
+            <template #dataTableCell let-item="item">
+              <button (click)="update(item.id)" class="btn btn-sm btn-default">Edit</button>
+            </template>
+          </data-table-column>
+          <data-table-column>
+            <template #dataTableHeader let-item="item">
+              <i>Actions</i>
+            </template>
+            <template #dataTableCell let-item="item">
+              <button (click)="delete(item.id)" class="btn btn-sm btn-default">Delete</button>
+            </template>
+          </data-table-column>
+      </data-table>
+    </div>
+</div>

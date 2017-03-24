@@ -2,6 +2,7 @@ import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { PagerService } from '../pager.service'
 import { Router, ActivatedRoute } from '@angular/router';
+import { PaginateService } from '../pagination.service';
 import * as moment from 'moment';
 
 @Component({
@@ -9,42 +10,46 @@ import * as moment from 'moment';
 	selector: 'coupon-cmp',
 	templateUrl: 'coupon.component.html',
 
-	providers: [PagerService]
+	providers: [PaginateService]
 
 })
 
 export class CouponComponent {
-	coupons: Array<Object>[];
-	pager: any = {};
+
+	items= [];
 	terms:string = '';
-    pagedItems: any[];
     message: any= {};
 	mess = false;
+	itemCount = 0;
 	succ = false;
 
-	token = localStorage.getItem('access_token');
-	
-	constructor(private http : Http, private pagerService : PagerService,private router: Router, private route: ActivatedRoute) { }
+	constructor(private http: Http, private paginateService: PaginateService, private router: Router, private route: ActivatedRoute) {}
 
-	ngOnInit() {
-		var id;
+	reloadItems (params) {
+		let id;
 		this.route.queryParams.subscribe(data => {id = data['Id']});
-		this.http.get('http://54.161.216.233:8090/api/secured/coupon/by-coupon-package/'+ id +'?access_token=' + this.token)
-  				.map(res => res.json())
-  				.subscribe(
-  					data => { if(data.content.length) {
-                  				this.coupons= data.content;
-                  				this.setPage(1);
+		let url = "coupon/by-coupon-package/" + id;
+        this.paginateService.query(params, url).then(result => { 
+        					if(result.items.content.length) {
+				            	this.items = result.items.content;
+            					this.itemCount = result.count;
                   			} else {
                       			this.mess=true;
-                      			this.message= "There is no records found.";
-                  			}},
-  					error => { if(error.json().error) {
-									this.message = error.json().message;
-									this.mess = true;
-								}},
-  					() => console.log("complete")
-  				);
+                      			this.message= "There is no records found."
+                  			}});
+    }
+
+	delete (id : string) {
+		let value =  "product-category/" + id;
+		if (confirm("Are You Sure! You want to delete this record?") == true) {
+			this.paginateService.delete(value).then(result => {this.reloadItems();
+									this.succ = true;
+									this.message = "Record successfully deleted";
+									setTimeout(() => {
+	                					this.succ = false;
+	            					}, 1000);
+								});
+		}
 	}
 
 	view(id : number,couponCode: string,couponNumber: number,price : number , providerId : string,used: number,availability: number, startTime: Date, endTime: Date) {
@@ -56,17 +61,9 @@ export class CouponComponent {
 
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.coupons.filter((item) => item.couponCode.startsWith(terms));
+			this.items = this.items.filter((item) => item.couponCode.startsWith(terms));
 		} else {
-			this.ngOnInit();
+			this.reloadItems();
 		}
 	}
-   
-    setPage(page: number) {
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
-        this.pager = this.pagerService.getPager(this.coupons.length, page);
-        this.pagedItems = this.coupons.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    }   
 }
