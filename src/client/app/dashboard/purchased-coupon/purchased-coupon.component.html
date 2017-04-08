@@ -34,6 +34,7 @@
                           <td>{{ coupon.couponNumber }}</td>
                           <td>{{ coupon.couponPackage.couponNumber }}</td>
                           <td>{{ coupon.customer.fullName }}</td>
+                          <td><button (click) = "view(coupon.id)" class="btn btn-primary">View</button></td>
                       </tr>
                   </tbody> 
                </table>

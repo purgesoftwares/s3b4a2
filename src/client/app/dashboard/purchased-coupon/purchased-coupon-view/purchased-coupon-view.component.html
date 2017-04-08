@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                Purchased Coupon View
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li>
+                    <i class="fa fa-tag"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/purchased-coupon" > Purchased Coupon</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-eye "></i> Purchased Coupon View
+                </li>
+            </ol>
+        </div>
+    <a [routerLink]="['/dashboard/purchased-coupon']" class="pull-right btn btn-primary">Back</a>
+    </div>
+
+    <div class="table-responsive">
+              <table style="border: 0px" class="table table-hover table-striped">
+                 <tbody>
+                     
+                    <tr>
+                        <td>Coupon Number :</td>
+                        <td>{{ model.couponNumber }}</td>
+                    </tr>
+                    <tr>
+                        <td>Customer Name :</td>
+                        <td>{{ customer.fullName }}</td>
+                    </tr>
+                    <tr>
+                        <td>Coupon Price :</td>
+                        <td>{{ couponPackage.price }}</td>
+                    </tr>
+                    <tr *ngIf="model.joinedFriends!=0">                        
+                        <td><h3>Providers :</h3></td>
+                        <td></td>
+                    </tr>
+                    <tr *ngIf="model.joinedFriends!=0">
+                    <td>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                   <th>Name</th>
+                                   <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let provider of model.joinedFriends">
+                                <tr>
+                                    <td>{{ provider.name }}</td>
+                                    <td>{{ provider.email }}</td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </td>
+                    
+                </tbody> 
+             </table>
+    </div>
+</div>

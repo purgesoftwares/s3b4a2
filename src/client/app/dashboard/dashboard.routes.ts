@@ -21,6 +21,7 @@ import { AddCouponRoutes } from './coupons/add-coupon/index';
 import { CouponViewRoutes } from './coupons/coupon-view/index';
 import { CouponPackageViewRoutes } from './coupon-package/coupon-package-view/index';
 import { InquiryViewRoutes } from './inquiry/inquiry-view/index';
+import { PurchasedCouponViewRoutes } from './purchased-coupon/purchased-coupon-view/index';
 import { AddCategoryRoutes } from './category/add-category/index'
 import { AddProductQuestionRoutes } from './product-question/add-productQuestion/index';
 import { AddProviderQuestionRoutes } from './provider-question/add-providerQuestion/index';
@@ -37,6 +38,7 @@ export const DashboardRoutes: Route[] = [
             ...ProviderRoutes,
             ...ResetPasswordRoutes,
             ...BankDetailRoutes,
+            ...PurchasedCouponViewRoutes,
             ...InquiryRoutes,
             ...ContentRoutes,
             ...AddContentRoutes,

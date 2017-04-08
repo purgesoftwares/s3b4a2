@@ -6,6 +6,7 @@ import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { HomeModule } from './home/home.module';
 import { ProviderModule } from './providers/provider.module';
+import { PurchasedCouponViewModule } from './purchased-coupon/purchased-coupon-view/purchased-coupon-view.module';
 import { InquiryModule } from './inquiry/inquiry.module';
 import { ContentModule } from './content/content.module';
 import { CategoryModule } from './category/category.module';
@@ -55,6 +56,7 @@ import {SidebarComponent} from '../shared/index';
         ProductListModule,
         CategoryModule,
         ConsumerModule,
+        PurchasedCouponViewModule,
         CouponModule,
         AddCouponModule,
         AddCategoryModule,

@@ -36,4 +36,8 @@ export class PurchasedCouponComponent {
   					() => console.log("complete")
 			);
 	}
+
+	view(id : string) {
+		this.router.navigate(['/dashboard/purchased-coupon-view/'],{ queryParams: { Id:id}})
+	}
 }
