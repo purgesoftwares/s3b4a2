@@ -32,43 +32,44 @@
 
       <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
       <div *ngIf="succ"  class="alert alert-success">{{message}}</div>
+       <div class="table-responsive">
+           <table class="table table-hover table-striped">
+               <thead>
+                   <tr>
+                       <th>Category Name</th>
+                       <th>Description</th>
+                       <th>Actions</th>                          
+                   </tr>
+               </thead>
+               <tbody *ngFor = "let cust of pagedItems">
+                  <tr>                     
+                      <td>{{ cust.name }}</td>
+                      <td>{{ cust.description }}</td>
+                      <td><button (click) = "update(cust.id,cust.name,cust.description)" class="btn btn-default">Edit</button></td>
+                      <td><button (click) = "delete(cust.id)" class="btn btn-default">Delete</button></td>
+                  </tr>
+              </tbody> 
+           </table>
+       </div>
+       
 
-      <div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
-    <data-table id="consumers"
-        [items]="items"
-        [itemCount]="itemCount"
-        (reload)="reloadItems($event)"
-        >
-        <data-table-column
-            [property]="'name'"
-            [header]="'Category Name'"
-            [sortable]="true"
-            [resizable]="true">
-        </data-table-column>
-        <data-table-column
-            property="description"
-            header="Description">
-            [sortable]="true"
-            [resizable]="true">
-        </data-table-column>
-        <data-table-column
-          header="Actions">
-          <template #dataTableHeader let-item="item">
-            <i>Actions</i>
-          </template>
-          <template #dataTableCell let-item="item">
-            <button (click)="update(item.id,item.name,item.description)" class="btn btn-sm btn-primary">Edit</button>
-          </template>
-        </data-table-column>
-        <data-table-column
-          header="Actions">
-          <template #dataTableHeader let-item="item">
-            <i>Actions</i>
-          </template>
-          <template #dataTableCell let-item="item">
-            <button (click)="delete(item.id)" class="btn btn-sm btn-default">Delete</button>
-          </template>
-        </data-table-column>
-    </data-table>
+       <div style="text-align: center;">
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === 1}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}" style = "display: inline;">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.currentPage - 1)">&laquo;</a>
+          </li>
+          <li style = "display: inline;" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.currentPage + 1)">&raquo;</a>
+          </li>
+          <li style = "display: inline;" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a style = "float: left;padding: 8px 16px;" (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+      </ul>
     </div>
   </div>
