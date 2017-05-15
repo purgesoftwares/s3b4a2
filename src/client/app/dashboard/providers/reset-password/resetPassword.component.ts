@@ -45,7 +45,7 @@ export class ResetPasswordComponent {
 			this.loading = false;
 		}	else {
 
-			this.http.post('http://54.161.216.233:8090/api/public/user/reset-password', this.model)
+			this.http.post('http://54.161.216.233:8090/api/secured/provider/reset-password?access_token=' + this.token, this.model)
 				.map(res => res.json())
 				.subscribe(
 						data =>  {	this.succ = true;
@@ -61,6 +61,7 @@ export class ResetPasswordComponent {
   						this.loading = false;},
   				() => console.log('complete')
 				);
+			}
 		}
 	}
 }
