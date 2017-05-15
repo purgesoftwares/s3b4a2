@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-xl-12">
             <h1 *ngIf="model.id" class="page-header">
-                Update Coupon Package
+                Update Tour
             </h1>
             <h1 *ngIf="!model.id" class="page-header">
-                Add Coupon Package
+                Add Tour
             </h1>
             <ol class="breadcrumb">
                 <li>
@@ -14,13 +14,13 @@
                 </li>
                 <li>
                     <i class="fa fa-tag"></i>
-                    <a href="Javascript:void(0)" routerLink="/dashboard/coupon-package" > Coupon Package</a>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/coupon-package" > Tour</a>
                 </li>
                 <li *ngIf="model.id" class="active">
-                    <i class="fa fa-tag"></i> Update Coupon Package
+                    <i class="fa fa-tag"></i> Update Tour
                 </li>
                 <li *ngIf="!model.id" class="active">
-                    <i class="fa fa-tag"></i> Add Coupon Package
+                    <i class="fa fa-tag"></i> Add Tour
                 </li>
             </ol>
         </div>
@@ -82,18 +82,11 @@
                 </div>
                 <br>
             </div>
-            
-            <label for="startTime">Start Date :</label>
-            <div>
-                <input [(ngModel)]="model.startTime" name= "startTime" ng2-datetime-picker
-            year="2014" month="12" day="31" hour="23" minute="59" />
-            </div>
-            <br/>
-        
-            <label for="startTime">Expiry Date :</label>
-            <div>
-                <input [(ngModel)]="model.endTime" name= "endTime" ng2-datetime-picker
-            year="2014" month="12" day="31" hour="23" minute="59" /><br/>
+            <label for="redeemableTime">Redeemable Time <span class="required">*</span></label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !redeemableTime.valid }">
+                <input type="Number" class="form-control" name="redeemableTime" [(ngModel)]="model.redeemableTime" 
+                 #redeemableTime="ngModel" placeholder="Redeemable Time" required>
+                 <div *ngIf="f.submitted && !redeemableTime.valid" class="help-block">Redeemable Time is required</div>
             </div>
             
             <div class="form-group">

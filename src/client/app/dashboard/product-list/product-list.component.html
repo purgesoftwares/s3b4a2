@@ -9,12 +9,17 @@
                     <i class="fa fa-dashboard"></i>
                     <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
                 </li>
+                 <li>
+                    <i class="fa fa-user"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/provider" > Providers</a>
+                </li>
                 <li class="active">
                     <i class="fa fa-product-hunt"></i> Products
                 </li>
             </ol>
         </div>
     </div>
+    <div><a [routerLink]="['/dashboard/provider']" class="pull-right btn btn-primary">Back</a></div>
     <h3>Products of {{model.name}}</h3>
     <div *ngIf="mess"  class="alert alert-danger">{{message}}</div>
          <div class="table-responsive">
@@ -23,6 +28,8 @@
                      <tr>
                          <th>Product Name</th>
                          <th>Product Type</th>
+                         <th>Description</th>
+                         <th>Product Category</th>
                          <th>price</th>
                      </tr>
                  </thead>
@@ -30,6 +37,8 @@
                     <tr>
                         <td>{{ product.productName }}</td>
                         <td>{{ product.productType }}</td>
+                        <td><li *ngFor="let prodCat of product.productCategory">{{prodCat}}</li></td>
+                        <td>{{ product.description }}</td>
                         <td>{{ product.price }}</td>
                     </tr>
                 </tbody> 

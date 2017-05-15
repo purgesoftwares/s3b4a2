@@ -58,6 +58,7 @@ export class AddCouponPackageComponent {
   				.map(res => res.json())
   				.subscribe(
   					data =>{this.model= data;
+  						console.log(data);
   						if(this.model) {
   							if(this.model.providers) {
 	  						this.selected = this.model.providers;

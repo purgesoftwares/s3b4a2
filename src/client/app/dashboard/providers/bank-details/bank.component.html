@@ -36,6 +36,18 @@
                         <td>Email :</td>
                         <td>{{ provider.mainEmail }}</td>
                     </tr>
+                    <tr>
+                        <td>Secondary Email :</td>
+                        <td>{{ provider.secondaryEmail }}</td>
+                    </tr>
+                    <tr *ngIf="flag">
+                        <td>Types Of Product Detail :</td>
+                        <td>{{ providerInfo.typesOfProductDetail }}</td>
+                    </tr>
+                    <tr *ngIf="flag">
+                        <td>Place Info :</td>
+                        <td>{{ providerInfo.placeInfo }}</td>
+                    </tr>
                     <tr>                        
                         <td>Address :</td>
                         <td>{{ address.address1}}</td>
@@ -44,10 +56,16 @@
                         <td>Location :</td>
                         <td>{{ address.city }},{{address.country}}</td>
                     </tr>
+                    <br>
                     <div *ngIf="model.bankName">
+                    <h3>Bank Details</h3>
                     <tr>
                         <td>Beneficiary Name :</td>
                         <td>{{ model.beneficiaryName }}</td>
+                    </tr>
+                    <tr>
+                        <td>Account Number :</td>
+                        <td>{{ model.accountNumber }}</td>
                     </tr> 
                     <tr>
                         <td>Beneficiary Address :</td>
