@@ -18,11 +18,11 @@ export class AddCouponPackageComponent {
 	succ = false;
 	public providers: Array<Object>;
 	public products: Array<Object>;
-	public selected:any[]=[];
+	public selectProviders:any[]=[];
 	public productSelected:any[]=[];
 	public show:any[]=[];
 	private providerName:any[]=[];
-	private ids:any[]=[];
+	private delprod :any[]=[];
 
 	token = localStorage.getItem('access_token');
 	constructor(private http : Http, private router: Router, private route: ActivatedRoute) {}
@@ -31,7 +31,7 @@ export class AddCouponPackageComponent {
 		this.loading = true;
 		this.model.providers = [];
 		this.model.products = [];
-		this.model.providers = this.selected;
+		this.model.providers = this.selectProviders;
 		this.model.products = this.productSelected;
 		this.http.post('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token, this.model)
 				.map(res => res.json())
@@ -53,16 +53,15 @@ export class AddCouponPackageComponent {
 	ngOnInit() {
 
 	   	this.route.queryParams.subscribe(data => {this.model.id = data['Id']});
-	   	console.log(this.model.id);
 	   	this.http.get('http://54.161.216.233:8090/api/secured/coupon-package/'+ this.model.id +'?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data =>{this.model= data;
-  						console.log(data);
   						if(this.model) {
   							if(this.model.providers) {
-	  						this.selected = this.model.providers;
+	  						this.selectProviders = this.model.providers;
 		  					this.editProducts(this.model);
+		  					this.productSelected = this.model.products
 		  				}
   						}
   					},
@@ -71,9 +70,6 @@ export class AddCouponPackageComponent {
   					() => this.getProviders()
 
   				);
-
-
-
 	   	if(!this.model.id) {
 	   		var num = Math.floor(Math.random() * 90000) + 10000;
 			this.model.couponNumber = num;
@@ -103,7 +99,7 @@ export class AddCouponPackageComponent {
 	  					() => console.log("complete")
   					);
   		});
-	}
+	} 
 
   	checking(id: number) {
   		var check = false;
@@ -120,9 +116,8 @@ export class AddCouponPackageComponent {
 
   	checkbox(event: boolean, provider: Object) {
   		if(event) {
-	  		if(this.selected.indexOf(provider) == -1){
-	  			this.selected = [...this.selected, provider];
-	  			this.ids = [...this.ids, provider.id];
+	  		if(this.selectProviders.indexOf(provider) == -1){
+	  			this.selectProviders = [...this.selectProviders, provider];
 	  			this.getProducts(provider.id)
 	  						.subscribe(
 	  					data => {this.products= data.content;
@@ -134,22 +129,28 @@ export class AddCouponPackageComponent {
 		} else {
 			
 			var thisObj = this;
-			this.selected = this.selected.filter(function(elem){
-				return elem != provider;
+			this.selectProviders = this.selectProviders.filter(function(elem){
+				return elem.id != provider.id;
 	 		})
-	 		this.ids = this.ids.filter(function(elem){
-				return elem != provider.id;
-	 		})
-	 		thisObj.show = [];
-	 		this.ids.map((id) => {thisObj.getProducts(id)
-	  						.subscribe(
-	  					data => {thisObj.products= data.content;
-	  							thisObj.show = [...thisObj.show, thisObj.products]
-	 						},
-	  					error => console.log("error"),
-	  					() => console.log("complete")
-  					);
-	  		});
+	 	
+ 			thisObj.show.forEach(function(sh : Object, index: int) {
+ 				var i = false;
+ 				sh.forEach(function(prod : Object) {
+ 					if(prod.providerId === provider.id) {
+ 						thisObj.productSelected.forEach(function(product,ind) {
+ 							if(product.id === prod.id){
+ 								thisObj.productSelected.splice(ind,1);	
+ 							}
+ 						})
+ 						i = true;
+ 					}  else {
+ 						i = false;
+ 					}
+ 				});
+ 				if(i) {
+ 					thisObj.show.splice(index,1);		
+ 				}
+ 			});
 		}
   	}
 
@@ -168,14 +169,16 @@ export class AddCouponPackageComponent {
   	}
 
   	productCheck(event: boolean, product: Object) {
+  		var thisObj = this;
   		if(event) {
-	  		if(this.productSelected.indexOf(product) == -1){
-	  			this.productSelected = [...this.productSelected, product];
+	  		if(thisObj.productSelected.indexOf(product) == -1){
+	  			thisObj.productSelected = [...thisObj.productSelected, product];
 			}
 		} else {
-			this.productSelected = this.productSelected.filter(function(elem){
-				return elem != selected.value;
+			thisObj.productSelected = thisObj.productSelected.filter(function(elem){
+				return elem.id != product.id;
 	 		})
+	 		
 		}
   	}
 
