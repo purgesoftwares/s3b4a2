@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
+import * as globals from './../../../globals'; 
+
  
 @Component({
 	moduleId: module.id,
@@ -25,7 +27,7 @@ export class CouponViewComponent {
 	   														data['startTime'],this.model.endTime =  
 	   														data['endTime']});
 
-	   	this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
+	   	this.http.get(globals.apiSecureUrl+'/provider?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => {this.providers= data.content;

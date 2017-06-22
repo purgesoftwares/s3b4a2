@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
+import * as globals from './../../../globals'; 
+
  
 @Component({
 	moduleId: module.id,
@@ -18,7 +20,7 @@ export class CouponPackageViewComponent {
 	ngOnInit() {
 	   this.route.queryParams.subscribe(data => {this.model.id =  data['Id']});
 
-	   	this.http.get('http://54.161.216.233:8090/api/secured/coupon-package/'+ this.model.id +'?access_token=' + this.token)
+	   	this.http.get(globals.apiSecureUrl+'/coupon-package/'+ this.model.id +'?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => this.model= data,

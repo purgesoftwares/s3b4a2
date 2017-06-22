@@ -1,6 +1,7 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as globals from './../../../globals'; 
 
 
 @Component({
@@ -25,7 +26,7 @@ export class AddContentComponent {
 	
 	save() {
 		this.loading = true;
-    	this.http.post('http://54.161.216.233:8090/api/secured/cms-pages?access_token=' +this.token, this.model)
+    	this.http.post(globals.apiSecureUrl+'/cms-pages?access_token=' +this.token, this.model)
 			.map(res => res.json())
 			.subscribe(
 					data => {this.succ = true;

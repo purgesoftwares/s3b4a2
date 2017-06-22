@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 import { PagerService } from '../pager.service'
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import * as globals from './../../globals'; 
+
 
 @Component({
 	moduleId: module.id,
@@ -27,7 +29,7 @@ export class CouponComponent {
 	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
 	ngOnInit() {
-		this.http.get('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token)
+		this.http.get(globals.apiSecureUrl+'/coupon?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => { if(data.content.length) {
@@ -65,7 +67,7 @@ export class CouponComponent {
 
 	delete(id : number) {
 		if (confirm("Are You Sure! You want to delete this record?") == true) {
-			this.http.delete('http://54.161.216.233:8090/api/secured/coupon/' + id +'?access_token=' + this.token)
+			this.http.delete(globals.apiSecureUrl+'/coupon/' + id +'?access_token=' + this.token)
 				.map(res => res.json())
 				.subscribe(
 					data => {this.ngOnInit();

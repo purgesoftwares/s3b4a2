@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
+import * as globals from './../../../globals'; 
 
 @Component({
 	moduleId: module.id,
@@ -33,7 +34,7 @@ export class AddCouponPackageComponent {
 		this.model.products = [];
 		this.model.providers = this.selectProviders;
 		this.model.products = this.productSelected;
-		this.http.post('http://54.161.216.233:8090/api/secured/coupon-package?access_token=' + this.token, this.model)
+		this.http.post(globals.apiSecureUrl+'/coupon-package?access_token=' + this.token, this.model)
 				.map(res => res.json())
 				.subscribe(
 					data => {this.succ = true;
@@ -53,7 +54,7 @@ export class AddCouponPackageComponent {
 	ngOnInit() {
 
 	   	this.route.queryParams.subscribe(data => {this.model.id = data['Id']});
-	   	this.http.get('http://54.161.216.233:8090/api/secured/coupon-package/'+ this.model.id +'?access_token=' + this.token)
+	   	this.http.get(globals.apiSecureUrl+'/coupon-package/'+ this.model.id +'?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data =>{this.model= data;
@@ -78,7 +79,7 @@ export class AddCouponPackageComponent {
 	}
 
 	getProviders() {
-		this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
+		this.http.get(globals.apiSecureUrl+'/provider?access_token=' + this.token)
 		  				.map(res => res.json())
 		  				.subscribe(
 		  					data => this.providers= data.content,
@@ -183,7 +184,7 @@ export class AddCouponPackageComponent {
   	}
 
   	getProducts(id: string) {
-  		return this.http.get('http://54.161.216.233:8090/api/secured/product/provider-products/'+ id+'?access_token=' + this.token)
+  		return this.http.get(globals.apiSecureUrl+'/product/provider-products/'+ id+'?access_token=' + this.token)
   					.map(res => res.json());
   	}
 }

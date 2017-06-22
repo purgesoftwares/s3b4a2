@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import { UUID } from 'angular2-uuid';
+import * as globals from './../../../globals'; 
+
 
 @Component({
 	moduleId: module.id,
@@ -25,7 +27,7 @@ export class AddCouponComponent {
 	add() {
 		this.loading = true;
 		
-		this.http.post('http://54.161.216.233:8090/api/secured/coupon?access_token=' + this.token, this.model)
+		this.http.post(globals.apiSecureUrl+'/coupon?access_token=' + this.token, this.model)
 				.map(res => res.json())
 				.subscribe(
 					data => {this.succ = true;
@@ -60,7 +62,7 @@ export class AddCouponComponent {
 			this.model.couponNumber = num;
 	  	}
 
-	   this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
+	   this.http.get(globals.apiSecureUrl+'/provider?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => this.providers= data.content,

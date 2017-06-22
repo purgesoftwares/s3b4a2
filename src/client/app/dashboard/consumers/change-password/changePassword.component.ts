@@ -1,6 +1,7 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as globals from './../../../globals'; 
 
 
 @Component({
@@ -31,7 +32,7 @@ export class ChangePasswordComponent {
 			this.loading = false;
 		}	else {
 
-		this.http.post('http://54.161.216.233:8090/api/public/customer/reset-password', this.model)
+		this.http.post(globals.apiUrl+'/public/customer/reset-password', this.model)
 				.map(res => res.json())
 				.subscribe(
 						data =>  {	this.succ = true;

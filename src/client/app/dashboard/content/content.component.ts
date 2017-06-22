@@ -2,6 +2,8 @@ import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { PagerService } from '../pager.service'
 import { Router } from '@angular/router';
+import * as globals from './../../globals'; 
+
 
 @Component({
 	moduleId: module.id,
@@ -26,7 +28,7 @@ export class ContentComponent {
 	constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
 	ngOnInit() {
-		this.http.get('http://54.161.216.233:8090/api/secured/cms-pages?access_token=' + this.token)
+		this.http.get(globals.apiSecureUrl+'/cms-pages?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => { console.log(data);
@@ -52,7 +54,7 @@ export class ContentComponent {
 
 	delete(id: number) {
 		if (confirm("Are You Sure! You want to delete this record?") == true) {
-	    	this.http.delete('http://54.161.216.233:8090/api/secured/cms-pages/' + id + '?access_token=' + this.token)
+	    	this.http.delete(globals.apiSecureUrl+'/cms-pages/' + id + '?access_token=' + this.token)
 				.map(res => res.json())
 				.subscribe(
 					data => {this.ngOnInit();

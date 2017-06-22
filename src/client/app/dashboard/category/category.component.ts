@@ -2,6 +2,7 @@ import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { PagerService } from '../pager.service'
 import { Router } from '@angular/router';
+import * as globals from './../../globals'; 
 
 @Component({
 	moduleId: module.id,
@@ -27,8 +28,8 @@ export class CategoryComponent {
 
 	ngOnInit() {
 		var token = localStorage.getItem('access_token');
-		
-		this.http.get('http://54.161.216.233:8090/api/secured/product-category?access_token='+ this.token)
+		console.log(globals.apiSecureUrl);
+		this.http.get(globals.apiSecureUrl+'/product-category?access_token='+ this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => { if(data.content.length) {
@@ -57,7 +58,7 @@ export class CategoryComponent {
 
 	delete(id: number) {
 		if (confirm("Are You Sure! You want to delete this record?") == true) {
-	    	this.http.delete('http://54.161.216.233:8090/api/secured/product-category/' + id + '?access_token='+ this.token)
+	    	this.http.delete(globals.apiSecureUrl+'/product-category/' + id + '?access_token='+ this.token)
 				.map(res => res.json())
 				.subscribe(
 					data => {this.ngOnInit();
