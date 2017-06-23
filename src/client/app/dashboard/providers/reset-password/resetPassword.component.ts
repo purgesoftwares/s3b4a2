@@ -1,6 +1,7 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as globals from './../../../globals'; 
 
 
 @Component({
@@ -24,7 +25,7 @@ export class ResetPasswordComponent {
 	ngOnInit() {
 	   this.route.queryParams.subscribe(data => this.reset.id = data['id']);
 
-	   this.http.get('http://54.161.216.233:8090/api/secured/provider/' + this.reset.id +'?access_token=' + this.token)
+	   this.http.get(globals.apiSecureUrl+'/provider/' + this.reset.id +'?access_token=' + this.token)
 				.map(res => res.json())
 				.subscribe(
 					data => {this.reset = data;},
@@ -45,7 +46,7 @@ export class ResetPasswordComponent {
 			this.loading = false;
 		}	else {
 
-			this.http.post('http://54.161.216.233:8090/api/secured/provider/reset-password?access_token=' + this.token, this.model)
+			this.http.post(globals.apiSecureUrl+'/provider/reset-password?access_token=' + this.token, this.model)
 				.map(res => res.json())
 				.subscribe(
 						data =>  {	this.succ = true;

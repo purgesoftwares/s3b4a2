@@ -1,6 +1,8 @@
 import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import * as globals from './../../globals'; 
+
 
 @Component({
 	moduleId: module.id,
@@ -19,7 +21,7 @@ export class PurchasedCouponComponent {
 	constructor(private http: Http, private router: Router) {}
 
 	ngOnInit() {
-		this.http.get('http://54.161.216.233:8090/api/secured/purchased-package?access_token=' + this.token)
+		this.http.get(globals.apiSecureUrl+'/purchased-package?access_token=' + this.token)
 			.map(res=> res.json())
 			.subscribe(
 				data => { console.log(data); 

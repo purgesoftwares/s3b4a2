@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
+import * as globals from './../../../globals'; 
+
 @Component({
 	moduleId: module.id,
     selector: 'bank-detail',
@@ -32,7 +34,7 @@ export class BankDetailComponent {
     }
 
     getProvider() {
-	   	this.http.get('http://54.161.216.233:8090/api/secured/provider/'+ this.model.id +'?access_token=' + this.token)
+	   	this.http.get(globals.apiSecureUrl+'/provider/'+ this.model.id +'?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => {this.provider = data;
@@ -46,7 +48,7 @@ export class BankDetailComponent {
     }
 
     getBankDetail() {
-    	this.http.get('http://54.161.216.233:8090/api/secured/bank-detail/get-bankdetail/' + this.model.id + '?access_token='+ this.token)
+    	this.http.get(globals.apiSecureUrl+'/bank-detail/get-bankdetail/' + this.model.id + '?access_token='+ this.token)
 			.map(res => res.json())
 			.subscribe(
 				data => this.model = data,
@@ -56,7 +58,7 @@ export class BankDetailComponent {
     }
 
     getAddress() {
-  		this.http.get('http://54.161.216.233:8090/api/secured/address/'+ this.provider.addressId +'?access_token=' + this.token)
+  		this.http.get(globals.apiSecureUrl+'/address/'+ this.provider.addressId +'?access_token=' + this.token)
   				.map(res => res.json())
           .subscribe(
             data => this.address= data,
@@ -67,7 +69,7 @@ export class BankDetailComponent {
 
     getProviderInformation() {
       
-      this.http.get('http://54.161.216.233:8090/api/secured/provider-information/get-information/'+this.model.id +'?access_token=' + this.token)
+      this.http.get(globals.apiSecureUrl+'/provider-information/get-information/'+this.model.id +'?access_token=' + this.token)
           .map(res => res.json())
           .subscribe(
             data => {this.flag = true;

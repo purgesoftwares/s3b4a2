@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
+import * as globals from './../../globals'; 
+
 
 @Component({
   moduleId: module.id,
@@ -26,7 +28,7 @@ export class ProductListComponent {
     }
 
    getProducts(id: string) {
-     this.http.get('http://54.161.216.233:8090/api/secured/product/provider-products/'+ id +'?access_token=' + this.token)
+     this.http.get(globals.apiSecureUrl+'/product/provider-products/'+ id +'?access_token=' + this.token)
           .map(res => res.json())
           .subscribe(
             data => {

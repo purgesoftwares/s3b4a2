@@ -2,6 +2,7 @@ import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { PagerService } from '../pager.service'
 import { Router } from '@angular/router';
+import * as globals from './../../globals'; 
 
 @Component({
 	moduleId: module.id,
@@ -27,7 +28,7 @@ export class ProductQuestionComponent {
 
 	ngOnInit() {
 		var type = "product";
-		this.http.get('http://54.161.216.233:8090/api/secured/question/type/'+ type +'?access_token=' + this.token)
+		this.http.get(globals.apiSecureUrl+'/question/type/'+ type +'?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => { if(data.length) {
@@ -51,7 +52,7 @@ export class ProductQuestionComponent {
 
 	delete(id: number) {
 		if (confirm("Are You Sure! You want to delete this record?") == true) {
-	    	this.http.delete('http://54.161.216.233:8090/api/secured/question/' + id + '?access_token=' + this.token)
+	    	this.http.delete(globals.apiSecureUrl+'/question/' + id + '?access_token=' + this.token)
 				.map(res => res.json())
 				.subscribe(
 					data => {this.ngOnInit();

@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
- 
+import * as globals from './../../../globals'; 
+
 @Component({
 	moduleId: module.id,
     selector: 'purchased-coupon-view',
@@ -21,7 +22,7 @@ export class PurchasedCouponViewComponent {
 		var id;
 	   this.route.queryParams.subscribe(data => {id =  data['Id']});
 
-	   this.http.get('http://54.161.216.233:8090/api/secured/purchased-package/'+ id +'?access_token=' + this.token)
+	   this.http.get(globals.apiSecureUrl+'/purchased-package/'+ id +'?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => {this.model= data;
@@ -34,7 +35,7 @@ export class PurchasedCouponViewComponent {
   					() => console.log(this.model)
   				);
 
-	   	this.http.get('http://54.161.216.233:8090/api/secured/provider?access_token=' + this.token)
+	   	this.http.get(globals.apiSecureUrl+'/provider?access_token=' + this.token)
   				.map(res => res.json())
   				.subscribe(
   					data => {this.providers= data.content;

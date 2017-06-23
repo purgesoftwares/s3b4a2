@@ -2,6 +2,7 @@ import {Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { PagerService } from '../pager.service'
 import { Router } from '@angular/router';
+import * as globals from './../../globals'; 
 
 @Component({
   moduleId: module.id,
@@ -24,7 +25,7 @@ export class InquiryComponent {
   constructor(private http : Http, private pagerService : PagerService,private router: Router) { }
 
   ngOnInit() {
-    this.http.get('http://54.161.216.233:8090/api/secured/contact-us?access_token='+ this.token)
+    this.http.get(globals.apiSecureUrl+'/contact-us?access_token='+ this.token)
           .map(res => res.json())
           .subscribe(
             data => { if(data.content.length) {
