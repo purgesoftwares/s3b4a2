@@ -10,9 +10,11 @@ import { PurchasedCouponViewModule } from './purchased-coupon/purchased-coupon-v
 import { InquiryModule } from './inquiry/inquiry.module';
 import { ContentModule } from './content/content.module';
 import { CategoryModule } from './category/category.module';
+import { RateModule } from './rate/rate.module';
 import { PurchasedCouponModule } from './purchased-coupon/purchased-coupon.module';
 import { ProviderQuestionModule } from './provider-question/providerQuestion.module';
 import { AddCategoryModule } from './category/add-category/addCategory.module';
+import { ViewRateModule } from './rate/view-rate/viewRate.module';
 import { AddContentModule } from './content/add-content/addContent.module';
 import { ProductQuestionModule } from './product-question/productQuestion.module';
 import { AddProductQuestionModule } from './product-question/add-productQuestion/addProductQuestion.module';
@@ -50,6 +52,7 @@ import {SidebarComponent} from '../shared/index';
         ResetPasswordModule,
         BankDetailModule,
         AddContentModule,
+        RateModule,
         ProductQuestionModule,
         AddProductQuestionModule,
         ProviderQuestionModule,
@@ -63,6 +66,7 @@ import {SidebarComponent} from '../shared/index';
         CouponPackageModule,
         PurchasedCouponModule,
         CouponPackageViewModule,
+        ViewRateModule,
         CouponViewModule,
         AddCouponPackageModule,
         InquiryViewModule,

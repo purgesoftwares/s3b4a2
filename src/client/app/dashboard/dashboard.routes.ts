@@ -9,6 +9,7 @@ import { ContentRoutes } from './content/index';
 import { ConsumerRoutes } from './consumers/index';
 import { ChangePasswordRoutes } from './consumers/change-password/index';
 import { CategoryRoutes } from './category/index';
+import { RateRoutes } from './rate/index';
 import { AddContentRoutes } from './content/add-content/index';
 import { ProductQuestionRoutes } from './product-question/index';
 import { ProviderQuestionRoutes } from './provider-question/index';
@@ -23,6 +24,7 @@ import { CouponPackageViewRoutes } from './coupon-package/coupon-package-view/in
 import { InquiryViewRoutes } from './inquiry/inquiry-view/index';
 import { PurchasedCouponViewRoutes } from './purchased-coupon/purchased-coupon-view/index';
 import { AddCategoryRoutes } from './category/add-category/index'
+import { ViewRateRoutes } from './rate/view-rate/index'
 import { AddProductQuestionRoutes } from './product-question/add-productQuestion/index';
 import { AddProviderQuestionRoutes } from './provider-question/add-providerQuestion/index';
 import { AuthGuard } from './oauth/auth.guard';
@@ -46,6 +48,7 @@ export const DashboardRoutes: Route[] = [
             ...AddProductQuestionRoutes,
             ...CouponPackageRoutes,
             ...CategoryRoutes,
+            ...RateRoutes
             ...CouponRoutes,
             ...AddCouponRoutes,
             ...ProviderQuestionRoutes,
@@ -57,6 +60,7 @@ export const DashboardRoutes: Route[] = [
             ...AddCouponPackageRoutes,
             ...PurchasedCouponRoutes
             ...ConsumerRoutes,
+            ...ViewRateRoutes,
             ...ChangePasswordRoutes,
             ...ProductListRoutes
         ]

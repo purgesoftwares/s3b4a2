@@ -1,0 +1,121 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">
+                View Rate
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/home" > Dashboard</a>
+                </li>
+                <li>
+                    <i class="fa fa-tags"></i>
+                    <a href="Javascript:void(0)" routerLink="/dashboard/rate" > Rate</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-plus"></i> View Rate 
+                </li>
+            </ol>
+        </div>
+    <a [routerLink]="['/dashboard/rate']" class="pull-right btn btn-primary">Back</a>
+    </div>
+    <div class="table-responsive">
+              <table style="border: 0px" class="table table-hover table-striped">
+                 <tbody>
+                     
+                    <tr>
+                        <td>Rank :</td>
+                        <td>{{ model.rank }}</td>
+                    </tr>
+                    <tr>
+                        <td>Feedback :</td>
+                        <td>{{ model.feedback }}</td>
+                    </tr>
+                    <tr>
+                        <td>status :</td>
+                        <td>{{ model.status }}</td>
+                    </tr>
+                    <tr *ngIf="model.uploadFileId!=null">                        
+                        <td>Upload File </td>
+                        <td>uploadFileId</td>
+                    </tr>
+                    <tr *ngIf="provider!=null">                        
+                        <td><h3>Provider :</h3></td>
+                        <td></td>
+                    </tr>
+                    <tr *ngIf="provider!=null">
+                    <td>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                   <th>Provider Name</th>
+                                   <th>Contact Name</th>
+                                   <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ provider.provide_rname }}</td>
+                                    <td>{{ provider.contactName }}</td>
+                                    <td>{{ provider.mainEmail }}</td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </td>
+                    </tr>
+                    <tr *ngIf="customer!=null">                        
+                        <td><h3>Customer :</h3></td>
+                        <td></td>
+                    </tr>
+                    <tr *ngIf="customer!=null">
+                    <td>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                  <th>First Name</th>
+                                  <th>Last Name</th>
+                                   <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ customer.firstName }}</td>
+                                    <td>{{ customer.lastName }}</td>
+                                    <td>{{ customer.mainEmail }}</td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </td>
+                    </tr>
+                    <tr *ngIf="couponPackage!=null">                        
+                        <td><h3>Coupon Package :</h3></td>
+                        <td></td>
+                    </tr>
+                    <tr *ngIf="couponPackage!=null">
+                    <td>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                  <th>Coupon Number</th>
+                                  <th>Price</th>
+                                  <th>Redeemable Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ couponPackage.couponNumber }}</td>
+                                    <td>{{ couponPackage.price }}</td>
+                                    <td>{{ couponPackage.redeemableTime }}</td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </td>
+                    </tr>
+                    
+                </tbody> 
+             </table>
+    </div>
+</div>
+
+ 
