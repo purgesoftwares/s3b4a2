@@ -43,17 +43,13 @@ export class RateComponent {
 									this.message = error.json().message
 									this.mess = true;
 								}},
-  					() => console.log(this.rate)
+  					() => console.log("complete")
   				);
 	}
 
 	view(id: number) {
 		this.router.navigate(['/dashboard/view-rate/'], { queryParams: { Id: id}});
 	}
-
-	/*update(id: number, name: string, description: string) {
-    	this.router.navigate(['/dashboard/add-category/'], { queryParams: { Id: id, name: name,description: description}});
-    }*/
 
 	delete(id: number) {
 		if (confirm("Are You Sure! You want to delete this record?") == true) {
@@ -75,7 +71,7 @@ export class RateComponent {
 
 	search(terms: string) {
 		if(terms) {
-			this.pagedItems = this.rate.filter((item) => item.name.startsWith(terms));
+			this.pagedItems = this.rate.filter((item) => item.feedback.startsWith(terms));
 		} else {
 			this.ngOnInit();
 		}

@@ -32,14 +32,12 @@ export class ViewRateComponent {
                   			  this.provider = this.model.provider;
                   			  this.customer = this.model.customer
                   			  this.getCouponPackage(this.model.couponPackageId);
-                  			  console.log(this.provider);
-                  			  console.log(this.customer);
                   			},
   					error => { if(error.json().error) {
 									this.message = error.json().message
 									this.mess = true;
 								}},
-  					() => console.log(this.model)
+  					() => console.log("complete")
   				);
   	}
 
@@ -47,31 +45,12 @@ export class ViewRateComponent {
   		this.http.get(globals.apiSecureUrl+'/coupon-package/' + id +'?access_token=' + this.token)
 			.map(res => res.json())
 			.subscribe(
-  					data => { this.couponPackage = data;
-  							  console.log(this.couponPackage);},
+  					data => { this.couponPackage = data;},
 					error => { if(error.json().error) {
 						this.message = error.json().message
 						this.mess = true;
 					}},
-  					() => console.log(this.model)
+  					() => console.log("complete")
+  				);
   	}
-
-	/*save() {
-		this.loading = true;
-    	this.http.post(globals.apiSecureUrl+'/product-category?access_token=' +this.token, this.model)
-			.map(res => res.json())
-			.subscribe(
-					data =>  {	this.succ = true;
-							this.message = "Successfully Saved";
-							setTimeout(() => {
-                				this.router.navigate(['/dashboard/category'])
-            				}, 1000);},
-					error => { if(error.json().error) {
-							this.message = error.json().message
-							this.mess = true;
-						}
-  						this.loading = false;}
-				);
-	}*/
-
 }
