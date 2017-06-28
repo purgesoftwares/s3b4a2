@@ -39,7 +39,7 @@
              </thead>
              <tbody *ngFor = "let rate of pagedItems">
                 <tr>                     
-                    <td>{{ rate.rank }}</td>
+                    <td>{{ rate.rank }} star</td>
                     <td>{{ rate.feedback }}</td>
                     <td>{{ rate.pictureDescription }}</td>
                     <td><button (click) = "view(rate.id)" class="btn btn-primary">View</button></td>

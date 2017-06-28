@@ -26,15 +26,11 @@
                      
                     <tr>
                         <td>Rank :</td>
-                        <td>{{ model.rank }}</td>
+                        <td>{{ model.rank }} star</td>
                     </tr>
                     <tr>
                         <td>Feedback :</td>
                         <td>{{ model.feedback }}</td>
-                    </tr>
-                    <tr>
-                        <td>status :</td>
-                        <td>{{ model.status }}</td>
                     </tr>
                     <tr *ngIf="model.uploadFileId!=null">                        
                         <td>Upload File </td>
@@ -56,7 +52,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ provider.provide_rname }}</td>
+                                    <td>{{ provider.provide_name }}</td>
                                     <td>{{ provider.contactName }}</td>
                                     <td>{{ provider.mainEmail }}</td>
                                 </tr>
